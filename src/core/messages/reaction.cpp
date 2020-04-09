@@ -19,8 +19,8 @@
 
 #include "reaction.h"
 #include "emoticons/emojimanager.h"
-#include <KTextToHTML>
-#include <KLocalizedString>
+//#include <KTextToHTML>
+//#include <KLocalizedString>
 Reaction::Reaction()
 {
 }
@@ -35,7 +35,7 @@ QString Reaction::convertedUsersNameAtToolTip() const
     if (mUserNames.isEmpty()) {
         return QString();
     } else if (mUserNames.count() == 1) {
-        return i18n("%1 reacted with %2", mUserNames[0], mReactionName);
+        return QObject::tr("%1 reacted with %2").arg(mUserNames[0]).arg(mReactionName);
     } else {
         QString notificationStr;
         for (int i = 0, total = mUserNames.count(); i < total; ++i) {
@@ -43,12 +43,12 @@ QString Reaction::convertedUsersNameAtToolTip() const
             if (i == 0) {
                 notificationStr = user;
             } else if (i < (total - 1)) {
-                notificationStr = i18n("%1, %2", notificationStr, user);
+                notificationStr = QObject::tr("%1, %2").arg(notificationStr).arg(user);
             } else {
-                notificationStr = i18n("%1 and %2", notificationStr, user);
+                notificationStr = QObject::tr("%1 and %2").arg(notificationStr).arg(user);
             }
         }
-        return i18n("%1 reacted with %2", notificationStr, mReactionName);
+        return QObject::tr("%1 reacted with %2").arg(notificationStr).arg(mReactionName);
     }
 }
 
@@ -75,8 +75,12 @@ void Reaction::setReactionName(const QString &reactionName, EmojiManager *emojiM
             mCacheConvertedReactionName = emojiManager->replaceEmojiIdentifier(mReactionName, true);
             mIsAnimatedImage = emojiManager->isAnimatedImage(mReactionName);
         } else {
+#ifndef Q_OS_WINDOWS
             const KTextToHTML::Options convertFlags = KTextToHTML::ReplaceSmileys;
             mCacheConvertedReactionName = KTextToHTML::convertToHtml(mReactionName, convertFlags);
+#else
+            qDebug()<<"====================IMPLEMENT THIS=====================";
+#endif
         }
     }
 }

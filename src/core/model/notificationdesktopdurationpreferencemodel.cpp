@@ -19,7 +19,7 @@
 */
 
 #include "notificationdesktopdurationpreferencemodel.h"
-#include <KLocalizedString>
+//#include <KLocalizedString>
 
 NotificationDesktopDurationPreferenceModel::NotificationDesktopDurationPreferenceModel(QObject *parent)
     : QAbstractListModel(parent)
@@ -69,13 +69,13 @@ void NotificationDesktopDurationPreferenceModel::fillModel()
     {
         //Default ???? Verify it. Perhaps 0 ? Don't know
         NotificationDesktopDurationPreferenceInfo preferenceInfo;
-        preferenceInfo.displayText = i18n("Default");
+        preferenceInfo.displayText = QObject::tr("Default");
         preferenceInfo.preference = QStringLiteral("default");
         mNotificationDestktopDurationPreferenceList.append(preferenceInfo);
     }
     for (int i = 1; i <= 5; ++i) {
         NotificationDesktopDurationPreferenceInfo preferenceInfo;
-        preferenceInfo.displayText = i18np("1 second", "%1 seconds", i);
+        preferenceInfo.displayText = tr("1 second", "%1 seconds").arg(i);
         preferenceInfo.preference = QString::number(i);
         mNotificationDestktopDurationPreferenceList.append(preferenceInfo);
     }

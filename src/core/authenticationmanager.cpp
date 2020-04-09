@@ -22,9 +22,9 @@
 #include "ruqola_debug.h"
 
 #include <QFileInfo>
-#include <KPluginMetaData>
-#include <KPluginLoader>
-#include <KPluginFactory>
+//#include <KPluginMetaData>
+//#include <KPluginLoader>
+//#include <KPluginFactory>
 
 #include <plugins/pluginauthentication.h>
 
@@ -77,11 +77,15 @@ bool AuthenticationManager::initializePluginList()
 
 void AuthenticationManager::loadPlugin(AuthenticationManagerInfo *item)
 {
+#ifndef Q_OS_WINDOWS
     KPluginLoader pluginLoader(item->metaDataFileName);
     if (pluginLoader.factory()) {
         item->plugin = pluginLoader.factory()->create<PluginAuthentication>(this, QVariantList() << item->metaDataFileNameBaseName);
         mPluginDataList.append(item->pluginData);
     }
+#else
+    qDebug()<<"==============================IMPLEMENT THIS======================";
+#endif
 }
 
 QVector<PluginAuthentication *> AuthenticationManager::pluginsList() const
@@ -99,7 +103,11 @@ QVector<PluginAuthentication *> AuthenticationManager::pluginsList() const
 PluginUtilData AuthenticationManager::createPluginMetaData(const KPluginMetaData &metaData)
 {
     PluginUtilData pluginData;
+#ifndef Q_OS_WINDOWS
     pluginData.mName = metaData.name();
     pluginData.mIdentifier = metaData.pluginId();
+#else
+    qDebug()<<"=================================IMPLEMENT THIS ====== ";
+#endif
     return pluginData;
 }

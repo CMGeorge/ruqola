@@ -31,12 +31,13 @@
 #include "model/roommodel.h"
 #include "model/messagemodel.h"
 
-#ifndef Q_OS_ANDROID
-#include "notification.h"
+#if !defined(Q_OS_ANDROID) && !defined(Q_OS_WINDOWS)
+//#include "notification.h"
 #endif
 
+#ifndef Q_OS_WINDOWS
 #include <KAboutData>
-
+#endif
 class RocketChatAccount;
 class AccountManager;
 class LIBRUQOLACORE_EXPORT Ruqola : public QObject
@@ -53,14 +54,14 @@ public:
 
     static void destroy();
 
-#ifndef Q_OS_ANDROID
+#if !defined(Q_OS_ANDROID) && !defined(Q_OS_WINDOWS)
     Notification *notification();
 #endif
 
     Q_INVOKABLE RocketChatAccount *rocketChatAccount() const;
-
+#ifndef Q_OS_WINDOWS
     Q_INVOKABLE KAboutData applicationData() const;
-
+#endif
     Q_INVOKABLE AccountManager *accountManager() const;
 
     explicit Ruqola(QObject *parent = nullptr);
@@ -73,7 +74,7 @@ private:
     void logout(const QString &accountName);
     AccountManager *mAccountManager = nullptr;
 
-#ifndef Q_OS_ANDROID
+#if !defined(Q_OS_ANDROID) && !defined(Q_OS_WINDOWS)
     Notification *mNotification = nullptr;
 #endif
 };

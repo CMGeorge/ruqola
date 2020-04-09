@@ -21,7 +21,7 @@
 #include "rocketchataccountsettings.h"
 #include "managerdatapaths.h"
 #include "ruqola_debug.h"
-#include <config-ruqola.h>
+#include <../../config-ruqola.h>
 
 #include <QDateTime>
 #include <QDir>

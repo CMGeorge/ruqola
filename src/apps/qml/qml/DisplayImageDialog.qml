@@ -25,7 +25,7 @@ import QtQuick.Window 2.2
 QQC2.Dialog {
     id: displayImageDialog
 
-    title: i18n("Image")
+    title: qsTr("Image")
 
     property url iUrl
     property bool isAnimatedImage: false

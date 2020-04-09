@@ -25,7 +25,7 @@ import QtQuick 2.9
 
 QQC2.Dialog {
     id: jobErrorMessageDialog
-    title: i18n("Error")
+    title: qsTr("Error")
 
     property string jobMessageError
 

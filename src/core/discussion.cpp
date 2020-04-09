@@ -21,7 +21,7 @@
 #include "utils.h"
 #include <QDateTime>
 #include <QJsonObject>
-#include <KLocalizedString>
+//#include <KLocalizedString>
 
 Discussion::Discussion()
 {
@@ -86,7 +86,7 @@ void Discussion::setFname(const QString &fname)
 
 QString Discussion::lastMessageDisplay() const
 {
-    return i18n("(Last Message: %1)", mLastMessageDateTimeStr);
+    return QObject::tr("(Last Message: %1)").arg(mLastMessageDateTimeStr);
 }
 
 qint64 Discussion::timeStamp() const

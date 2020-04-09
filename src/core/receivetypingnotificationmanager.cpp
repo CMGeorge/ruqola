@@ -18,7 +18,7 @@
 */
 
 #include "receivetypingnotificationmanager.h"
-#include <KLocalizedString>
+//#include <KLocalizedString>
 
 ReceiveTypingNotificationManager::ReceiveTypingNotificationManager(QObject *parent)
     : QObject(parent)
@@ -70,7 +70,7 @@ QString ReceiveTypingNotificationManager::generateNotification(const QStringList
         return QString();
     }
     if (userNames.count() == 1) {
-        return i18n("<strong>%1</strong> is typing...", userNames[0]);
+        return QObject::tr("<strong>%1</strong> is typing...").arg(userNames[0]);
     }
 
     QString notificationStr;
@@ -79,12 +79,12 @@ QString ReceiveTypingNotificationManager::generateNotification(const QStringList
         if (i == 0) {
             notificationStr = user;
         } else if (i < userNames.count() - 1) {
-            notificationStr = i18n("%1, %2", notificationStr, user);
+            notificationStr = QObject::tr("%1, %2").arg(notificationStr).arg(user);
         } else {
-            notificationStr = i18n("%1 and %2", notificationStr, user);
+            notificationStr = QObject::tr("%1 and %2").arg(notificationStr).arg(user);
         }
     }
-    return i18n("<strong>%1</strong> are typing...", notificationStr);
+    return QObject::tr("<strong>%1</strong> are typing...").arg(notificationStr);
 }
 
 QString ReceiveTypingNotificationManager::typingNotification(const QString &roomId) const

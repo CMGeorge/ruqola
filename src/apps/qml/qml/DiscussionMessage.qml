@@ -67,7 +67,7 @@ Kirigami.BasicListItem {
             }
         }
         QQC2.Label {
-            text: i18n("Open Discussion")
+            text: qsTr("Open Discussion")
             elide: Text.ElideRight
             wrapMode: QQC2.Label.Wrap
             textFormat: Text.PlainText

@@ -23,9 +23,9 @@
 #include <QJsonObject>
 #include <QDateTime>
 #include <QJsonArray>
-#include <KTextToHTML>
+//#include <KTextToHTML>
 #include <QRegularExpression>
-#include <KColorScheme>
+//#include <KColorScheme>
 
 QUrl Utils::generateServerUrl(const QString &url)
 {
@@ -58,7 +58,7 @@ QString Utils::markdownToRichText(const QString &markDown)
 
     //qCDebug(RUQOLA_LOG) << "BEFORE markdownToRichText "<<markDown;
     QString str = markDown;
-
+#ifndef Q_OS_WINDOWS
     //TODO remove replaceSmileys when we will use unicode emoticons
     const KTextToHTML::Options convertFlags = KTextToHTML::PreserveSpaces | KTextToHTML::HighlightText | KTextToHTML::ReplaceSmileys | KTextToHTML::ConvertPhoneNumbers;
     str = KTextToHTML::convertToHtml(str, convertFlags);
@@ -69,6 +69,9 @@ QString Utils::markdownToRichText(const QString &markDown)
     //Bug 391520 I don't remember why I removed <br /> need to investigate
     //str.remove(QStringLiteral("<br />"));
     //qCDebug(RUQOLA_LOG) << "markdownToRichText "<<str;
+#else
+    qDebug()<<"===================IMPLEMENT THIS!!!!";
+#endif
     return str;
 }
 
@@ -78,9 +81,14 @@ QString Utils::generateRichText(const QString &str, const QString &username)
     static const QRegularExpression regularExpressionUser(QStringLiteral("(^|\\s+)@([\\w._-]+)"));
     QRegularExpressionMatchIterator userIterator = regularExpressionUser.globalMatch(newStr);
 
+#ifndef Q_OS_WINDOWS
     KColorScheme colorScheme;
     const auto userMentionForegroundColor = colorScheme.foreground(KColorScheme::ActiveText).color().name();
     const auto userMentionBackgroundColor = colorScheme.background(KColorScheme::ActiveBackground).color().name();
+#else
+    const auto userMentionForegroundColor = "red";
+    const auto userMentionBackgroundColor = "yellow";
+#endif
     while (userIterator.hasNext()) {
         const QRegularExpressionMatch match = userIterator.next();
         const QStringRef word = match.capturedRef(2);
@@ -114,12 +122,17 @@ QString Utils::generateRichText(const QString &str, const QString &username)
 QString Utils::formatQuotedRichText(const QString &richText)
 {
     // Qt's support for borders is limited to tables, so we have to jump through some hoops...
+#ifndef Q_OS_WINDOWS
     KColorScheme scheme;
     const auto backgroundColor = scheme.background(KColorScheme::AlternateBackground).color().name();
     const auto borderColor = scheme.foreground(KColorScheme::LinkText).color().name();
+#else
+    const auto backgroundColor = "yellow";
+    const auto borderColor = "red";
+#endif
     return QStringLiteral("<table><tr><td style='background-color:%1; padding-left: 5px; border-left: 5px solid %2'>").arg(backgroundColor, borderColor)
-           + richText
-           + QStringLiteral("</td></tr></table>");
+            + richText
+            + QStringLiteral("</td></tr></table>");
 }
 
 QString Utils::presenceStatusToString(User::PresenceStatus status)
@@ -221,7 +234,7 @@ QString Utils::convertTextWithUrl(const QString &str)
     QString newStr;
     bool isRef = false;
     bool isUrl = false;
-//    bool isHasNewRef = false;
+    //    bool isHasNewRef = false;
     QString url;
     QString references;
     for (int i = 0; i < str.count(); ++i) {
@@ -233,23 +246,23 @@ QString Utils::convertTextWithUrl(const QString &str)
             if ((i == str.count() - 1) || (str.at(i+1) != QLatin1Char('('))) {
                 newStr += QLatin1Char('[') + references + QLatin1Char(']');
             }
-//        } else if (ref == QLatin1Char('|')) {
-//            isUrl = false;
-//            isRef = true;
-//            isHasNewRef = true;
-//        } else if (ref == QLatin1Char('<')) {
-//            isUrl = true;
-//        } else if (ref == QLatin1Char('>') && isHasNewRef) {
-//            isUrl = false;
-//            isRef = false;
-//            isHasNewRef = false;
-//            if (url.startsWith(QLatin1Char('<'))) {
-//                newStr += url.replace(regularExpressionAHref, QStringLiteral("<a href=\"\\1\">%1</a>").arg(references));
-//            } else {
-//                newStr += QStringLiteral("<a href=\'%1'>%2</a>").arg(url, references);
-//            }
-//            references.clear();
-//            url.clear();
+            //        } else if (ref == QLatin1Char('|')) {
+            //            isUrl = false;
+            //            isRef = true;
+            //            isHasNewRef = true;
+            //        } else if (ref == QLatin1Char('<')) {
+            //            isUrl = true;
+            //        } else if (ref == QLatin1Char('>') && isHasNewRef) {
+            //            isUrl = false;
+            //            isRef = false;
+            //            isHasNewRef = false;
+            //            if (url.startsWith(QLatin1Char('<'))) {
+            //                newStr += url.replace(regularExpressionAHref, QStringLiteral("<a href=\"\\1\">%1</a>").arg(references));
+            //            } else {
+            //                newStr += QStringLiteral("<a href=\'%1'>%2</a>").arg(url, references);
+            //            }
+            //            references.clear();
+            //            url.clear();
         } else if (ref == QLatin1Char('(') && !references.isEmpty()) {
             isUrl = true;
         } else if (ref == QLatin1Char(')') && !references.isEmpty()) {

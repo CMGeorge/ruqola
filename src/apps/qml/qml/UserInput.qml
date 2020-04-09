@@ -54,7 +54,7 @@ RowLayout {
             hoverEnabled: true
             anchors.fill: parent
             QQC2.ToolTip {
-                text: i18n("Attach Files")
+                text: qsTr("Attach Files")
             }
         }
 
@@ -105,7 +105,7 @@ RowLayout {
             hoverEnabled: true
             anchors.fill: parent
             QQC2.ToolTip {
-                text: i18n("Insert Emoji")
+                text: qsTr("Insert Emoji")
             }
         }
 
@@ -127,7 +127,7 @@ RowLayout {
         MouseArea {
             hoverEnabled: true
             QQC2.ToolTip {
-                text: i18n("Send Message")
+                text: qsTr("Send Message")
             }
             anchors.fill: parent
             onClicked: {

@@ -20,8 +20,10 @@
 
 #include "ruqolaserverconfig.h"
 #include <QJsonArray>
+#include <QJsonObject>
 #include <QRegularExpression>
 #include <QStringList>
+#include <QJsonDocument>
 #include "ruqola_debug.h"
 
 RuqolaServerConfig::RuqolaServerConfig()

@@ -20,7 +20,7 @@
 
 #include "listmessagesmodelfilterproxymodel.h"
 #include "listmessagesmodel.h"
-#include <KLocalizedString>
+//#include <KLocalizedString>
 
 ListMessagesModelFilterProxyModel::ListMessagesModelFilterProxyModel(ListMessagesModel *model, QObject *parent)
     : QSortFilterProxyModel(parent)
@@ -65,15 +65,15 @@ QString ListMessagesModelFilterProxyModel::title() const
     case ListMessagesModel::Unknown:
         return {};
     case ListMessagesModel::StarredMessages:
-        return i18n("Starred Messages");
+        return QObject::tr("Starred Messages");
     case ListMessagesModel::SnipperedMessages:
-        return i18n("Snippered Messages");
+        return QObject::tr("Snippered Messages");
     case ListMessagesModel::PinnedMessages:
-        return i18n("Pinned Messages");
+        return QObject::tr("Pinned Messages");
     case ListMessagesModel::MentionsMessages:
-        return i18n("Mentions Messages");
+        return QObject::tr("Mentions Messages");
     case ListMessagesModel::ThreadsMessages:
-        return i18n("Threads Messages");
+        return QObject::tr("Threads Messages");
     }
     return {};
 }

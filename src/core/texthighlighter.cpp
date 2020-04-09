@@ -19,9 +19,9 @@
 
 #include "texthighlighter.h"
 
-#include <KSyntaxHighlighting/Format>
-#include <KSyntaxHighlighting/State>
-#include <KSyntaxHighlighting/Theme>
+//#include <KSyntaxHighlighting/Format>
+//#include <KSyntaxHighlighting/State>
+//#include <KSyntaxHighlighting/Theme>
 
 #include <QTextStream>
 

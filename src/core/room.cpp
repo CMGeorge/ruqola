@@ -29,7 +29,7 @@
 #include "model/usersforroomfilterproxymodel.h"
 #include "model/messagemodel.h"
 
-#include <KLocalizedString>
+//#include <KLocalizedString>
 
 #include <QCborValue>
 #include <QJsonArray>
@@ -810,13 +810,13 @@ QStringList Room::rolesForUserId(const QString &userId)
     const Role r = mRolesForRooms.findRoleByUserId(userId);
     if (r.isValid()) {
         if (r.isOwner()) {
-            lstRoles.append(i18n("Owner"));
+            lstRoles.append(tr("Owner"));
         }
         if (r.isLeader()) {
-            lstRoles.append(i18n("Leader"));
+            lstRoles.append(tr("Leader"));
         }
         if (r.isModerator()) {
-            lstRoles.append(i18n("Moderator"));
+            lstRoles.append(tr("Moderator"));
         }
     }
     return lstRoles;
@@ -1109,13 +1109,13 @@ bool Room::userIsIgnored(const QString &userId)
 QString Room::roomMessageInfo() const
 {
     if ((mReadOnly && !canChangeRoles()) || mArchived) {
-        return i18n("Channel is read only.");
+        return QObject::tr("Channel is read only.");
     }
     if (mBlocker) {
-        return i18n("You have blocked this channel.");
+        return QObject::tr("You have blocked this channel.");
     }
     if (mBlocked) {
-        return i18n("Channel was blocked.");
+        return QObject::tr("Channel was blocked.");
     }
     return QString();
 }

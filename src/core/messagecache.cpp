@@ -24,10 +24,10 @@
 #include "rocketchataccount.h"
 #include "ruqola_debug.h"
 
-#include <chat/getmessagejob.h>
-#include <chat/getthreadmessagesjob.h>
+#include <getmessagejob.h>
+#include <getthreadmessagesjob.h>
 
-#include <model/threadmessagemodel.h>
+#include "model/threadmessagemodel.h"
 
 #include <QJsonArray>
 

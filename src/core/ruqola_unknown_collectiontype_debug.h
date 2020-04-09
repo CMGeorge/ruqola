@@ -1,0 +1,5 @@
+#ifndef RUQOLA_UNKNOWN_COLLECTIONTYPE_DEBUG_H
+#define RUQOLA_UNKNOWN_COLLECTIONTYPE_DEBUG_H
+#include <QLoggingCategory>
+#define RUQOLA_UNKNOWN_COLLECTIONTYPE_LOG QLoggingCategory("org.kde.core.unknown.collectiontype")
+#endif // RUQOLA_UNKNOWN_COLLECTIONTYPE_DEBUG_H

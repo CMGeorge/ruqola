@@ -38,7 +38,7 @@ QQC2.Dialog {
     focus: true
     Row {
         QQC2.Label {
-            text: i18n("Open Conversation with \"%1\"?", username)
+            text: qsTr("Open Conversation with \"%1\"?", username)
             font.bold: true
             font.pointSize: 15
             wrapMode: QQC2.Label.Wrap

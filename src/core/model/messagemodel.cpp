@@ -33,10 +33,12 @@
 #include "utils.h"
 #include "rocketchataccount.h"
 #include "texthighlighter.h"
+#ifndef Q_OS_WINDOWS
 #include "textconverter.h"
+#endif
 #include "loadrecenthistorymanager.h"
 
-#include <KLocalizedString>
+//#include <KLocalizedString>
 
 #include <emoticons/emojimanager.h>
 
@@ -49,7 +51,11 @@ MessageModel::MessageModel(const QString &roomID, RocketChatAccount *account, Ro
     , mRocketChatAccount(account)
     , mRoom(room)
 {
+#ifndef Q_OS_WINDOWS
     mTextConverter = new TextConverter(mRocketChatAccount ? mRocketChatAccount->emojiManager() : nullptr);
+#else
+    mTextConverter = nullptr;
+#endif
     mLoadRecentHistoryManager = new LoadRecentHistoryManager;
     qCDebug(RUQOLA_LOG) << "Creating message Model";
 #ifdef STORE_MESSAGE
@@ -311,7 +317,7 @@ QVariant MessageModel::data(const QModelIndex &index, int role) const
             return message.systemMessageText();
         } else {
             if (mRoom && mRoom->userIsIgnored(message.userId())) {
-                return QString(QStringLiteral("<i>") + i18n("Ignored Message") + QStringLiteral("</i>"));
+                return QString(QStringLiteral("<i>") + QObject::tr("Ignored Message") + QStringLiteral("</i>"));
             }
             const QString userName = mRocketChatAccount ? mRocketChatAccount->userName() : QString();
             return convertMessageText(message, userName);
@@ -467,8 +473,11 @@ QString MessageModel::convertMessageText(const Message &message, const QString &
         }
         //qDebug() << " autotranslate true && mRoom->autoTranslateLanguage() :" << mRoom->autoTranslateLanguage();
     }
-
+#ifndef Q_OS_WINDOWS
     return mTextConverter->convertMessageText(messageStr, userName, mAllMessages);
+#else
+    return ":::::"+messageStr+" -> "+userName;
+#endif
 }
 
 void MessageModel::setRoomId(const QString &roomID)

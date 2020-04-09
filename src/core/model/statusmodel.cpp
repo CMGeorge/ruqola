@@ -20,7 +20,7 @@
 
 #include "statusmodel.h"
 #include "ruqola_debug.h"
-#include <KLocalizedString>
+//#include <KLocalizedString>
 
 StatusModel::StatusModel(QObject *parent)
     : QAbstractListModel(parent)
@@ -75,28 +75,28 @@ void StatusModel::fillModel()
 {
     {
         StatusInfo statusInfo;
-        statusInfo.displayText = i18n("Online");
+        statusInfo.displayText = QObject::tr("Online");
         statusInfo.icon = QIcon::fromTheme(QStringLiteral("im-user-online"));
         statusInfo.status = User::PresenceStatus::PresenceOnline;
         mStatusList.append(statusInfo);
     }
     {
         StatusInfo statusInfo;
-        statusInfo.displayText = i18n("Busy");
+        statusInfo.displayText = QObject::tr("Busy");
         statusInfo.icon = QIcon::fromTheme(QStringLiteral("im-user-busy"));
         statusInfo.status = User::PresenceStatus::PresenceBusy;
         mStatusList.append(statusInfo);
     }
     {
         StatusInfo statusInfo;
-        statusInfo.displayText = i18n("Away");
+        statusInfo.displayText = QObject::tr("Away");
         statusInfo.icon = QIcon::fromTheme(QStringLiteral("im-user-away"));
         statusInfo.status = User::PresenceStatus::PresenceAway;
         mStatusList.append(statusInfo);
     }
     {
         StatusInfo statusInfo;
-        statusInfo.displayText = i18n("Offline");
+        statusInfo.displayText = QObject::tr("Offline");
         statusInfo.icon = QIcon::fromTheme(QStringLiteral("im-user-offline"));
         statusInfo.status = User::PresenceStatus::PresenceOffline;
         mStatusList.append(statusInfo);

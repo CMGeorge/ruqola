@@ -28,7 +28,7 @@ import Ruqola 1.0
 QQC2.Dialog {
     id: deleteAttachmentDialog
 
-    title: i18n("Delete Attachment")
+    title: qsTr("Delete Attachment")
 
     signal deleteAttachment(string messageId)
 
@@ -42,7 +42,7 @@ QQC2.Dialog {
 
     Row {
         QQC2.Label {
-            text: i18n("Do you want to delete this attachment?")
+            text: qsTr("Do you want to delete this attachment?")
             font.bold: true
             font.pointSize: 15
         }

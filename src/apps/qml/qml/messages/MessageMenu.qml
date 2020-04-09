@@ -38,7 +38,7 @@ QQC2.Menu {
         visible: rcAccount.discussionEnabled
         height: visible ? implicitHeight : 0
         icon.name: "user-group-new"
-        text: i18n("Start a Discussion")
+        text: qsTr("Start a Discussion")
         onTriggered: {
             messageMain.createDiscussion(i_messageID, i_originalMessage);
             console.log(RuqolaDebugCategorySingleton.category, "Create discussion: messageId: ", i_messageID);
@@ -49,7 +49,7 @@ QQC2.Menu {
         visible: rcAccount.threadsEnabled
         height: visible ? implicitHeight : 0
         icon.name: "mail-reply-sender"
-        text: i18n("Reply in Thread")
+        text: qsTr("Reply in Thread")
         onTriggered: {
             messageMain.replyInThread(i_messageID);
             console.log(RuqolaDebugCategorySingleton.category, "Reply in thread ", i_messageID);
@@ -59,7 +59,7 @@ QQC2.Menu {
     QQC2.MenuItem {
         id: copyMessageItem
         icon.name: "list-add"
-        text: i18n("Copy")
+        text: qsTr("Copy")
         onTriggered: {
             messageMain.copyMessage(i_messageID, i_originalMessage);
             console.log(RuqolaDebugCategorySingleton.category, "Copy", i_messageID, i_originalMessage);
@@ -71,7 +71,7 @@ QQC2.Menu {
         visible: i_username === i_own_username && rcAccount.allowEditingMessages && can_edit_message
         height: visible ? implicitHeight : 0
         icon.name: "entry-edit"
-        text: i18n("Edit")
+        text: qsTr("Edit")
         onTriggered: {
             messageMain.editMessage(i_messageID, i_originalMessage);
             console.log(RuqolaDebugCategorySingleton.category, "Edit", i_messageID, i_originalMessage);
@@ -79,7 +79,7 @@ QQC2.Menu {
     }
     QQC2.MenuItem {
         icon.name: "mail-reply-all"
-        text: i18n("Reply")
+        text: qsTr("Reply")
         onTriggered: {
             console.log(RuqolaDebugCategorySingleton.category, "Reply to", i_messageID);
             messageMain.replyMessage(i_messageID);
@@ -90,7 +90,7 @@ QQC2.Menu {
         icon.name: "favorite"
         visible: rcAccount.allowMessageStarringEnabled
         height: visible ? implicitHeight : 0
-        text: starred ? i18n("Remove as Favorite") : i18n("Set as Favorite")
+        text: starred ? qsTr("Remove as Favorite") : qsTr("Set as Favorite")
         onTriggered: {
             console.log(RuqolaDebugCategorySingleton.category, "Set as favorite", i_messageID);
             messageMain.setFavoriteMessage(i_messageID, !starred);
@@ -102,7 +102,7 @@ QQC2.Menu {
         visible: rcAccount.allowMessagePinningEnabled
         height: visible ? implicitHeight : 0
         icon.name: pinned_message ? "window-unpin" : "window-pin"
-        text: pinned_message ? i18n("Unpin Message") : i18n("Pin Message")
+        text: pinned_message ? qsTr("Unpin Message") : qsTr("Pin Message")
         onTriggered: {
             messageMain.pinMessage(i_messageID, !pinned_message);
         }
@@ -113,7 +113,7 @@ QQC2.Menu {
         icon.name: "delete"
         visible: i_username === i_own_username && rcAccount.allowMessageDeletingEnabled
         height: visible ? implicitHeight : 0
-        text: i18n("Delete")
+        text: qsTr("Delete")
         onTriggered: {
             messageMain.deleteMessage(i_messageID);
         }
@@ -121,7 +121,7 @@ QQC2.Menu {
     QQC2.MenuItem {
         id: reportMessageItem
         icon.name: "flag"
-        text: i18n("Report Message")
+        text: qsTr("Report Message")
         onTriggered: {
             messageMain.reportMessage(i_messageID);
         }
@@ -131,7 +131,7 @@ QQC2.Menu {
         visible: i_username != i_own_username
         height: visible ? implicitHeight : 0
         icon.name: !user_ignored ? "mail-thread-ignored" : ""
-        text: user_ignored ? i18n("Unignore") : i18n("Ignore")
+        text: user_ignored ? qsTr("Unignore") : qsTr("Ignore")
         onTriggered: {
             console.log(RuqolaDebugCategorySingleton.category, "Ignore", i_messageID);
             messageMain.ignoreUser(!user_ignored);
@@ -142,7 +142,7 @@ QQC2.Menu {
         id: translateMessageItem
         visible: rcAccount.autoTranslateEnabled
         height: visible ? implicitHeight : 0
-        text: showTranslatedMessage ? i18n("Original Message") : i18n("Translate Message")
+        text: showTranslatedMessage ? qsTr("Original Message") : qsTr("Translate Message")
         onTriggered: {
             console.log(RuqolaDebugCategorySingleton.category, "change translate status", i_messageID);
             messageMain.showOriginalOrTranslatedMessage(i_messageID, false) //TODO fix me!

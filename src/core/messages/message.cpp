@@ -21,11 +21,12 @@
 #include "message.h"
 #include "utils.h"
 #include "ruqola_debug.h"
-#include <KLocalizedString>
+//#include <KLocalizedString>
 #include <QCborValue>
 #include <QDateTime>
 #include <QJsonArray>
 #include <QJsonDocument>
+#include <QObject>
 
 Message::Message(EmojiManager *emojiManager)
     : mEmojiManager(emojiManager)
@@ -432,75 +433,75 @@ Message::MessageType Message::messageType() const
 QString Message::systemMessageText() const
 {
     if (mSystemMessageType == QLatin1String("uj")) {
-        return i18n("%1 has joined the channel", mUsername);
+        return QObject::tr("%1 has joined the channel").arg(mUsername);
     } else if (mSystemMessageType == QLatin1String("ul")) {
-        return i18n("%1 has left the channel", mUsername);
+        return QObject::tr("%1 has left the channel").arg(mUsername);
     } else if (mSystemMessageType == QLatin1String("room_changed_topic")) {
         if (mText.isEmpty()) {
-            return i18n("Topic was cleared by: %1", mUsername);
+            return QObject::tr("Topic was cleared by: %1").arg(mUsername);
         } else {
-            return i18n("%2 changed topic to: <i>%1</i>", mText, mUsername);
+            return QObject::tr("%2 changed topic to: <i>%1</i>").arg(mText).arg(mUsername);
         }
     } else if (mSystemMessageType == QLatin1String("au")) {
-        return i18n("%2 added %1 to the conversation", mText, mUsername);
+        return QObject::tr("%2 added %1 to the conversation").arg(mText).arg(mUsername);
     } else if (mSystemMessageType == QLatin1Char('r')) {
-        return i18n("%2 changed room name to <a href=\"ruqola:/room/%1\">#%1</a>", mText, mUsername);
+        return QObject::tr("%2 changed room name to <a href=\"ruqola:/room/%1\">#%1</a>").arg(mText).arg(mUsername);
     } else if (mSystemMessageType == QLatin1String("ru")) {
-        return i18n("%2 removed user %1", mText, mUsername);
+        return QObject::tr("%2 removed user %1").arg(mText).arg(mUsername);
     } else if (mSystemMessageType == QLatin1String("room_changed_description")) {
         if (mText.isEmpty()) {
-            return i18n("Description was cleared by %1", mUsername);
+            return QObject::tr("Description was cleared by %1").arg(mUsername);
         } else {
-            return i18n("%2 changed room description to %1", mText, mUsername);
+            return QObject::tr("%2 changed room description to %1").arg(mText).arg(mUsername);
         }
     } else if (mSystemMessageType == QLatin1String("room_changed_announcement")) {
         if (mText.isEmpty()) {
-            return i18n("Announcement was cleared by %1", mUsername);
+            return QObject::tr("Announcement was cleared by %1").arg(mUsername);
         } else {
-            return i18n("%2 changed room announcement to %1", mText, mUsername);
+            return QObject::tr("%2 changed room announcement to %1").arg(mText).arg(mUsername);
         }
     } else if (mSystemMessageType == QLatin1String("room_changed_privacy")) {
-        return i18n("%2 changed room privacy to %1", mText, mUsername);
+        return QObject::tr("%2 changed room privacy to %1").arg(mText).arg(mUsername);
     } else if (mSystemMessageType == QLatin1String("jitsi_call_started")) {
-        return QStringLiteral("<a href=\"ruqola:/jitsicall/\">") + i18n("Click to join to video") + QStringLiteral("</a>");
+        return QStringLiteral("<a href=\"ruqola:/jitsicall/\">") + QObject::tr("Click to join to video") + QStringLiteral("</a>");
     } else if (mSystemMessageType == QLatin1String("rm")) {
         //TODO encrypted message
-        return i18n("Message Deleted");
+        return QObject::tr("Message Deleted");
     } else if (mSystemMessageType == QLatin1String("message_pinned")) {
-        return i18n("Message Pinned");
+        return QObject::tr("Message Pinned");
     } else if (mSystemMessageType == QLatin1String("otr")) {
-        return i18n("Encrypted Message");
+        return QObject::tr("Encrypted Message");
     } else if (mSystemMessageType == QLatin1String("user-unmuted")) {
         //TODO improve it
-        return i18n("%1 was unmuted", mUsername);
+        return QObject::tr("%1 was unmuted").arg(mUsername);
     } else if (mSystemMessageType == QLatin1String("user-muted")) {
         //TODO improve it
-        return i18n("%1 was muted", mUsername);
+        return QObject::tr("%1 was muted").arg(mUsername);
     } else if (mSystemMessageType == QLatin1String("subscription-role-added")) {
-        return i18n("Role \'%3\' was added to %1 by %2", mUsername, mText, mRole);
+        return QObject::tr("Role \'%3\' was added to %1 by %2").arg(mUsername).arg(mText).arg(mRole);
     } else if (mSystemMessageType == QLatin1String("subscription-role-removed")) {
-        return i18n("Role \'%3\' was removed to %1 by %2", mUsername, mText, mRole);
+        return QObject::tr("Role \'%3\' was removed to %1 by %2").arg(mUsername).arg(mText).arg(mRole);
     } else if (mSystemMessageType == QLatin1String("e2e")) {
         //TODO need to unencrypt it
-        return i18n("Encrypted message: %1", mText);
+        return QObject::tr("Encrypted message: %1").arg(mText);
     } else if (mSystemMessageType == QLatin1String("discussion-created")) {
-        return i18n("Discussion created about \"%1\"", mText);
+        return QObject::tr("Discussion created about \"%1\"").arg(mText);
     } else if (mSystemMessageType == QLatin1String("ut")) {
-        return i18n("%1 has joined the conversation", mUsername);
+        return QObject::tr("%1 has joined the conversation").arg(mUsername);
     } else if (mSystemMessageType == QLatin1String("room-archived")) {
-        return i18n("This room has been archived by %1", mUsername);
+        return QObject::tr("This room has been archived by %1").arg(mUsername);
     } else if (mSystemMessageType == QLatin1String("room-unarchived")) {
-        return i18n("This room has been unarchived by %1", mUsername);
+        return QObject::tr("This room has been unarchived by %1").arg(mUsername);
     } else if (mSystemMessageType == QLatin1String("rtc")) {
         qCWarning(RUQOLA_LOG) << "Need to implement : " << mSystemMessageType << " mText " << mText;
-        return i18n("Unknown action!");
+        return QObject::tr("Unknown action!");
     } else if (mSystemMessageType == QLatin1String("wm")) {
         //TODO verify
         qCWarning(RUQOLA_LOG) << "Need to implement : " << mSystemMessageType << " mText " << mText;
-        return i18n("Welcome %1!", mUsername);
+        return QObject::tr("Welcome %1!").arg(mUsername);
     } else {
         qCWarning(RUQOLA_LOG) << "Unknown type for message: type: " << mSystemMessageType << " mText " << mText;
-        return i18n("Unknown action!");
+        return QObject::tr("Unknown action!");
     }
 }
 

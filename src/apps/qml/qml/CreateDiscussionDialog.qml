@@ -26,7 +26,7 @@ import QtQuick.Window 2.2
 QQC2.Dialog {
     id: createDiscussionDialog
 
-    title: i18n("Create Discussion")
+    title: qsTr("Create Discussion")
 
     property string roomId
     property string messageId
@@ -49,14 +49,14 @@ QQC2.Dialog {
     {
         //discussionName.text = ""
         //TODO search how implement it without call it all the time.
-        standardButton(QQC2.Dialog.Ok).text = i18n("Create");
+        standardButton(QQC2.Dialog.Ok).text = qsTr("Create");
         answer.text = ""
         open();
     }
 
     contentItem: ColumnLayout {
         QQC2.Label {
-            text: i18n("Parent Channel or Group:");
+            text: qsTr("Parent Channel or Group:");
         }
         QQC2.TextField {
             id: parentRoom
@@ -67,7 +67,7 @@ QQC2.Dialog {
         }
 
         QQC2.Label {
-            text: i18n("Discussion Name:");
+            text: qsTr("Discussion Name:");
         }
         QQC2.TextField {
             id: discussionName
@@ -78,7 +78,7 @@ QQC2.Dialog {
 
 //        //TODO implement it.
 //        QQC2.Label {
-//            text: i18n("Invite Users:");
+//            text: QObject::tr("Invite Users:");
 //        }
 //        QQC2.TextField {
 //            id: inviteUser
@@ -87,7 +87,7 @@ QQC2.Dialog {
 //        }
 
         QQC2.Label {
-            text: i18n("Your answer:");
+            text: qsTr("Your answer:");
         }
         QQC2.TextField {
             id: answer

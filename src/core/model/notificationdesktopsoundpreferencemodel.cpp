@@ -19,7 +19,7 @@
 */
 
 #include "notificationdesktopsoundpreferencemodel.h"
-#include <KLocalizedString>
+//#include <KLocalizedString>
 
 NotificationDesktopSoundPreferenceModel::NotificationDesktopSoundPreferenceModel(QObject *parent)
     : QAbstractListModel(parent)
@@ -69,49 +69,49 @@ void NotificationDesktopSoundPreferenceModel::fillModel()
     //This one must be first one.
     {
         NotificationDesktopSoundPreferenceInfo preferenceInfo;
-        preferenceInfo.displayText = i18n("Default");
+        preferenceInfo.displayText = QObject::tr("Default");
         preferenceInfo.preference = QStringLiteral("default");
         mNotificationDestktopSoundPreferenceList.append(preferenceInfo);
     }
     {
         NotificationDesktopSoundPreferenceInfo preferenceInfo;
-        preferenceInfo.displayText = i18n("Nothing");
+        preferenceInfo.displayText = QObject::tr("Nothing");
         preferenceInfo.preference = QStringLiteral("none");
         mNotificationDestktopSoundPreferenceList.append(preferenceInfo);
     }
     {
         NotificationDesktopSoundPreferenceInfo preferenceInfo;
-        preferenceInfo.displayText = i18n("Beep");
+        preferenceInfo.displayText = QObject::tr("Beep");
         preferenceInfo.preference = QStringLiteral("beep");
         mNotificationDestktopSoundPreferenceList.append(preferenceInfo);
     }
     {
         NotificationDesktopSoundPreferenceInfo preferenceInfo;
-        preferenceInfo.displayText = i18n("Chelle");
+        preferenceInfo.displayText = QObject::tr("Chelle");
         preferenceInfo.preference = QStringLiteral("chelle");
         mNotificationDestktopSoundPreferenceList.append(preferenceInfo);
     }
     {
         NotificationDesktopSoundPreferenceInfo preferenceInfo;
-        preferenceInfo.displayText = i18n("Ding");
+        preferenceInfo.displayText = QObject::tr("Ding");
         preferenceInfo.preference = QStringLiteral("ding");
         mNotificationDestktopSoundPreferenceList.append(preferenceInfo);
     }
     {
         NotificationDesktopSoundPreferenceInfo preferenceInfo;
-        preferenceInfo.displayText = i18n("Droplet");
+        preferenceInfo.displayText = QObject::tr("Droplet");
         preferenceInfo.preference = QStringLiteral("droplet");
         mNotificationDestktopSoundPreferenceList.append(preferenceInfo);
     }
     {
         NotificationDesktopSoundPreferenceInfo preferenceInfo;
-        preferenceInfo.displayText = i18n("Highbell");
+        preferenceInfo.displayText = QObject::tr("Highbell");
         preferenceInfo.preference = QStringLiteral("highbell");
         mNotificationDestktopSoundPreferenceList.append(preferenceInfo);
     }
     {
         NotificationDesktopSoundPreferenceInfo preferenceInfo;
-        preferenceInfo.displayText = i18n("Seasons");
+        preferenceInfo.displayText = QObject::tr("Seasons");
         preferenceInfo.preference = QStringLiteral("seasons");
         mNotificationDestktopSoundPreferenceList.append(preferenceInfo);
     }

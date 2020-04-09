@@ -26,7 +26,7 @@ import QtQuick 2.9
 QQC2.Dialog {
     id: leaveChannelDialog
 
-    title: i18n("Leave Channel")
+    title: qsTr("Leave Channel")
 
     signal leaveChannel(string roomId, string channelType)
 
@@ -41,7 +41,7 @@ QQC2.Dialog {
 
     Row {
         QQC2.Label {
-            text: i18n("Do you want to leave this channel?")
+            text: qsTr("Do you want to leave this channel?")
             font.bold: true
             textFormat: Text.PlainText
             font.pointSize: 15

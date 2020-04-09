@@ -34,7 +34,7 @@
 #include "model/usercompletermodel.h"
 #include "model/usercompleterfilterproxymodel.h"
 #include "model/statusmodel.h"
-#include "ruqolaglobalconfig.h"
+//#include "ruqolaglobalconfig.h"
 #include "utils.h"
 #include "rocketchatcache.h"
 #include "fileattachments.h"
@@ -76,8 +76,8 @@
 #include <plugins/pluginauthentication.h>
 #include <plugins/pluginauthenticationinterface.h>
 
-#include "users/setstatusjob.h"
-#include "users/usersautocompletejob.h"
+#include "setstatusjob.h"
+#include "usersautocompletejob.h"
 
 #define USE_REASTAPI_JOB 1
 
@@ -2018,9 +2018,13 @@ void RocketChatAccount::initializeAccount()
     }
     //Force set online.
     //TODO don't reset message status !
+#ifndef Q_OS_WINDOWS
     if (RuqolaGlobalConfig::self()->setOnlineAccounts()) {
         ddp()->setDefaultStatus(User::PresenceStatus::PresenceOnline);
     }
+#else
+        qDebug()<<"2IMPLEMENT THISSS !!!!!";
+#endif
     //customUsersStatus(); Only for test
 
     emit accountInitialized();
@@ -2049,10 +2053,11 @@ void RocketChatAccount::slotListCommandDone(const QJsonObject &obj)
 bool RocketChatAccount::runCommand(const QString &msg, const QString &roomId)
 {
     const RocketChatRestApi::RunCommandJob::RunCommandInfo info = RocketChatRestApi::RunCommandJob::parseString(msg, roomId);
-    if (info.isValid()) {
+    qDebug()<<" FIX THIS COMPILE ISSUE ";
+//    if (info.isValid()) {
         runCommand(info);
         return true;
-    }
+//    }
     return false;
 }
 

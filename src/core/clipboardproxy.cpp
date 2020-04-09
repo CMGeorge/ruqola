@@ -22,12 +22,12 @@
 #include "clipboardproxy.h"
 
 #include <QClipboard>
-#include <QApplication>
-
+#include <QCoreApplication>
+#include <QGuiApplication>
 ClipboardProxy::ClipboardProxy(QObject *parent)
     : QObject(parent)
 {
-    QClipboard *clipboard = QApplication::clipboard();
+    QClipboard *clipboard = QGuiApplication::clipboard();
     connect(clipboard, &QClipboard::dataChanged,
             this, &ClipboardProxy::dataChanged);
     connect(clipboard, &QClipboard::selectionChanged,
@@ -40,20 +40,20 @@ ClipboardProxy::~ClipboardProxy()
 
 void ClipboardProxy::setDataText(const QString &text)
 {
-    QApplication::clipboard()->setText(text, QClipboard::Clipboard);
+    QGuiApplication::clipboard()->setText(text, QClipboard::Clipboard);
 }
 
 QString ClipboardProxy::dataText() const
 {
-    return QApplication::clipboard()->text(QClipboard::Clipboard);
+    return QGuiApplication::clipboard()->text(QClipboard::Clipboard);
 }
 
 void ClipboardProxy::setSelectionText(const QString &text)
 {
-    QApplication::clipboard()->setText(text, QClipboard::Selection);
+    QGuiApplication::clipboard()->setText(text, QClipboard::Selection);
 }
 
 QString ClipboardProxy::selectionText() const
 {
-    return QApplication::clipboard()->text(QClipboard::Selection);
+    return QGuiApplication::clipboard()->text(QClipboard::Selection);
 }

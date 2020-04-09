@@ -25,11 +25,12 @@
 #include <QCache>
 #include <QMap>
 #include <QObject>
+#include <restapiabstractjob.h>
 
 class ThreadMessageModel;
 class Message;
 namespace RocketChatRestApi {
-class RestApiAbstractJob;
+//class RestApiAbstractJob;
 class GetThreadMessagesJob;
 class GetMessageJob;
 }
@@ -49,6 +50,7 @@ Q_SIGNALS:
 
 protected:
     virtual bool startJob(RocketChatRestApi::RestApiAbstractJob *job); // virtual for unittest
+
 
 private:
     void slotGetThreadMessagesDone(const QJsonObject &obj, const QString &threadMessageId);

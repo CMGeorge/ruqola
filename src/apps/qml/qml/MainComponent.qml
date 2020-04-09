@@ -48,7 +48,7 @@ Component {
             left: Kirigami.Action {
                 icon.name: "preferences-desktop-notification"
                 icon.color: "transparent"
-                tooltip: i18n("Configure Notification")
+                tooltip: qsTr("Configure Notification")
                 visible: appid.selectedRoom
                 onTriggered: {
                     notificationsDialogLoader.active = true;
@@ -57,13 +57,13 @@ Component {
             main: Kirigami.Action {
                 id: showUsersAction
                 icon.name: "system-users"
-                tooltip: i18n("List of Users")
+                tooltip: qsTr("List of Users")
                 visible: appid.selectedRoom
                 checkable: true
             }
             right: Kirigami.Action {
                 icon.name: "edit-find"
-                tooltip: i18n("Search Messages")
+                tooltip: qsTr("Search Messages")
                 visible: appid.selectedRoom
                 onTriggered: {
                     searchMessageDialogLoader.active = true;
@@ -72,8 +72,8 @@ Component {
             contextualActions: [
                 Kirigami.Action {
                     visible: appid.selectedRoom
-                    text: i18n("Channel Info")
-                    tooltip: i18n("Channel Info")
+                    text: qsTr("Channel Info")
+                    tooltip: qsTr("Channel Info")
                     onTriggered: {
                         var channelType = appid.selectedRoom.channelType;
                         if (channelType === "c" || channelType === "p") {
@@ -94,14 +94,14 @@ Component {
                 },
                 Kirigami.Action {
                     visible: appid.selectedRoom && appid.rocketChatAccount.autoTranslateEnabled
-                    text: i18n("Auto-Translate")
+                    text: qsTr("Auto-Translate")
                     onTriggered: {
                         autoTranslateConfigDialogLoader.active = true;
                     }
                 },
                 Kirigami.Action {
                     visible: appid.selectedRoom
-                    text: i18n("Mentions")
+                    text: qsTr("Mentions")
                     onTriggered: {
                         appid.rocketChatAccount.getListMessages(appid.selectedRoomID, ListMessagesModel.MentionsMessages);
                         showListMessageDialogLoader.active = true;
@@ -109,7 +109,7 @@ Component {
                 },
                 Kirigami.Action {
                     visible: appid.selectedRoom && appid.rocketChatAccount.hasPinnedMessagesSupport
-                    text: i18n("Pinned Messages")
+                    text: qsTr("Pinned Messages")
                     onTriggered: {
                         appid.rocketChatAccount.getListMessages(appid.selectedRoomID, ListMessagesModel.PinnedMessages);
                         showListMessageDialogLoader.active = true;
@@ -117,7 +117,7 @@ Component {
                 },
                 Kirigami.Action {
                     visible: appid.selectedRoom && appid.rocketChatAccount.hasStarredMessagesSupport
-                    text: i18n("Starred Messages")
+                    text: qsTr("Starred Messages")
                     onTriggered: {
                         appid.rocketChatAccount.getListMessages(appid.selectedRoomID, ListMessagesModel.StarredMessages);
                         showListMessageDialogLoader.active = true;
@@ -125,7 +125,7 @@ Component {
                 },
                 Kirigami.Action {
                     visible: appid.selectedRoom && appid.rocketChatAccount.hasSnippetedMessagesSupport
-                    text: i18n("Snippeted Messages")
+                    text: qsTr("Snippeted Messages")
                     onTriggered: {
                         appid.rocketChatAccount.getListMessages(appid.selectedRoomID, ListMessagesModel.SnipperedMessages);
                         showListMessageDialogLoader.active = true;
@@ -133,7 +133,7 @@ Component {
                 },
                 Kirigami.Action {
                     visible: appid.selectedRoom && appid.rocketChatAccount.discussionEnabled
-                    text: i18n("Discussions")
+                    text: qsTr("Discussions")
                     onTriggered: {
                         appid.rocketChatAccount.discussionsInRoom(appid.selectedRoomID);
                         showDiscussionsInRoomDialogLoader.active = true;
@@ -141,7 +141,7 @@ Component {
                 },
                 Kirigami.Action {
                     visible: appid.selectedRoom && appid.rocketChatAccount.threadsEnabled
-                    text: i18n("Threads")
+                    text: qsTr("Threads")
                     onTriggered: {
                         appid.rocketChatAccount.getListMessages(appid.selectedRoomID, ListMessagesModel.ThreadsMessages);
                         showListMessageDialogLoader.active = true;
@@ -151,13 +151,13 @@ Component {
                     id: menuVideoChatAction
                     property bool shouldBeVisible: false
                     visible: shouldBeVisible && appid.selectedRoom
-                    text: i18n("Video Chat")
+                    text: qsTr("Video Chat")
                     onTriggered: {
                         appid.rocketChatAccount.createJitsiConfCall(appid.selectedRoomID);
                     }
                 },
                 Kirigami.Action {
-                    text: i18n("Add User In Room")
+                    text: qsTr("Add User In Room")
                     visible: appid.selectedRoom ? appid.selectedRoom.canBeModify : false
                     onTriggered: {
                         var channelType = appid.selectedRoom.channelType;
@@ -168,21 +168,21 @@ Component {
                 },
                 Kirigami.Action {
                     visible: appid.selectedRoom
-                    text: i18n("Take a Video Message")
+                    text: qsTr("Take a Video Message")
                     onTriggered: {
                         takeVideoMessageLoader.active = true;
                     }
                 },
                 Kirigami.Action {
                     visible: appid.selectedRoom
-                    text: i18n("Load Recent History")
+                    text: qsTr("Load Recent History")
                     onTriggered: {
                         appid.rocketChatAccount.loadHistory(appid.selectedRoomID);
                     }
                 },
                 Kirigami.Action {
                     visible: appid.selectedRoom
-                    text: i18n("Show Files Attachment In Room")
+                    text: qsTr("Show Files Attachment In Room")
                     onTriggered: {
                         showFilesInRoomDialogLoader.active = true
                     }
@@ -232,7 +232,7 @@ Component {
                     hoverEnabled: true
                     anchors.fill: parent
                     QQC2.ToolTip {
-                        text: i18n("Auto-Translate Activated")
+                        text: qsTr("Auto-Translate Activated")
                     }
                 }
             }

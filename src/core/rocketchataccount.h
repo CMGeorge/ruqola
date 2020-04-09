@@ -23,8 +23,8 @@
 
 #include <QObject>
 #include <QUrl>
-#include <channels/channelbasejob.h>
-#include <commands/runcommandjob.h>
+#include <channelbasejob.h>
+#include <runcommandjob.h>
 #include <ddpapi/ddpclient.h>
 #include <model/listmessagesmodel.h>
 #include "messages/message.h"

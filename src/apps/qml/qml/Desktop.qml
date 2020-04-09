@@ -55,7 +55,7 @@ Kirigami.ApplicationWindow {
     width: Kirigami.Units.gridUnit * 55
     height: Kirigami.Units.gridUnit * 40
 
-    title: i18n("Ruqola")
+    title: qsTr("Ruqola")
 
 
     function switchToRoom(roomID)
@@ -88,33 +88,33 @@ Kirigami.ApplicationWindow {
         
         topContent: [
             QQC2.Label {
-                text: rocketChatAccount.userName === "" ? "" : i18n("Hello, %1", rocketChatAccount.userName)
+                text: rocketChatAccount.userName === "" ? "" : qsTr("Hello, %1", rocketChatAccount.userName)
                 textFormat: Text.PlainText
             }
         ]
         
         actions: [
             Kirigami.Action {
-                text: i18n("About")
+                text: qsTr("About")
                 iconName: "ruqola"
                 onTriggered: {
                     pageStack.push(aboutPage)
                 }
             },
             Kirigami.Action {
-                text: i18n("Report a Bug")
+                text: qsTr("Report a Bug")
                 iconName: "tools-report-bug"
                 onTriggered: {
                     Qt.openUrlExternally("https://bugs.kde.org/report.cgi");
                 }
             },
             Kirigami.Action {
-                text: i18n("Configure Account")
+                text: qsTr("Configure Account")
                 iconName: "settings-configure"
                 onTriggered: pageStack.push(Qt.resolvedUrl("ConfigureServerList.qml"), {accountModel: accountManagerModel})
             },
             Kirigami.Action {
-                text: i18n("Handbook")
+                text: qsTr("Handbook")
                 iconName: "system-help"
                 onTriggered: {
                     rocketChatAccount.openDocumentation();
@@ -124,7 +124,7 @@ Kirigami.ApplicationWindow {
                 separator: true
             },
             Kirigami.Action {
-                text: i18n("Log out")
+                text: qsTr("Log out")
                 iconName: "system-log-out"
                 onTriggered: {
                     rocketChatAccount.logOut();
@@ -132,7 +132,7 @@ Kirigami.ApplicationWindow {
                 }
             },
 //            Kirigami.Action {
-//                text: i18n("autotranslate")
+//                text: QObject::tr("autotranslate")
 //                onTriggered: {
 //                    rocketChatAccount.getSupportedLanguages();
 //                }
@@ -142,7 +142,7 @@ Kirigami.ApplicationWindow {
             },
             Kirigami.Action {
                 shortcut: StandardKey.Quit
-                text: i18n("Quit")
+                text: qsTr("Quit")
                 iconName: "application-exit"
                 onTriggered: {
                     Qt.quit();
@@ -163,7 +163,7 @@ Kirigami.ApplicationWindow {
             aboutData: Ruqola.applicationData()
 
             actions.main: Kirigami.Action {
-                text: i18n("Close")
+                text: qsTr("Close")
                 icon.name: "window-close-symbolic"
                 onTriggered: pageStack.pop()
             }

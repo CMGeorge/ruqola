@@ -21,8 +21,9 @@
 #include "searchmessagemodel.h"
 #include "ruqola_debug.h"
 #include "rocketchataccount.h"
+#ifndef Q_OS_WINDOWS
 #include "textconverter.h"
-
+#endif
 #include "listmessages.h"
 
 SearchMessageModel::SearchMessageModel(const QString &roomID, RocketChatAccount *account, Room *room, QObject *parent)

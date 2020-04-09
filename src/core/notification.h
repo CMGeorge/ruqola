@@ -24,11 +24,17 @@
 #define NOTIFICATION_H
 
 #include "libruqola_private_export.h"
-#include <KStatusNotifierItem>
+//#include <KStatusNotifierItem>
 #include <QMap>
 
 class UnityServiceManager;
+#ifndef Q_OS_WINDOWS
 class LIBRUQOLACORE_TESTS_EXPORT Notification : public KStatusNotifierItem
+        #else
+#include <QDebug>
+class LIBRUQOLACORE_TESTS_EXPORT Notification : public QObject
+
+#endif
 {
     Q_OBJECT
 public:

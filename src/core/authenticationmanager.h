@@ -21,10 +21,29 @@
 #ifndef AUTHENTICATIONMANAGER_H
 #define AUTHENTICATIONMANAGER_H
 
-#include <KPluginMetaData>
+//#include <KPluginMetaData>
 #include <QObject>
 #include "libruqolacore_export.h"
 #include <QVector>
+#include <QDebug>
+
+#ifdef Q_OS_WINDOWS
+#include <QFileInfo>
+class KPluginMetaData: public QFileInfo{
+public:
+    inline QString name() {return "Not Implemented";}
+    inline int pluginId()  {return -1;}
+};
+class KPluginLoader{
+public:
+    static QVector<KPluginMetaData> findPlugins(QString pluginName){
+        qDebug()<<"!!!!!!!!!!!!!! IMPLEMENT !!!!!!!!!!!!!!!!!!!";
+        return QVector<KPluginMetaData>();
+    }
+};
+
+
+#endif
 class PluginAuthentication;
 class PluginUtilData
 {

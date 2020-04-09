@@ -19,7 +19,7 @@
 */
 
 #include "messageattachment.h"
-#include <KLocalizedString>
+//#include <KLocalizedString>
 #include <QJsonObject>
 
 MessageAttachment::MessageAttachment()
@@ -127,7 +127,7 @@ bool MessageAttachment::canDownloadAttachment() const
 
 QString MessageAttachment::imageTitle() const
 {
-    return QStringLiteral("%1 <a href=\'%2'>%2</a>").arg(i18n("File Uploaded:"), title());
+    return QStringLiteral("%1 <a href=\'%2'>%2</a>").arg(QObject::tr("File Uploaded:"), title());
 }
 
 QString MessageAttachment::mimeType() const
@@ -151,7 +151,7 @@ bool MessageAttachment::isAnimatedImage() const
 QString MessageAttachment::displayTitle() const
 {
     if (canDownloadAttachment()) {
-        return i18n("File Uploaded: %1", title());
+        return QObject::tr("File Uploaded: %1").arg(title());
     }
     return QStringLiteral("<a href=\'%1'>%2</a>").arg(link(), title());
 }

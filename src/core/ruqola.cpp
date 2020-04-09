@@ -29,7 +29,7 @@
 #include "accountmanager.h"
 #include "managerdatapaths.h"
 #include "restapirequest.h"
-#include <KNotification>
+//#include <KNotification>
 
 static Ruqola *s_self = nullptr;
 
@@ -67,11 +67,12 @@ AccountManager *Ruqola::accountManager() const
 {
     return mAccountManager;
 }
-
+#ifndef Q_OS_WINDOWS
 KAboutData Ruqola::applicationData() const
 {
     return KAboutData::applicationData();
 }
+#endif
 
 RocketChatAccount *Ruqola::rocketChatAccount() const
 {
@@ -80,11 +81,15 @@ RocketChatAccount *Ruqola::rocketChatAccount() const
 
 void Ruqola::sendNotification(const QString &title, const QString &message, const QPixmap &pixmap)
 {
+    #ifndef Q_OS_WINDOWS
     KNotification::event(KNotification::Notification, title,
                          message.toHtmlEscaped(), pixmap);
+#else
+    qDebug()<<"=======================Implement this===============";
+#endif
 }
 
-#ifndef Q_OS_ANDROID
+#if !defined(Q_OS_ANDROID) && !defined(Q_OS_WINDOWS)
 Notification *Ruqola::notification()
 {
     if (!mNotification) {
@@ -97,14 +102,14 @@ Notification *Ruqola::notification()
 
 void Ruqola::updateNotification(bool hasAlert, int nbUnread, const QString &accountName)
 {
-#ifndef Q_OS_ANDROID
+#if !defined(Q_OS_ANDROID) && !defined(Q_OS_WINDOWS)
     notification()->updateNotification(hasAlert, nbUnread, accountName);
 #endif
 }
 
 void Ruqola::logout(const QString &accountName)
 {
-#ifdef Q_OS_ANDROID
+#if defined(Q_OS_ANDROID) || defined(Q_OS_WINDOWS)
     Q_UNUSED(accountName)
 #else
     notification()->clearNotification(accountName);

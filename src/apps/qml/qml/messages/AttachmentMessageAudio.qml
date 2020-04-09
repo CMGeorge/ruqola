@@ -64,7 +64,7 @@ UserMessage {
 
             QQC2.Label {
                 //TODO remove duplicate code
-                text: model.modelData.title === "" ? "" :  i18n("File Uploaded: %1", model.modelData.title)
+                text: model.modelData.title === "" ? "" :  qsTr("File Uploaded: %1", model.modelData.title)
                 textFormat: Text.PlainText
                 visible: model.modelData.title !== ""
                 wrapMode: QQC2.Label.Wrap

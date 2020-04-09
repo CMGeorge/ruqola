@@ -30,7 +30,7 @@ QQC2.TextField {
     selectByMouse: true
     echoMode: displayPassword ? TextInput.Normal : TextInput.Password
     inputMethodHints: Qt.ImhHiddenText
-    placeholderText: i18n("Enter Password...")
+    placeholderText: qsTr("Enter Password...")
 
     Accessible.passwordEdit: true
 

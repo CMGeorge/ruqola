@@ -59,7 +59,7 @@
 #include "model/autotranslatelanguagesmodel.h"
 
 #include "channel.h"
-#include <KLocalizedContext>
+//#include <KLocalizedContext>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 
@@ -126,15 +126,15 @@ bool RuqolaRegisterEngine::initialize()
     qRegisterMetaType<ListMessagesModel::ListMessageType>();
     qRegisterMetaType<User::PresenceStatus>();
     qRegisterMetaType<AuthenticationManager::OauthType>();
-    qRegisterMetaType<KAboutData>();
+//    qRegisterMetaType<KAboutData>();
     mEngine = new QQmlApplicationEngine;
 
     QQmlContext *ctxt = mEngine->rootContext();
-#if !defined(Q_OS_ANDROID) && !defined(Q_OS_IOS)
+#if !defined(Q_OS_ANDROID) && !defined(Q_OS_IOS) && !defined(Q_OS_WINDOWS)
     qmlRegisterType<Notification>(URI, 1, 0, "Notification");
     ctxt->setContextProperty(QStringLiteral("systrayIcon"), Ruqola::self()->notification());
 #endif
-    ctxt->setContextObject(new KLocalizedContext(mEngine));
+//    ctxt->setContextObject(new KLocalizedContext(mEngine));
 
     mEngine->load(QUrl(QStringLiteral("qrc:/Desktop.qml")));
 

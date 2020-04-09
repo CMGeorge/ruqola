@@ -22,7 +22,7 @@
 
 #include "rocketchatqtrestapi_debug.h"
 #include "restapimethod.h"
-#include <KLocalizedString>
+//#include <KLocalizedString>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QNetworkReply>
@@ -62,7 +62,7 @@ void GroupRemoveOwnerJob::slotRemoveOwnerFinished()
             emitFailedMessage(replyObject, reply);
             addLoggerWarning(QByteArrayLiteral("GroupRemoveOwnerJob problem: ") + replyJson.toJson(QJsonDocument::Indented));
             if (replyObject[QStringLiteral("errorType")].toString() == QLatin1String("error-remove-last-owner")) {
-                Q_EMIT failed(i18n("This is the last owner. Please set a new owner before removing this one."));
+                Q_EMIT failed(tr("This is the last owner. Please set a new owner before removing this one."));
             }
         }
         reply->deleteLater();

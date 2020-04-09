@@ -28,14 +28,18 @@ SyntaxHighlightingManager::SyntaxHighlightingManager(QObject *parent)
 
 void SyntaxHighlightingManager::initialize()
 {
+#ifndef Q_OS_WINDOWS
     mDef = mRepo.definitionForName(QStringLiteral("C++"));
     if (mDef.isValid()) {
         mSyntaxHighlightingInitialized = true;
     } else {
         qCWarning(RUQOLA_LOG) << "Unable to find definition";
     }
+#else
+    qDebug()<<"=========================Implement this================";
+#endif
 }
-
+#ifndef Q_OS_WINDOWS
 KSyntaxHighlighting::Repository &SyntaxHighlightingManager::repo() const
 {
     return mRepo;
@@ -46,6 +50,7 @@ KSyntaxHighlighting::Definition SyntaxHighlightingManager::def() const
     return mDef;
 }
 
+#endif
 bool SyntaxHighlightingManager::syntaxHighlightingInitialized() const
 {
     return mSyntaxHighlightingInitialized;

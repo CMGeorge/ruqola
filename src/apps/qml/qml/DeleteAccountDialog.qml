@@ -27,7 +27,7 @@ import QtQuick 2.9
 QQC2.Dialog {
     id: deleteAccountDialog
 
-    title: i18n("Delete Account")
+    title: qsTr("Delete Account")
 
     property string accountName
     width: parent.width * 9 / 10
@@ -40,7 +40,7 @@ QQC2.Dialog {
 
     contentItem: Row {
         QQC2.Label {
-            text: accountName === "" ? "" : i18n("Do you want to delete '%1' account?", accountName)
+            text: accountName === "" ? "" : qsTr("Do you want to delete '%1' account?", accountName)
             font.bold: true
             font.pointSize: 15
         }

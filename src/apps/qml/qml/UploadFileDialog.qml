@@ -28,7 +28,7 @@ import QtQuick.Dialogs 1.2
 QQC2.Dialog {
     id: uploadFileDialog
 
-    title: i18n("Upload File")
+    title: qsTr("Upload File")
 
     property string rId: ""
 
@@ -58,14 +58,14 @@ QQC2.Dialog {
             id: description
             Layout.fillWidth: true
             selectByMouse: true
-            placeholderText: i18n("Description")
+            placeholderText: qsTr("Description")
         }
 
         QQC2.TextField {
             id: message
             Layout.fillWidth: true
             selectByMouse: true
-            placeholderText: i18n("Message")
+            placeholderText: qsTr("Message")
         }
 
         RowLayout {
@@ -73,7 +73,7 @@ QQC2.Dialog {
                 id: selectedFileNameField
                 Layout.fillWidth: true
                 selectByMouse: true
-                placeholderText: i18n("Select File...")
+                placeholderText: qsTr("Select File...")
             }
 
             Kirigami.Icon {
@@ -93,7 +93,7 @@ QQC2.Dialog {
         }
         FileDialog {
             id: selectFileDialog
-            title: i18n("Please choose a file")
+            title: qsTr("Please choose a file")
             folder: shortcuts.documents
             selectFolder: false
             selectMultiple: false

@@ -25,7 +25,7 @@
 #include "rocketchataccount.h"
 #include "usersforroommodel.h"
 #include "roomwrapper.h"
-#include <KLocalizedString>
+//#include <KLocalizedString>
 
 #include <QIcon>
 #include <QDir>
@@ -475,32 +475,32 @@ QString RoomModel::sectionName(Room *r) const
 {
     QString str;
     if (r->favorite()) {
-        str = i18n("Favorites");
+        str = QObject::tr("Favorites");
     } else {
         const QString channelTypeStr = r->channelType();
         if (mRocketChatAccount && mRocketChatAccount->sortUnreadOnTop() && (r->unread() > 0 || r->alert())) {
             if (channelTypeStr == QLatin1Char('p')) {
                 if (r->parentRid().isEmpty()) {
-                    str = i18n("Unread Rooms");
+                    str = QObject::tr("Unread Rooms");
                 } else {
-                    str = i18n("Unread Discussions");
+                    str = QObject::tr("Unread Discussions");
                 }
             } else if (channelTypeStr == QLatin1Char('c')) {
-                str = i18n("Unread Rooms");
+                str = QObject::tr("Unread Rooms");
             } else if (channelTypeStr == QLatin1Char('d')) {
-                str = i18n("Unread Private Messages");
+                str = QObject::tr("Unread Private Messages");
             }
         } else {
             if (channelTypeStr == QLatin1Char('p')) {
                 if (r->parentRid().isEmpty()) {
-                    str = i18n("Rooms");
+                    str = QObject::tr("Rooms");
                 } else {
-                    str = i18n("Discussions");
+                    str = QObject::tr("Discussions");
                 }
             } else if (channelTypeStr == QLatin1Char('c')) {
-                str = i18n("Rooms");
+                str = QObject::tr("Rooms");
             } else if (channelTypeStr == QLatin1Char('d')) {
-                str = i18n("Private Messages");
+                str = QObject::tr("Private Messages");
             }
         }
     }

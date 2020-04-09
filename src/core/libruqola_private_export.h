@@ -28,7 +28,7 @@
 #  define LIBRUQOLACORE_TESTS_EXPORT LIBRUQOLACORE_EXPORT
 # endif
 #else /* not compiling tests */
-# define LIBRUQOLACORE_TESTS_EXPORT
+# define LIBRUQOLACORE_TESTS_EXPORT LIBRUQOLACORE_EXPORT
 #endif
 
 #endif

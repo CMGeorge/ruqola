@@ -86,7 +86,7 @@ MessageBase {
 
                     width: Math.min(implicitWidth, parent.width - Kirigami.Units.largeSpacing)
 
-                    text: i18n("Click To Join to Video")
+                    text: qsTr("Click To Join to Video")
 
                     wrapMode: QQC2.Label.Wrap
 

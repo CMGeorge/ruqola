@@ -55,14 +55,14 @@ QQC2.Dialog {
         anchors.centerIn: parent
         width: 300
         height: 60
-        text: i18n("There is no camera available.")
+        text: qsTr("There is no camera available.")
     }
     Kirigami.InlineMessage {
         visible: camera.availability === Camera.Busy
         anchors.centerIn: parent
         width: 300
         height: 60
-        text: i18n("Your camera is busy.\nTry to close other applications using the camera.")
+        text: qsTr("Your camera is busy.\nTry to close other applications using the camera.")
     }
     VideoOutput {
         id: camareLiveOutput
@@ -74,7 +74,7 @@ QQC2.Dialog {
         enabled: !isNotCameraAvailable && (camera.cameraStatus === Camera.ActiveStatus)
     }
     QQC2.Button {
-        text: i18n("Video");
+        text: qsTr("Video");
         visible: !isNotCameraAvailable
         onPressed: {
             if (camera.cameraStatus === camera.StartingStatus)

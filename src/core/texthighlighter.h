@@ -19,11 +19,19 @@
 #ifndef TEXTHIGHLIGHTER_H
 #define TEXTHIGHLIGHTER_H
 
-#include <KSyntaxHighlighting/AbstractHighlighter>
+//#ifdef Q_OS_WINDOWS
+#include <QObject>
+//#else
+//#include <KSyntaxHighlighting/AbstractHighlighter>
+//#endif
 
 class QTextStream;
 
-class TextHighlighter : public KSyntaxHighlighting::AbstractHighlighter
+//#ifdef Q_OS_WINDOWS
+//class TextHighlighter : public QObject
+//#else
+class TextHighlighter : public QObject//public KSyntaxHighlighting::AbstractHighlighter
+//#endif
 {
 public:
     explicit TextHighlighter(QTextStream *stream);
@@ -31,8 +39,10 @@ public:
 
     void highlight(const QString &str);
 
+#ifndef Q_OS_WINDOWS
 protected:
     void applyFormat(int offset, int length, const KSyntaxHighlighting::Format &format) override;
+#endif
 
 private:
     QString mCurrentLine;

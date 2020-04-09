@@ -28,7 +28,7 @@
 #include "unityservicemanager.h"
 #endif
 
-#include <KLocalizedString>
+//#include <KLocalizedString>
 #include <QIcon>
 
 Notification::Notification(QObject *parent)
@@ -86,7 +86,7 @@ void Notification::createToolTip()
             hasAlert = trayInfo.hasAlert;
         }
         if (trayInfo.unreadMessage != 0) {
-            str += i18n("%1 has %2 Unread Message", i.key(), trayInfo.unreadMessage);
+            str += QObject::tr("%1 has %2 Unread Message", i.key(), trayInfo.unreadMessage);
             unreadMessage += trayInfo.unreadMessage;
         }
     }

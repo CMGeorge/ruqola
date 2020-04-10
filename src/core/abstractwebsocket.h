@@ -26,7 +26,7 @@
 #include <QWebSocketProtocol>
 #include <QSslError>
 #include "libruqola_private_export.h"
-class LIBRUQOLACORE_TESTS_EXPORT AbstractWebSocket : public QObject
+class LIBRUQOLACORE_EXPORT AbstractWebSocket : public QObject
 {
     Q_OBJECT
 public:

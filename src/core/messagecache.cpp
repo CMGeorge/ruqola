@@ -28,7 +28,7 @@
 #include <getthreadmessagesjob.h>
 
 #include "model/threadmessagemodel.h"
-
+#include "restapiabstractjob.h"
 #include <QJsonArray>
 
 MessageCache::MessageCache(QObject *parent)

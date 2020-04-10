@@ -3,11 +3,13 @@ TEMPLATE = subdirs
 SUBDIRS += \
 rocketchatrestapi-qt5 \
 #widgets \
-#plugins \
+plugins \
 #icons \
 core \
 apps
 #\
 #data \
-apps.depends = core
-core.depends = rocketchatrestapi-qt5
+#apps.depends = core
+#core.depends = plugins
+#plugins.depends = rocketchatrestapi-qt5
+#rocketchatrestapi-qt5

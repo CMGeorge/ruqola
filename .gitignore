@@ -22,3 +22,6 @@ CMakeLists.txt.user*
 *.Ruqola.pro.user
 *-generated.ref
 .cmake/
+src/kdelibs/
+kcoreaddons/
+kdelibs/

@@ -23,8 +23,8 @@
 
 #include <QFileInfo>
 //#include <KPluginMetaData>
-//#include <KPluginLoader>
-//#include <KPluginFactory>
+#include "KDE/KPluginLoader.h"
+//#include "KDE/KPluginFactory.h"
 
 #include <plugins/pluginauthentication.h>
 
@@ -49,6 +49,7 @@ bool AuthenticationManager::initializePluginList()
     const QVector<KPluginMetaData> plugins = KPluginLoader::findPlugins(QStringLiteral("ruqolaplugins/authentication"));
 
     QVectorIterator<KPluginMetaData> i(plugins);
+
     i.toBack();
     QSet<QString> unique;
     while (i.hasPrevious()) {
@@ -60,6 +61,7 @@ bool AuthenticationManager::initializePluginList()
         //2) look at if plugin is activated
         info.metaDataFileNameBaseName = QFileInfo(data.fileName()).baseName();
         info.metaDataFileName = data.fileName();
+
         // only load plugins once, even if found multiple times!
         if (unique.contains(info.metaDataFileNameBaseName)) {
             continue;
@@ -85,8 +87,10 @@ void AuthenticationManager::loadPlugin(AuthenticationManagerInfo *item)
     }
 #else
     qDebug()<<"==============================IMPLEMENT THIS======================";
-#endif
+    #endif
 }
+
+
 
 QVector<PluginAuthentication *> AuthenticationManager::pluginsList() const
 {
@@ -107,7 +111,7 @@ PluginUtilData AuthenticationManager::createPluginMetaData(const KPluginMetaData
     pluginData.mName = metaData.name();
     pluginData.mIdentifier = metaData.pluginId();
 #else
-    qDebug()<<"=================================IMPLEMENT THIS ====== ";
+//    qDebug()<<"=================================IMPLEMENT THIS ====== ";
 #endif
     return pluginData;
 }

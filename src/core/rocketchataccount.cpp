@@ -78,7 +78,7 @@
 
 #include "setstatusjob.h"
 #include "usersautocompletejob.h"
-
+#include <QDebug>
 #define USE_REASTAPI_JOB 1
 
 RocketChatAccount::RocketChatAccount(const QString &accountFileName, QObject *parent)

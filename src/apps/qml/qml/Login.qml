@@ -231,7 +231,7 @@ Kirigami.Page {
                 else if (rcAccount.loginStatus === DDPClient.LoggingIn)
                     return qsTr("Logging In...")
                 else if (lastSocketError != "")
-                    return qsTr("Socket error: %1", lastSocketError)
+                    return qsTr("Socket error: %1").arg(lastSocketError)
                 return ""
             }
             horizontalAlignment: Text.AlignHCenter

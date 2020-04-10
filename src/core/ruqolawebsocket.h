@@ -22,10 +22,10 @@
 #define RUQOLAWEBSOCKET_H
 
 #include "abstractwebsocket.h"
-
+#include "libruqolacore_export.h"
 class QWebSocket;
 class RuqolaLogger;
-class RuqolaWebSocket : public AbstractWebSocket
+class LIBRUQOLACORE_EXPORT RuqolaWebSocket : public AbstractWebSocket
 {
     Q_OBJECT
 public:

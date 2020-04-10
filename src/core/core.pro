@@ -1,16 +1,31 @@
 TEMPLATE = lib
 QT+=network websockets quick
 DEFINES += IS_LIBRUQOLACORE_EXPORT
-
+DEFINES += LIBROCKETCHATRESTAPI_QT5_EXPORT
 DISTFILES += \
     emoticons/emoji.json \
     icons/systray.png \
     settings/ruqolaglobalconfig.kcfg \
     settings/ruqolaglobalconfig.kcfgc
-INCLUDEPATH += $$OUT_PWD/../../include/rocketchatrestapi-qt5/
-LIBS+=-L$$OUT_PWD/../../lib/ -lrocketchatrestapi-qt5
+#INCLUDEPATH += $$OUT_PWD/../../include/rocketchatrestapi-qt5/
+#LIBS+=-L$$OUT_PWD/../../lib/ -lrocketchatrestapi-qt5
 #error($$INCLUDEPATH)
+#include($$PWD/../rocketchatrestapi-qt5/rocketchatrestapi-qt5.pri)
+
+#INCLUDEPATH += $$PWD/../plugins/
+#INCLUDEPATH += $$PWD/KDE/
 HEADERS += \
+    KDE/KPluginFactory_p.h \
+    KDE/desktopfileparser_p.h \
+    KDE/kaboutdata.h \
+    KDE/kcomponentdata.h \
+    KDE/kcomponentdata_p.h \
+    KDE/kcoreaddons_debug.h \
+    KDE/kcoreaddons_export.h \
+    KDE/kexportplugin.h \
+    KDE/kpluginfactory.h \
+    KDE/kpluginloader.h \
+    KDE/kpluginmetadata.h \
     abstractwebsocket.h \
     accountmanager.h \
     accountroomsettings.h \
@@ -45,7 +60,7 @@ HEADERS += \
     loadrecenthistorymanager.h \
     lrucache.h \
     managerdatapaths.h \
-    messagecache.h \
+#    messagecache.h \
     messagedownloadmanager.h \
     messagequeue.h \
     messages/message.h \
@@ -126,6 +141,12 @@ HEADERS += \
     utils.h
 
 SOURCES += \
+    KDE/desktopfileparser.cpp \
+    KDE/kaboutdata.cpp \
+    KDE/kcomponentdata.cpp \
+    KDE/kpluginfactory.cpp \
+    KDE/kpluginloader.cpp \
+    KDE/kpluginmetadata.cpp \
     abstractwebsocket.cpp \
     accountmanager.cpp \
     accountroomsettings.cpp \
@@ -155,7 +176,7 @@ SOURCES += \
     listmessages.cpp \
     loadrecenthistorymanager.cpp \
     managerdatapaths.cpp \
-    messagecache.cpp \
+#    messagecache.cpp \
     messagedownloadmanager.cpp \
     messagequeue.cpp \
     messages/message.cpp \
@@ -236,7 +257,7 @@ RESOURCES += \
     ruqolacore.qrc
 
 
-#CMAKE_MODULE_TESTS = '-'
-#load(qt_build_config)
-#VERSION = 1.0.0-1
-#load(qt_module)
+CMAKE_MODULE_TESTS = '-'
+load(qt_build_config)
+VERSION = 1.0.0
+load(qt_module)

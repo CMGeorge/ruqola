@@ -21,7 +21,30 @@
 #ifndef PASSWORDPLUGINAUTHENTICATION_H
 #define PASSWORDPLUGINAUTHENTICATION_H
 
-#include <plugins/pluginauthentication.h>
+#include "plugins/pluginauthentication.h"
+
+#define K_PLUGIN_FACTORY_DECLARATION_WITH_BASEFACTORY_SKEL(name, baseFactory, ...) \
+    class name : public KPluginFactory \
+    { \
+        Q_OBJECT \
+        Q_INTERFACES(KPluginFactory) \
+        __VA_ARGS__ \
+    public: \
+        explicit name(); \
+        ~name(); \
+    };
+
+#define K_PLUGIN_FACTORY_DECLARATION_WITH_BASEFACTORY_JSON(name, baseFactory, json) \
+    K_PLUGIN_FACTORY_DECLARATION_WITH_BASEFACTORY_SKEL(name, baseFactory, Q_PLUGIN_METADATA(IID KPluginFactory_iid FILE json))
+
+#define K_PLUGIN_FACTORY_WITH_BASEFACTORY_JSON(name, baseFactory, jsonFile, pluginRegistrations) \
+    K_PLUGIN_FACTORY_DECLARATION_WITH_BASEFACTORY_JSON(name, baseFactory, jsonFile) \
+    K_PLUGIN_FACTORY_DEFINITION_WITH_BASEFACTORY(name, baseFactory, pluginRegistrations)
+
+#define K_PLUGIN_FACTORY_WITH_JSON(name, jsonFile, pluginRegistrations)  K_PLUGIN_FACTORY_WITH_BASEFACTORY_JSON(name, KPluginFactory, jsonFile, pluginRegistrations)
+
+
+#define K_PLUGIN_CLASS_WITH_JSON(classname,jsonFile) K_PLUGIN_FACTORY_WITH_JSON(classname ## Factory, jsonFile, registerPlugin<classname >();)
 
 class PasswordPluginAuthentication : public PluginAuthentication
 {

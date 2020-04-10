@@ -31,63 +31,63 @@
 #include "managerdatapaths.h"
 #include <iostream>
 
-#include <KAboutData>
+//#include <KAboutData>
 #include <QIcon>
 #include <QDirIterator>
 #include <QQuickWindow>
 
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
-#include <KIconTheme>
+//#include <KIconTheme>
 #endif
 
 int Q_DECL_EXPORT main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
-    QApplication app(argc, argv);
+    QGuiApplication app(argc, argv);
     app.setWindowIcon(QIcon::fromTheme(QStringLiteral("ruqola")));
 
-    KCrash::initialize();
+//    KCrash::initialize();
 
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
     // call KIconTheme to make sure KIconTheme is linked
-    KIconTheme::list();
+//    KIconTheme::list();
 #endif
 
-    KLocalizedString::setApplicationDomain("ruqola");
+//    KLocalizedString::setApplicationDomain("ruqola");
     QCoreApplication::setOrganizationDomain(QStringLiteral("kde.org"));
 
-    KAboutData aboutData(QStringLiteral("ruqolaqml"),
-                         QObject::tr("Ruqolaqml"),
-                         QStringLiteral(RUQOLA_VERSION),
-                         QObject::tr("QML Rocket Chat Client"),
-                         KAboutLicense::GPL_V2,
-                         QObject::tr("Copyright © 2017-2020 Ruqolaqml authors"));
+//    KAboutData aboutData(QStringLiteral("ruqolaqml"),
+//                         QObject::tr("Ruqolaqml"),
+//                         QStringLiteral(RUQOLA_VERSION),
+//                         QObject::tr("QML Rocket Chat Client"),
+//                         KAboutLicense::GPL_V2,
+//                         QObject::tr("Copyright © 2017-2020 Ruqolaqml authors"));
 
-    aboutData.addAuthor(i18n("Laurent Montel"), QObject::tr("Maintainer"), QStringLiteral("montel@kde.org"));
-    aboutData.addAuthor(i18n("Riccardo Iaconelli"), QObject::tr("Original author"), QStringLiteral("riccardo@kde.org"));
-    aboutData.addAuthor(i18n("Vasudha Mathur"), QObject::tr("Former core developer"), QStringLiteral("vasudhamathur96@gmail.com"));
+//    aboutData.addAuthor(i18n("Laurent Montel"), QObject::tr("Maintainer"), QStringLiteral("montel@kde.org"));
+//    aboutData.addAuthor(i18n("Riccardo Iaconelli"), QObject::tr("Original author"), QStringLiteral("riccardo@kde.org"));
+//    aboutData.addAuthor(i18n("Vasudha Mathur"), QObject::tr("Former core developer"), QStringLiteral("vasudhamathur96@gmail.com"));
 
-    aboutData.setOrganizationDomain(QByteArrayLiteral("kde.org"));
-    aboutData.setProductName(QByteArrayLiteral("ruqola"));
-    aboutData.addCredit(i18n("David Faure"), QObject::tr("Bug fixing"), QStringLiteral("faure@kde.org"));
-    aboutData.addCredit(i18n("Paul Lemire"), QObject::tr("Help for debugging QML"), QStringLiteral("paul.lemire@kdab.com"));
-    aboutData.addCredit(i18n("Veluri Mithun"), QObject::tr("Autotest improvement and created some tests apps"), QStringLiteral("velurimithun38@gmail.com"));
-    aboutData.addCredit(i18n("Franck Arrecot"), QObject::tr("Fix some QML bugs"), QStringLiteral("franck.arrecot@kdab.com"));
-    aboutData.addCredit(i18n("Volker Krause"), QObject::tr("Bug fixing"), QStringLiteral("vkrause@kde.org"));
-    aboutData.addCredit(i18n("Kevin Funk"), QObject::tr("Bug fixing"), QStringLiteral("kfunk@kde.org"));
-    aboutData.addCredit(i18n("Nicolas Fella"), QObject::tr("Android support"), QStringLiteral("nicolas.fella@gmx.de"));
-    aboutData.addCredit(i18n("Alessandro Ambrosano"), QObject::tr("Bug fixing"), QStringLiteral("alessandro.ambrosano@gmail.com"));
+//    aboutData.setOrganizationDomain(QByteArrayLiteral("kde.org"));
+//    aboutData.setProductName(QByteArrayLiteral("ruqola"));
+//    aboutData.addCredit(i18n("David Faure"), QObject::tr("Bug fixing"), QStringLiteral("faure@kde.org"));
+//    aboutData.addCredit(i18n("Paul Lemire"), QObject::tr("Help for debugging QML"), QStringLiteral("paul.lemire@kdab.com"));
+//    aboutData.addCredit(i18n("Veluri Mithun"), QObject::tr("Autotest improvement and created some tests apps"), QStringLiteral("velurimithun38@gmail.com"));
+//    aboutData.addCredit(i18n("Franck Arrecot"), QObject::tr("Fix some QML bugs"), QStringLiteral("franck.arrecot@kdab.com"));
+//    aboutData.addCredit(i18n("Volker Krause"), QObject::tr("Bug fixing"), QStringLiteral("vkrause@kde.org"));
+//    aboutData.addCredit(i18n("Kevin Funk"), QObject::tr("Bug fixing"), QStringLiteral("kfunk@kde.org"));
+//    aboutData.addCredit(i18n("Nicolas Fella"), QObject::tr("Android support"), QStringLiteral("nicolas.fella@gmx.de"));
+//    aboutData.addCredit(i18n("Alessandro Ambrosano"), QObject::tr("Bug fixing"), QStringLiteral("alessandro.ambrosano@gmail.com"));
 
-    KAboutData::setApplicationData(aboutData);
+//    KAboutData::setApplicationData(aboutData);
 
     QCommandLineParser parser;
     parser.addOption(QCommandLineOption(QStringList() <<  QStringLiteral("list-accounts"), QObject::tr("Return lists of accounts")));
     parser.addOption(QCommandLineOption(QStringList() <<  QStringLiteral("account"), QObject::tr("Start with specific account"), QStringLiteral("accountname")));
 
-    aboutData.setupCommandLine(&parser);
+//    aboutData.setupCommandLine(&parser);
     parser.process(app);
-    aboutData.processCommandLine(&parser);
+//    aboutData.processCommandLine(&parser);
     if (parser.isSet(QStringLiteral("list-accounts"))) {
         const QString configPath = ManagerDataPaths::self()->path(ManagerDataPaths::Config, QString());
         QDirIterator it(configPath, QStringList() << QStringLiteral(
@@ -109,7 +109,7 @@ int Q_DECL_EXPORT main(int argc, char *argv[])
     (void)Ruqola::self();
 #if !defined(Q_OS_ANDROID) && !defined(Q_OS_IOS)
     // Create systray to show notifications on Desktop
-    (void)Ruqola::self()->notification();
+//    (void)Ruqola::self()->notification();
 #endif
     if (!loadAccount.isEmpty()) {
         Ruqola::self()->setCurrentAccount(loadAccount);

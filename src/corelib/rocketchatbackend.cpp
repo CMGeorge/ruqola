@@ -194,7 +194,7 @@ void RocketChatBackend::parseOwnInfoDown(const QJsonObject &replyObject)
     user.setStatus(replyObject.value(QLatin1String("status")).toString());
     if (user.isValid()) {
         mRocketChatAccount->usersModel()->addUser(user);
-#ifndef Q_OS_WINDOWS
+#if !defined(Q_OS_WINDOWS) && !defined(Q_OS_MAC)
         if (!RuqolaGlobalConfig::self()->setOnlineAccounts()) {
             //Need to update own status.
             mRocketChatAccount->setOwnStatus(user);

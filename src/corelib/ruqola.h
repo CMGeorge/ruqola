@@ -35,8 +35,8 @@
 //#include "notification.h"
 #endif
 
-#ifndef Q_OS_WINDOWS
-#include <KAboutData>
+#if !defined(Q_OS_WINDOWS) && !defined(Q_OS_MAC)
+#include "KAboutData.h"
 #endif
 class RocketChatAccount;
 class AccountManager;
@@ -54,12 +54,12 @@ public:
 
     static void destroy();
 
-#if !defined(Q_OS_ANDROID) && !defined(Q_OS_WINDOWS)
+#if !defined(Q_OS_ANDROID) && !defined(Q_OS_WINDOWS) && !defined(Q_OS_MAC)
     Notification *notification();
 #endif
 
     Q_INVOKABLE RocketChatAccount *rocketChatAccount() const;
-#ifndef Q_OS_WINDOWS
+#if !defined(Q_OS_WINDOWS) && !defined(Q_OS_MAC)
     Q_INVOKABLE KAboutData applicationData() const;
 #endif
     Q_INVOKABLE AccountManager *accountManager() const;
@@ -74,7 +74,7 @@ private:
     void logout(const QString &accountName);
     AccountManager *mAccountManager = nullptr;
 
-#if !defined(Q_OS_ANDROID) && !defined(Q_OS_WINDOWS)
+#if !defined(Q_OS_ANDROID) && !defined(Q_OS_WINDOWS) && !defined(Q_OS_MAC)
     Notification *mNotification = nullptr;
 #endif
 };

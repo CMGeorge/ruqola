@@ -44,6 +44,7 @@ class Part;
 #define K_PLUGIN_FACTORY_DECLARATION_WITH_BASEFACTORY(name, baseFactory) \
     K_PLUGIN_FACTORY_DECLARATION_WITH_BASEFACTORY_SKEL(name, baseFactory, Q_PLUGIN_METADATA(IID KPluginFactory_iid))
 
+//TODO: Check This WEntrie...
 #define K_PLUGIN_FACTORY_DEFINITION_WITH_BASEFACTORY(name, baseFactory, pluginRegistrations) \
     name::name() \
     { \
@@ -374,26 +375,26 @@ public:
     template<typename T>
     T *create(QWidget *parentWidget, QObject *parent, const QString &keyword = QString(), const QVariantList &args = QVariantList());
 
-#if KCOREADDONS_ENABLE_DEPRECATED_SINCE(4, 0)
-    /**
-     * @deprecated since 4.0 use create<T>(QObject *parent, const QVariantList &args)
-     */
-    template<typename T>
-    KCOREADDONS_DEPRECATED_VERSION(4, 0, "Use KPluginFactory::create<T>(QObject *parent, const QVariantList &args)")
-    T *create(QObject *parent, const QStringList &args)
-    {
-        return create<T>(parent, stringListToVariantList(args));
-    }
+//#if KCOREADDONS_ENABLE_DEPRECATED_SINCE(4, 0)
+//    /**
+//     * @deprecated since 4.0 use create<T>(QObject *parent, const QVariantList &args)
+//     */
+//    template<typename T>
+//    KCOREADDONS_DEPRECATED_VERSION(4, 0, "Use KPluginFactory::create<T>(QObject *parent, const QVariantList &args)")
+//    T *create(QObject *parent, const QStringList &args)
+//    {
+//        return create<T>(parent, stringListToVariantList(args));
+//    }
 
-    /**
-     * @deprecated since 4.0 use create<T>(QObject *parent, const QVariantList &args)
-     */
-    KCOREADDONS_DEPRECATED_VERSION(4, 0, "Use KPluginFactory::create<T>(QObject *parent, const QVariantList &args)")
-    QObject *create(QObject *parent = nullptr, const char *classname = "QObject", const QStringList &args = QStringList())
-    {
-        return create(classname, nullptr, parent, stringListToVariantList(args), QString());
-    }
-#endif
+//    /**
+//     * @deprecated since 4.0 use create<T>(QObject *parent, const QVariantList &args)
+//     */
+//    KCOREADDONS_DEPRECATED_VERSION(4, 0, "Use KPluginFactory::create<T>(QObject *parent, const QVariantList &args)")
+//    QObject *create(QObject *parent = nullptr, const char *classname = "QObject", const QStringList &args = QStringList())
+//    {
+//        return create(classname, nullptr, parent, stringListToVariantList(args), QString());
+//    }
+//#endif
 
     /**
      * \internal
@@ -478,19 +479,19 @@ protected:
 
     KPluginFactoryPrivate *const d_ptr;
 
-#if KCOREADDONS_BUILD_DEPRECATED_SINCE(4, 0)
-    /**
-     * @deprecated since 4.0 use create<T>(QObject *parent, const QVariantList &args)
-     */
-    KCOREADDONS_DEPRECATED_VERSION(4, 0, "Use KPluginFactory::create<T>(QObject *parent, const QVariantList &args)")
-    virtual QObject *createObject(QObject *parent, const char *className, const QStringList &args);
+//#if KCOREADDONS_BUILD_DEPRECATED_SINCE(4, 0)
+//    /**
+//     * @deprecated since 4.0 use create<T>(QObject *parent, const QVariantList &args)
+//     */
+//    KCOREADDONS_DEPRECATED_VERSION(4, 0, "Use KPluginFactory::create<T>(QObject *parent, const QVariantList &args)")
+//    virtual QObject *createObject(QObject *parent, const char *className, const QStringList &args);
 
-    /**
-     * @deprecated since 4.0 use create<T>(QWidget *parentWidget, QObject *parent, const QString &keyword, const QVariantList &args)
-     */
-    KCOREADDONS_DEPRECATED_VERSION(4, 0, "Use KPluginFactory::create<T>(QWidget *parentWidget, QObject *parent, const QString &keyword, const QVariantList &args)")
-    virtual KParts::Part *createPartObject(QWidget *parentWidget, QObject *parent, const char *classname, const QStringList &args);
-#endif
+//    /**
+//     * @deprecated since 4.0 use create<T>(QWidget *parentWidget, QObject *parent, const QString &keyword, const QVariantList &args)
+//     */
+//    KCOREADDONS_DEPRECATED_VERSION(4, 0, "Use KPluginFactory::create<T>(QWidget *parentWidget, QObject *parent, const QString &keyword, const QVariantList &args)")
+//    virtual KParts::Part *createPartObject(QWidget *parentWidget, QObject *parent, const char *classname, const QStringList &args);
+//#endif
 
     /**
      * This function is called when the factory asked to create an Object.

@@ -58,7 +58,7 @@ QString Utils::markdownToRichText(const QString &markDown)
 
     //qCDebug(RUQOLA_LOG) << "BEFORE markdownToRichText "<<markDown;
     QString str = markDown;
-#ifndef Q_OS_WINDOWS
+#if !defined(Q_OS_WINDOWS) && !defined(Q_OS_MAC)
     //TODO remove replaceSmileys when we will use unicode emoticons
     const KTextToHTML::Options convertFlags = KTextToHTML::PreserveSpaces | KTextToHTML::HighlightText | KTextToHTML::ReplaceSmileys | KTextToHTML::ConvertPhoneNumbers;
     str = KTextToHTML::convertToHtml(str, convertFlags);
@@ -81,7 +81,7 @@ QString Utils::generateRichText(const QString &str, const QString &username)
     static const QRegularExpression regularExpressionUser(QStringLiteral("(^|\\s+)@([\\w._-]+)"));
     QRegularExpressionMatchIterator userIterator = regularExpressionUser.globalMatch(newStr);
 
-#ifndef Q_OS_WINDOWS
+#if !defined(Q_OS_WINDOWS) && !defined(Q_OS_MAC)
     KColorScheme colorScheme;
     const auto userMentionForegroundColor = colorScheme.foreground(KColorScheme::ActiveText).color().name();
     const auto userMentionBackgroundColor = colorScheme.background(KColorScheme::ActiveBackground).color().name();
@@ -122,7 +122,7 @@ QString Utils::generateRichText(const QString &str, const QString &username)
 QString Utils::formatQuotedRichText(const QString &richText)
 {
     // Qt's support for borders is limited to tables, so we have to jump through some hoops...
-#ifndef Q_OS_WINDOWS
+#if !defined(Q_OS_WINDOWS) && !defined(Q_OS_MAC)
     KColorScheme scheme;
     const auto backgroundColor = scheme.background(KColorScheme::AlternateBackground).color().name();
     const auto borderColor = scheme.foreground(KColorScheme::LinkText).color().name();

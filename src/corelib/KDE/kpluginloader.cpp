@@ -254,8 +254,10 @@ void KPluginLoader::forEachPlugin(const QString &directory, std::function<void(c
 
 QVector<KPluginMetaData> KPluginLoader::findPlugins(const QString &directory, std::function<bool(const KPluginMetaData &)> filter)
 {
+    qDebug() << "???????Foreach " << directory;
     QVector<KPluginMetaData> ret;
     forEachPlugin(directory, [&](const QString &pluginPath) {
+        qDebug() << "!!!!!!!!! " << pluginPath;
         KPluginMetaData metadata(pluginPath);
         if (!metadata.isValid()) {
             return;

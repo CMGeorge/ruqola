@@ -461,9 +461,9 @@ public:
     QList<KAboutPerson> _translatorList;
     QList<KAboutLicense> _licenseList;
     QString productName;
-#if KCOREADDONS_BUILD_DEPRECATED_SINCE(5, 2)
-    QString programIconName;
-#endif
+//#if KCOREADDONS_BUILD_DEPRECATED_SINCE(5, 2)
+//    QString programIconName;
+//#endif
     QVariant programLogo;
     QString customAuthorPlainText, customAuthorRichText;
     bool customAuthorTextEnabled;
@@ -595,21 +595,21 @@ KAboutData &KAboutData::operator=(const KAboutData &other)
     return *this;
 }
 
-#if KCOREADDONS_BUILD_DEPRECATED_SINCE(5, 65)
-KAboutData KAboutData::fromPluginMetaData(const KPluginMetaData &plugin)
-{
-    KAboutData ret(plugin.pluginId(), plugin.name(), plugin.version(), plugin.description(),
-                   KAboutLicense::byKeyword(plugin.license()).key(), plugin.copyrightText(),
-                   plugin.extraInformation(), plugin.website());
-#if KCOREADDONS_BUILD_DEPRECATED_SINCE(5, 2)
-    ret.d->programIconName = plugin.iconName();
-#endif
-    ret.d->_authorList = plugin.authors();
-    ret.d->_translatorList = plugin.translators();
-    ret.d->_creditList = plugin.otherContributors();
-    return ret;
-}
-#endif
+//#if KCOREADDONS_BUILD_DEPRECATED_SINCE(5, 65)
+//KAboutData KAboutData::fromPluginMetaData(const KPluginMetaData &plugin)
+//{
+//    KAboutData ret(plugin.pluginId(), plugin.name(), plugin.version(), plugin.description(),
+//                   KAboutLicense::byKeyword(plugin.license()).key(), plugin.copyrightText(),
+//                   plugin.extraInformation(), plugin.website());
+//#if KCOREADDONS_BUILD_DEPRECATED_SINCE(5, 2)
+//    ret.d->programIconName = plugin.iconName();
+//#endif
+//    ret.d->_authorList = plugin.authors();
+//    ret.d->_translatorList = plugin.translators();
+//    ret.d->_creditList = plugin.otherContributors();
+//    return ret;
+//}
+//#endif
 
 
 KAboutData &KAboutData::addAuthor(const QString &name,
@@ -808,18 +808,18 @@ const char *KAboutData::internalProgramName() const
     return d->_internalProgramName.constData();
 }
 
-#if KCOREADDONS_BUILD_DEPRECATED_SINCE(5, 2)
-QString KAboutData::programIconName() const
-{
-    return d->programIconName.isEmpty() ? componentName() : d->programIconName;
-}
+//#if KCOREADDONS_BUILD_DEPRECATED_SINCE(5, 2)
+//QString KAboutData::programIconName() const
+//{
+//    return d->programIconName.isEmpty() ? componentName() : d->programIconName;
+//}
 
-KAboutData &KAboutData::setProgramIconName(const QString &iconName)
-{
-    d->programIconName = iconName;
-    return *this;
-}
-#endif
+//KAboutData &KAboutData::setProgramIconName(const QString &iconName)
+//{
+//    d->programIconName = iconName;
+//    return *this;
+//}
+//#endif
 
 QVariant KAboutData::programLogo() const
 {

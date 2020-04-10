@@ -1,19 +1,24 @@
 TEMPLATE = lib
+#CONFIG += plugin
 QT+=network websockets quick
 DEFINES += IS_LIBRUQOLACORE_EXPORT
-DEFINES += LIBROCKETCHATRESTAPI_QT5_EXPORT
+#DEFINES += LIBROCKETCHATRESTAPI_QT5_EXPORT
 DISTFILES += \
     emoticons/emoji.json \
     icons/systray.png \
     settings/ruqolaglobalconfig.kcfg \
     settings/ruqolaglobalconfig.kcfgc
+
+
+
 #INCLUDEPATH += $$OUT_PWD/../../include/rocketchatrestapi-qt5/
 #LIBS+=-L$$OUT_PWD/../../lib/ -lrocketchatrestapi-qt5
 #error($$INCLUDEPATH)
-#include($$PWD/../rocketchatrestapi-qt5/rocketchatrestapi-qt5.pri)
+include($$PWD/../rocketchatrestapi-qt5/rocketchatrestapi-qt5.pri)
 
 #INCLUDEPATH += $$PWD/../plugins/
 #INCLUDEPATH += $$PWD/KDE/
+
 HEADERS += \
     KDE/KPluginFactory_p.h \
     KDE/desktopfileparser_p.h \

@@ -35,7 +35,7 @@ public:
 
     Q_REQUIRED_RESULT bool syntaxHighlightingInitialized() const;
 
-#ifndef Q_OS_WINDOWS
+#if !defined(Q_OS_WINDOWS) && !defined(Q_OS_MAC)
     Q_REQUIRED_RESULT KSyntaxHighlighting::Definition def() const;
 
     KSyntaxHighlighting::Repository &repo() const;
@@ -43,7 +43,7 @@ public:
 private:
     Q_DISABLE_COPY(SyntaxHighlightingManager)
     void initialize();
-#ifndef Q_OS_WINDOWS
+#if !defined(Q_OS_WINDOWS) && !defined(Q_OS_MAC)
     mutable KSyntaxHighlighting::Repository mRepo;
     KSyntaxHighlighting::Definition mDef;
 #endif

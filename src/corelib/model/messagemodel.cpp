@@ -33,7 +33,7 @@
 #include "utils.h"
 #include "rocketchataccount.h"
 #include "texthighlighter.h"
-#ifndef Q_OS_WINDOWS
+#if !defined(Q_OS_WINDOWS) && !defined(Q_OS_MAC)
 #include "textconverter.h"
 #endif
 #include "loadrecenthistorymanager.h"
@@ -51,7 +51,7 @@ MessageModel::MessageModel(const QString &roomID, RocketChatAccount *account, Ro
     , mRocketChatAccount(account)
     , mRoom(room)
 {
-#ifndef Q_OS_WINDOWS
+#if !defined(Q_OS_WINDOWS) && !defined(Q_OS_MAC)
     mTextConverter = new TextConverter(mRocketChatAccount ? mRocketChatAccount->emojiManager() : nullptr);
 #else
     mTextConverter = nullptr;
@@ -473,7 +473,7 @@ QString MessageModel::convertMessageText(const Message &message, const QString &
         }
         //qDebug() << " autotranslate true && mRoom->autoTranslateLanguage() :" << mRoom->autoTranslateLanguage();
     }
-#ifndef Q_OS_WINDOWS
+#if !defined(Q_OS_WINDOWS) && !defined(Q_OS_MAC)
     return mTextConverter->convertMessageText(messageStr, userName, mAllMessages);
 #else
     return ":::::"+messageStr+" -> "+userName;

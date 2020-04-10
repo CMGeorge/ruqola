@@ -2018,7 +2018,7 @@ void RocketChatAccount::initializeAccount()
     }
     //Force set online.
     //TODO don't reset message status !
-#ifndef Q_OS_WINDOWS
+#if !defined(Q_OS_WINDOWS) && !defined(Q_OS_MAC)
     if (RuqolaGlobalConfig::self()->setOnlineAccounts()) {
         ddp()->setDefaultStatus(User::PresenceStatus::PresenceOnline);
     }

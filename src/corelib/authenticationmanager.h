@@ -21,7 +21,7 @@
 #ifndef AUTHENTICATIONMANAGER_H
 #define AUTHENTICATIONMANAGER_H
 
-//#include <KPluginMetaData>
+#include "KDE/kpluginmetadata.h"
 #include <QObject>
 #include "libruqolacore_export.h"
 #include <QVector>

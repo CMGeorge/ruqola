@@ -39,7 +39,7 @@ public:
 
     void highlight(const QString &str);
 
-#ifndef Q_OS_WINDOWS
+#if !defined(Q_OS_WINDOWS) && !defined(Q_OS_MAC)
 protected:
     void applyFormat(int offset, int length, const KSyntaxHighlighting::Format &format) override;
 #endif

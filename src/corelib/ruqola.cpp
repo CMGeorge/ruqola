@@ -67,7 +67,8 @@ AccountManager *Ruqola::accountManager() const
 {
     return mAccountManager;
 }
-#ifndef Q_OS_WINDOWS
+#if !defined(Q_OS_WINDOWS) && !defined(Q_OS_MAC)
+
 KAboutData Ruqola::applicationData() const
 {
     return KAboutData::applicationData();
@@ -81,7 +82,7 @@ RocketChatAccount *Ruqola::rocketChatAccount() const
 
 void Ruqola::sendNotification(const QString &title, const QString &message, const QPixmap &pixmap)
 {
-    #ifndef Q_OS_WINDOWS
+#if !defined(Q_OS_WINDOWS) && !defined(Q_OS_MAC)
     KNotification::event(KNotification::Notification, title,
                          message.toHtmlEscaped(), pixmap);
 #else
@@ -89,7 +90,7 @@ void Ruqola::sendNotification(const QString &title, const QString &message, cons
 #endif
 }
 
-#if !defined(Q_OS_ANDROID) && !defined(Q_OS_WINDOWS)
+#if !defined(Q_OS_ANDROID) && !defined(Q_OS_WINDOWS) && !defined(Q_OS_MAC)
 Notification *Ruqola::notification()
 {
     if (!mNotification) {
@@ -102,14 +103,14 @@ Notification *Ruqola::notification()
 
 void Ruqola::updateNotification(bool hasAlert, int nbUnread, const QString &accountName)
 {
-#if !defined(Q_OS_ANDROID) && !defined(Q_OS_WINDOWS)
+#if !defined(Q_OS_ANDROID) && !defined(Q_OS_WINDOWS) && !defined(Q_OS_MAC)
     notification()->updateNotification(hasAlert, nbUnread, accountName);
 #endif
 }
 
 void Ruqola::logout(const QString &accountName)
 {
-#if defined(Q_OS_ANDROID) || defined(Q_OS_WINDOWS)
+#if defined(Q_OS_ANDROID) || defined(Q_OS_WINDOWS) || defined(Q_OS_MAC)
     Q_UNUSED(accountName)
 #else
     notification()->clearNotification(accountName);

@@ -24,7 +24,7 @@
 #include <QFileInfo>
 //#include <KPluginMetaData>
 #include "KDE/KPluginLoader.h"
-//#include "KDE/KPluginFactory.h"
+#include "KDE/KPluginFactory.h"
 
 #include <plugins/pluginauthentication.h>
 

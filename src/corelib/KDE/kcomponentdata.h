@@ -22,6 +22,7 @@
 //#include <kdecore_export.h>
 //#include <ksharedconfig.h>
 #include <QByteArray>
+#include "../libruqolacore_export.h"
 
 class QByteArray;
 class QString;
@@ -44,7 +45,7 @@ class KComponentDataPrivate;
  * @author Torben Weis
  * @author Matthias Kretz <kretz@kde.org>
  */
-class KComponentData // krazy:exclude=dpointer (implicitly shared)
+class LIBRUQOLACORE_EXPORT KComponentData // krazy:exclude=dpointer (implicitly shared)
 {
 public:
     /**

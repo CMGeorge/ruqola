@@ -8,9 +8,9 @@ INCLUDEPATH += $$OUT_PWD/../../../../include/rocketchatrestapi-qt5
 mac{
     LIBS+=-F$$OUT_PWD/../../../../lib -framework corelib
 }
-winddows{
-LIBS += -L$$OUT_PWD/../../../../lib #rocketchatrestapi-qt5.prl
-LIBS += -LC:\Development\Apps\Qt\CMGeorge\build-ruqola-Desktop_Qt_5_13_2_MSVC2017_64bit-Debug\src\core\debug -lcorelib
+windows{
+LIBS += -L$$OUT_PWD/../../../../lib -lcorelib #rocketchatrestapi-qt5.prl
+#LIBS += -LC:\Development\Apps\Qt\CMGeorge\build-ruqola-Desktop_Qt_5_13_2_MSVC2017_64bit-Debug\src\core\debug -lcorelib
 }
 #error($$OUT_PWD/../../../../include/rocketchatrestapi-qt5)
 #$$PWD/../../../core/KDE

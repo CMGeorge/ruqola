@@ -9,7 +9,7 @@
 #ifndef KPLUGINMETADATA_H
 #define KPLUGINMETADATA_H
 
-#include "kcoreaddons_export.h"
+//#include "kcoreaddons_export.h"
 
 #include <QExplicitlySharedDataPointer>
 #include <QJsonObject>
@@ -18,13 +18,15 @@
 #include <QMetaType>
 
 #include <functional>
-
-class KPluginLoader;
-class QPluginLoader;
-class QStringList;
+#include "../libruqolacore_export.h"
+#include "kpluginloader.h"
+#include "kaboutdata.h"
+//class KPluginLoader;
+//class QPluginLoader;
+//class QStringList;
 class KPluginMetaDataPrivate;
-class KAboutPerson;
-class QObject;
+//class KAboutPerson;
+//class QObject;
 
 
 /**
@@ -85,7 +87,7 @@ class QObject;
  * @sa KAboutPerson::fromJSON()
  * @since 5.1
  */
-class KCOREADDONS_EXPORT KPluginMetaData
+class LIBRUQOLACORE_EXPORT KPluginMetaData
 {
 public:
 

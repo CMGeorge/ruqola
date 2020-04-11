@@ -24,7 +24,7 @@
 #include "KDE/kpluginfactory.h"
 //#include <KLocalizedString>
 
-K_PLUGIN_CLASS_WITH_JSON(PasswordPluginAuthentication, "ruqola_passwordauthenticationplugin.json")
+//K_PLUGIN_CLASS_WITH_JSON(PasswordPluginAuthentication, "ruqola_passwordauthenticationplugin.json")
 
 PasswordPluginAuthentication::PasswordPluginAuthentication(QObject *parent, const QVariantList &)
     : PluginAuthentication(parent)
@@ -55,5 +55,6 @@ QString PasswordPluginAuthentication::iconName() const
     //TODO
     return {};
 }
+
 
 //#include "passwordpluginauthentication.moc"

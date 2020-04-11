@@ -13,7 +13,7 @@
 #include <QPluginLoader>
 
 #include <functional>
-
+#include "../libruqolacore_export.h"
 class KPluginFactory;
 class KPluginMetaData;
 

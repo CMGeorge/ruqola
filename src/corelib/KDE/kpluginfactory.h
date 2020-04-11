@@ -16,7 +16,7 @@
 #include <QVariant>
 #include <QStringList>
 #include "kexportplugin.h" // for source compat
-
+#include "../libruqolacore_export.h"
 class QWidget;
 
 class KPluginFactoryPrivate;
@@ -316,7 +316,7 @@ class Part;
  * \author Matthias Kretz <kretz@kde.org>
  * \author Bernhard Loos <nhuh.put@web.de>
  */
-class KCOREADDONS_EXPORT KPluginFactory : public QObject
+class LIBRUQOLACORE_EXPORT KPluginFactory : public QObject
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(KPluginFactory)

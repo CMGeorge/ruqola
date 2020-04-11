@@ -12,7 +12,7 @@
 #include <QPluginLoader>
 #include <QtPlugin>
 #include "kcoreaddons_export.h"
-
+#include "../libruqolacore_export.h"
 /**
  * \relates KPluginLoader
  * Use this macro if you want to give your plugin a version number.

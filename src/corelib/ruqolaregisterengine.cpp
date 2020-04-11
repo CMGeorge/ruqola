@@ -126,7 +126,7 @@ bool RuqolaRegisterEngine::initialize()
     qRegisterMetaType<ListMessagesModel::ListMessageType>();
     qRegisterMetaType<User::PresenceStatus>();
     qRegisterMetaType<AuthenticationManager::OauthType>();
-//    qRegisterMetaType<KAboutData>();
+    qRegisterMetaType<KAboutData>();
     mEngine = new QQmlApplicationEngine;
 
     QQmlContext *ctxt = mEngine->rootContext();

@@ -18,7 +18,7 @@
 #include <QSharedDataPointer>
 #include <QVariant>
 #include <qcontainerfwd.h>
-
+#include "../libruqolacore_export.h"
 class QCommandLineParser;
 class QJsonObject;
 class KAboutData;
@@ -52,7 +52,7 @@ Q_DECL_IMPORT void defaultCrashHandler(int sig);
  * about.addCredit(people[0].name(), people[0].task());
  * @endcode
  */
-class KCOREADDONS_EXPORT KAboutPerson
+class LIBRUQOLACORE_EXPORT KAboutPerson
 {
     Q_GADGET
     Q_PROPERTY(QString name READ name CONSTANT)

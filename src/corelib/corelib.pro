@@ -2,7 +2,10 @@ TEMPLATE = lib
 #CONFIG += plugin
 QT+=network websockets quick
 DEFINES += IS_LIBRUQOLACORE_EXPORT
-#DEFINES += LIBROCKETCHATRESTAPI_QT5_EXPORT
+#also methids from restapi should be set as dllexport
+DEFINES += IS_LIBROCKETCHATRESTAPI_QT5_EXPORT
+
+
 DISTFILES += \
     emoticons/emoji.json \
     icons/systray.png \
@@ -20,17 +23,17 @@ include($$PWD/../rocketchatrestapi-qt5/rocketchatrestapi-qt5.pri)
 #INCLUDEPATH += $$PWD/KDE/
 
 HEADERS += \
-    KDE/KPluginFactory_p.h \
-    KDE/desktopfileparser_p.h \
-    KDE/kaboutdata.h \
-    KDE/kcomponentdata.h \
-    KDE/kcomponentdata_p.h \
-    KDE/kcoreaddons_debug.h \
-    KDE/kcoreaddons_export.h \
-    KDE/kexportplugin.h \
-    KDE/kpluginfactory.h \
-    KDE/kpluginloader.h \
-    KDE/kpluginmetadata.h \
+    $$PWD/KDE/KPluginFactory_p.h \
+    $$PWD/KDE/desktopfileparser_p.h \
+    $$PWD/KDE/kaboutdata.h \
+    $$PWD/KDE/kcomponentdata.h \
+    $$PWD/KDE/kcomponentdata_p.h \
+    $$PWD/KDE/kcoreaddons_debug.h \
+    $$PWD/KDE/kcoreaddons_export.h \
+    $$PWD/KDE/kexportplugin.h \
+    $$PWD/KDE/kpluginfactory.h \
+    $$PWD/KDE/kpluginloader.h \
+    $$PWD/KDE/kpluginmetadata.h \
     abstractwebsocket.h \
     accountmanager.h \
     accountroomsettings.h \
@@ -43,8 +46,7 @@ HEADERS += \
     channel.h \
     clipboardproxy.h \
     command.h \
-    commands.h \
-    convertertextjob/convertertextabstractjob.h \
+    commands.h \ convertertextjob/convertertextabstractjob.h \
     convertertextjob/translatetextjob.h \
     ddpapi/ddpclient.h \
     ddpapi/ruqola_ddpapi_command_debug.h \

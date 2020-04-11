@@ -10,7 +10,7 @@ INCLUDEPATH += $$PWD/../../corelib
 INCLUDEPATH += $$PWD/../../../
 
 windows{
-LIBS += -L$$OUT_PWD/../../core/debug -lcorelib
+LIBS += -L$$OUT_PWD/../../../lib -lcorelib
 #LIBS+= -L$$OUT_PWD/../../../lib/ -lrocketchatrestapi-qt5
 #error($$OUT_PWD/../../)
 }

@@ -1,6 +1,6 @@
 TEMPLATE =lib
 #CONFIG +=
-#CONFIG += plugin
+CONFIG += plugin
 QT+=network
 #SOURCES += $$files($$PWD)
 INCLUDEPATH += $$PWD/../../../corelib

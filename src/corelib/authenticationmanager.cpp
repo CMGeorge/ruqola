@@ -84,6 +84,8 @@ void AuthenticationManager::loadPlugin(AuthenticationManagerInfo *item)
     if (pluginLoader.factory()) {
         item->plugin = pluginLoader.factory()->create<PluginAuthentication>(this, QVariantList() << item->metaDataFileNameBaseName);
         mPluginDataList.append(item->pluginData);
+    } else {
+        qCritical() << "Ereror ? " << pluginLoader.errorString();
     }
 #else
     qDebug()<<"==============================IMPLEMENT THIS======================";

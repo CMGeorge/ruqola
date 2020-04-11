@@ -50,6 +50,7 @@ KPluginMetaData::~KPluginMetaData()
 
 KPluginMetaData::KPluginMetaData(const QString &file)
 {
+//    qDebug() << "GETEE ";
     if (file.endsWith(QLatin1String(".desktop"))) {
         loadFromDesktopFile(file, QStringList());
     } else if (file.endsWith(QLatin1String(".json"))) {

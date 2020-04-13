@@ -1,0 +1,5 @@
+#ifndef PASSWORDAUTHENTICATIONPLUGIN_DEBUG_H
+#define PASSWORDAUTHENTICATIONPLUGIN_DEBUG_H
+#include <QLoggingCategory>
+#define RUQOLA_PASSWORDAUTHENTICATION_PLUGIN_LOG QLoggingCategory("org.kde.rocketchatqt.plugin.authentication.password")
+#endif // PASSWORDAUTHENTICATIONPLUGIN_DEBUG_H

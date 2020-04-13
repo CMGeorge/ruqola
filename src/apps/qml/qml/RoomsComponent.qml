@@ -33,21 +33,21 @@ Component {
     id: roomsComponent
     Kirigami.ScrollablePage {
         id: roomsPage
-        title: i18n("Rooms")
+        title: qsTr("Rooms")
 
         actions {
             contextualActions: [
                 Kirigami.Action {
                     id: editAction
                     iconName: "list-add"
-                    text: i18n("Open Room");
+                    text: qsTr("Open Room");
                     onTriggered: {
                         searchChannelDialog.initializeAndOpen();
                     }
                 },
                 Kirigami.Action {
                     iconName: "edit-symbolic"
-                    text: i18n("Unread on Top");
+                    text: qsTr("Unread on Top");
                     checkable: true
                     checked: appid.rocketChatAccount.sortUnreadOnTop;
                     onToggled: {
@@ -56,14 +56,14 @@ Component {
                 },
                 Kirigami.Action {
                     iconName: "edit-symbolic"
-                    text: i18n("Show Close Icons");
+                    text: qsTr("Show Close Icons");
                     checkable: true
                     onToggled: {
                         appid.rocketChatAccount.switchEditingMode(checked);
                     }
                 },
                 Kirigami.Action {
-                    text: i18n("Create New Channel")
+                    text: qsTr("Create New Channel")
                     onTriggered: {
                         createNewChannelDialogLoader.active = true;
                     }
@@ -74,7 +74,7 @@ Component {
                         return ((n % m) + m) % m;
                     }
 
-                    text: i18n("Previous Channel");
+                    text: qsTr("Previous Channel");
                     shortcut: "Alt+Up"
                     visible: false // no need to display it in right-click menu
                     onTriggered: {
@@ -83,7 +83,7 @@ Component {
                     }
                 },
                 Kirigami.Action {
-                    text: i18n("Next Channel");
+                    text: qsTr("Next Channel");
                     shortcut: "Alt+Down"
                     visible: false // no need to display it in right-click menu
                     onTriggered: {
@@ -95,7 +95,7 @@ Component {
                    separator: true
                 },
                 Kirigami.Action {
-                    text: i18n("Server Info")
+                    text: qsTr("Server Info")
                     onTriggered: {
                         serverinfodialogLoader.active = true;
                     }
@@ -108,7 +108,7 @@ Component {
         globalToolBarStyle: Kirigami.ApplicationHeaderStyle.ToolBar
         titleDelegate: Kirigami.SearchField {
             id: searchField
-            placeholderText: i18n("Search Room... (%1)", focusSequence)
+            placeholderText: qsTr("Search Room... (%1)", focusSequence)
             Layout.fillWidth: true
             onTextChanged: {
                 appid.rocketChatAccount.roomFilterProxyModel.setFilterString(text);
@@ -170,7 +170,7 @@ Component {
                 QQC2.Label {
                     id: comboboxLabel
                     textFormat: Text.PlainText
-                    text: i18n("Status:")
+                    text: qsTr("Status:")
                 }
 
                 StatusCombobox {

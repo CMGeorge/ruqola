@@ -73,7 +73,7 @@ Kirigami.BasicListItem {
             str = "@";
         }
         //Add space after (...)
-        str += i18n("(%1)", d_unread) + ' ';
+        str += qsTr("(%1)").arg(d_unread) + ' ';
         return str;
     }
 

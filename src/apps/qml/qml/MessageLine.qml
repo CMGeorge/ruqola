@@ -100,7 +100,7 @@ ColumnLayout {
             inputMethodHints: Qt.ImhMultiLine
             textFormat: TextEdit.PlainText
 
-            placeholderText: i18n("Enter message...")
+            placeholderText: qsTr("Enter message...")
             background: Rectangle {
                 anchors.fill: parent
                 Kirigami.Theme.colorSet: Kirigami.Theme.Window

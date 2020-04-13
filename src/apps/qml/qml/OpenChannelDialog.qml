@@ -40,7 +40,7 @@ QQC2.Dialog {
     focus: true
     ColumnLayout {
         QQC2.Label {
-            text: channelName === "" ? "" : i18n("Do you want to open this channel: \"%1\"?", channelName)
+            text: channelName === "" ? "" : qsTr("Do you want to open this channel: \"%1\"?", channelName)
             font.bold: true
             font.pointSize: 15
             wrapMode: QQC2.Label.Wrap

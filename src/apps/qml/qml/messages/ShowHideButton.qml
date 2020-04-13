@@ -37,7 +37,7 @@ Button {
     signal hiddenChanged(bool state);
 
     source: isHidden ? "hint" : "visibility"
-    toolTipText: isHidden ? i18n("Show") : i18n("Hide")
+    toolTipText: isHidden ? qsTr("Show") : qsTr("Hide")
 
     onClicked: {
         if (isHidden) {

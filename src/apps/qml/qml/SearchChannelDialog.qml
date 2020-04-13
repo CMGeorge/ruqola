@@ -34,7 +34,7 @@ QQC2.Dialog {
     signal searchChannel(string pattern)
     signal openChannel(string channelname, string channelid, var channeltype)
 
-    title: i18n("Search Channel")
+    title: qsTr("Search Channel")
     standardButtons: QQC2.Dialog.Close
 
     width: parent.width * 9 / 10
@@ -53,14 +53,14 @@ QQC2.Dialog {
     contentItem: ColumnLayout {
         Kirigami.SearchField {
             id: channelnametext
-            placeholderText: i18n("Search Channel...")
+            placeholderText: qsTr("Search Channel...")
             Layout.fillWidth: true
             onAccepted: {
                 searchChannelDialog.searchChannel(channelnametext.text)
             }
         }
         QQC2.Label {
-            text: listview.count === 0 ? i18n("No Channel found") : ""
+            text: listview.count === 0 ? qsTr("No Channel found") : ""
             textFormat: Text.PlainText
             font.italic: true
             font.bold: true

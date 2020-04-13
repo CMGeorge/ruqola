@@ -30,7 +30,7 @@ QQC2.Dialog {
 
     signal createNewAccount(string accountName, string serverUrl, string username)
 
-    title: i18n("Create Account")
+    title: qsTr("Create Account")
 
     standardButtons: QQC2.Dialog.Ok | QQC2.Dialog.Cancel
 
@@ -52,17 +52,17 @@ QQC2.Dialog {
         QQC2.TextField {
             id: accountName
             placeholderText: "Rocket.Chat"
-            Kirigami.FormData.label: i18n("Name:")
+            Kirigami.FormData.label: qsTr("Name:")
         }
         QQC2.TextField {
             id: server
             placeholderText: "open.rocket.chat"
-            Kirigami.FormData.label: i18n("Server Url:")
+            Kirigami.FormData.label: qsTr("Server Url:")
         }
         QQC2.TextField {
             id: usernameField
-            placeholderText: i18n("john.doe")
-            Kirigami.FormData.label: i18n("Username:")
+            placeholderText: qsTr("john.doe")
+            Kirigami.FormData.label: qsTr("Username:")
         }
     }
     onAccepted: {

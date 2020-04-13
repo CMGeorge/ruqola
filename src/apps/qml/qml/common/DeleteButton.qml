@@ -26,6 +26,6 @@ import org.kde.kirigami 2.7 as Kirigami
 
 Button {
     id: deleteButton
-    toolTipText: i18n("Delete")
+    toolTipText: qsTr("Delete")
     source: "edit-delete-shred"
 }

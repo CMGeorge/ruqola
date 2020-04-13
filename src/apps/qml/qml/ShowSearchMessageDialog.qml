@@ -30,7 +30,7 @@ import "messages"
 QQC2.Dialog {
     id: showSearchMessageDialog
 
-    title: i18n("Search Message")
+    title: qsTr("Search Message")
 
     signal searchMessage(string pattern, string rid)
 
@@ -57,7 +57,7 @@ QQC2.Dialog {
 
         Kirigami.SearchField {
             id: searchField
-            placeholderText: i18n("Search Word... (You can use regular expression as /^text$/i)")
+            placeholderText: qsTr("Search Word... (You can use regular expression as /^text$/i)")
             Layout.fillWidth: true
             Layout.alignment: Qt.AlignTop
             onAccepted: {
@@ -67,7 +67,7 @@ QQC2.Dialog {
 
         QQC2.Label {
             visible: searchMessageModel.stringNotFound
-            text: i18n("Any string found")
+            text: qsTr("Any string found")
             textFormat: Text.PlainText
             Layout.alignment: Qt.AlignTop
             font.italic: true

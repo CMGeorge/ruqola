@@ -27,7 +27,7 @@ import QtQuick.Window 2.2
 QQC2.Dialog {
     id: userInfoDialog
 
-    title: i18n("User Info")
+    title: qsTr("User Info")
     standardButtons: QQC2.Dialog.Close
 
     property QtObject userInfo

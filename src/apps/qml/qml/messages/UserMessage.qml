@@ -165,7 +165,7 @@ MessageBase {
                                 anchors.fill: parent
                             }
                             QQC2.ToolTip.visible: editedInfoMA.containsMouse
-                            QQC2.ToolTip.text: visible ? i18n("Edited by %1", i_editedByUserName) : ""
+                            QQC2.ToolTip.text: visible ? qsTr("Edited by %1", i_editedByUserName) : ""
                         }
                     }
 

@@ -21,7 +21,7 @@
 #include "deletemessagejob.h"
 #include "rocketchatqtrestapi_debug.h"
 #include "restapimethod.h"
-#include <KLocalizedString>
+//#include <KLocalizedString>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QNetworkReply>
@@ -134,7 +134,7 @@ QString RocketChatRestApi::DeleteMessageJob::jobName() const
 QString RocketChatRestApi::DeleteMessageJob::errorMessage(const QString &str)
 {
     if (str == QLatin1String("error-action-not-allowed")) {
-        return i18n("Message deletion is not allowed.");
+        return tr("Message deletion is not allowed.");
     } else {
         return RestApiAbstractJob::errorMessage(str);
     }

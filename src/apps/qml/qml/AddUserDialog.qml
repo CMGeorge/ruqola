@@ -37,7 +37,7 @@ QQC2.Dialog {
     property QtObject roomInfo
     property string roomId: ""
 
-    title: i18n("Add Users")
+    title: qsTr("Add Users")
     standardButtons: QQC2.Dialog.Close
 
     width: parent.width * 9 / 10
@@ -58,7 +58,7 @@ QQC2.Dialog {
     contentItem: ColumnLayout {
         Kirigami.SearchField {
             id: username
-            placeholderText: i18n("Search User...")
+            placeholderText: qsTr("Search User...")
             Layout.fillWidth: true
             onTextChanged: {
                 addUserDialog.searchUserName(username.text)

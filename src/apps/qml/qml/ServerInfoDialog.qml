@@ -29,7 +29,7 @@ import Ruqola 1.0
 
 QQC2.Dialog {
     id: serverinfodialog
-    title: i18n("Server Info")
+    title: qsTr("Server Info")
     standardButtons: QQC2.Dialog.Close
     property QtObject rcAccount
 
@@ -44,15 +44,15 @@ QQC2.Dialog {
 
         QQC2.Label {
             text: rcAccount.serverConfigInfo.serverName
-            Kirigami.FormData.label: i18n("Account name:")
+            Kirigami.FormData.label: qsTr("Account name:")
         }
         QQC2.Label {
             text: rcAccount.serverConfigInfo.userName
-            Kirigami.FormData.label: i18n("User name:")
+            Kirigami.FormData.label: qsTr("User name:")
         }
         QQC2.Label {
             text: rcAccount.serverConfigInfo.serverVersionStr
-            Kirigami.FormData.label: i18n("Server version:")
+            Kirigami.FormData.label: qsTr("Server version:")
         }
     }
 }

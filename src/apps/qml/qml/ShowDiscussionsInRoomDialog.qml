@@ -26,7 +26,7 @@ import org.kde.kirigami 2.8 as Kirigami
 QQC2.Dialog {
     id: showDiscussionsInRoomDialog
 
-    title: i18n("Discussions")
+    title: qsTr("Discussions")
 
     signal openDiscussion(string discussionId)
 
@@ -51,7 +51,7 @@ QQC2.Dialog {
     contentItem: ColumnLayout {
         Kirigami.SearchField {
             id: searchField
-            placeholderText: i18n("Search Discussions...")
+            placeholderText: qsTr("Search Discussions...")
             Layout.fillWidth: true
             onTextChanged: {
                 discussionsModel.setFilterString(text);
@@ -61,7 +61,7 @@ QQC2.Dialog {
         SearchLabel {
             hasFullList: discussionsModel.hasFullList
             numberOfElements: listview.count
-            labelText: listview.count === 0 ? i18n("No Discussion found") : i18np("%1 discussion in room (Total: %2)", "%1 discussions in room (Total: %2)", listview.count, discussionsModel.total())
+            labelText: listview.count === 0 ? qsTr("No Discussion found") : qsTr("%1 discussion in room (Total: %2)", "%1 discussions in room (Total: %2)", listview.count, discussionsModel.total())
             onLoadMoreElements: {
                 appid.rocketChatAccount.loadMoreDiscussions(roomId)
             }

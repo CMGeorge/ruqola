@@ -27,7 +27,7 @@ import QtQuick 2.9
 QQC2.Dialog {
     id: encryptedConversationDialog
 
-    title: i18n("Encrypted Conversation")
+    title: qsTr("Encrypted Conversation")
 
     property string rId: ""
     x: parent.width / 2 - width / 2
@@ -39,7 +39,7 @@ QQC2.Dialog {
 
     Row {
         QQC2.Label {
-            text: i18n("Do you want to accept encrypted conversation?")
+            text: qsTr("Do you want to accept encrypted conversation?")
             textFormat: Text.PlainText
             font.bold: true
             font.pointSize: 15

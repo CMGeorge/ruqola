@@ -25,7 +25,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QNetworkReply>
-#include <KLocalizedString>
+//#include <KLocalizedString>
 
 using namespace RocketChatRestApi;
 ChannelJoinJob::ChannelJoinJob(QObject *parent)
@@ -126,7 +126,7 @@ QNetworkRequest ChannelJoinJob::request() const
 QString RocketChatRestApi::ChannelJoinJob::errorMessage(const QString &str)
 {
     if (str == QLatin1String("error-room-not-found")) {
-        return i18n("The required \'%1\' param provided does not match any channel", channelInfo().channelInfoIdentifier);
+        return tr("The required \'%1\' param provided does not match any channel").arg(channelInfo().channelInfoIdentifier);
     }
     return ChannelBaseJob::errorMessage(str);
 }

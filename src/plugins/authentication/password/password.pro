@@ -1,11 +1,17 @@
 TEMPLATE =lib
 TARGET = ruqola_passwordauthenticationplugin
 CONFIG += plugin
-QT+=network
+QT+=network websockets quick quickcontrols2
 #SOURCES += $$files($$PWD)
 #INCLUDEPATH += $$OUT_PWD/../../../../include/rocketchatrestapi-qt5
 mac{
-    LIBS+=-F$$OUT_PWD/../../../../lib -framework corelib
+    LIBS+=-L$$OUT_PWD/../../../corelib -lruqolacore
+
+INCLUDEPATH += $$PWD/../../../corelib \
+                $$PWD/../../../rocketchatrestapi-qt5 \
+                $$PWD/../../../rocketchatrestapi-qt5/channels \
+                $$PWD/../../../rocketchatrestapi-qt5/commands \
+                $$PWD/../../../rocketchatrestapi-qt5/kde
 }
 windows{
 INCLUDEPATH += $$PWD/../../../corelib \

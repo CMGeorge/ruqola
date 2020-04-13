@@ -21,7 +21,7 @@
 #ifndef PASSWORDPLUGINAUTHENTICATION_H
 #define PASSWORDPLUGINAUTHENTICATION_H
 
-#include "plugins\pluginauthentication.h"
+#include "plugins/pluginauthentication.h"
 #include <QObject>
 
 #include "KDE/kpluginfactory.h"

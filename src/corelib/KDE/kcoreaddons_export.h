@@ -9,5 +9,5 @@
 #    define KCOREADDONS_EXPORT
 #  endif
 #else
-#define KCOREADDONS_EXPORT
+//#define KCOREADDONS_EXPORT
 #endif

@@ -1,5 +1,6 @@
 TEMPLATE = app
-QT += quick
+QT += quick multimedia
+DESTDIR += $$OUT_PWD/../../../bin/
 SOURCES += \
     main.cpp
 
@@ -10,7 +11,7 @@ INCLUDEPATH += $$PWD/../../corelib
 INCLUDEPATH += $$PWD/../../../
 
 windows{
-LIBS += -L$$OUT_PWD/../../../lib -lcorelib
+LIBS += -L$$OUT_PWD/../../../lib -lruqolacore
 #LIBS+= -L$$OUT_PWD/../../../lib/ -lrocketchatrestapi-qt5
 #error($$OUT_PWD/../../)
 }

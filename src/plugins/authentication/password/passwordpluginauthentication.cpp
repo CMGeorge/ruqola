@@ -20,11 +20,13 @@
 
 #include "passwordpluginauthentication.h"
 #include "passwordauthenticationinterface.h"
-//#include "KDE/kpluginfactory.h"
 #include "KDE/kpluginfactory.h"
+//#include <kpluginfactory.h>
 //#include <KLocalizedString>
+#pragma message("============================================")
+//K_PLUGIN_CLASS_WITH_JSON(PasswordPluginAuthentication,"ruqola_passwordauthenticationplugin.json")
 
-//K_PLUGIN_CLASS_WITH_JSON(PasswordPluginAuthentication, "ruqola_passwordauthenticationplugin.json")
+
 
 PasswordPluginAuthentication::PasswordPluginAuthentication(QObject *parent, const QVariantList &)
     : PluginAuthentication(parent)

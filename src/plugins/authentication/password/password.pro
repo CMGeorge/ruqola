@@ -1,17 +1,23 @@
 TEMPLATE =lib
-#CONFIG +=
+TARGET = ruqola_passwordauthenticationplugin
 CONFIG += plugin
 QT+=network
 #SOURCES += $$files($$PWD)
-INCLUDEPATH += $$PWD/../../../corelib
-INCLUDEPATH += $$OUT_PWD/../../../../include/rocketchatrestapi-qt5
+#INCLUDEPATH += $$OUT_PWD/../../../../include/rocketchatrestapi-qt5
 mac{
     LIBS+=-F$$OUT_PWD/../../../../lib -framework corelib
 }
 windows{
-LIBS += -L$$OUT_PWD/../../../../lib -lcorelib #rocketchatrestapi-qt5.prl
-#LIBS += -LC:\Development\Apps\Qt\CMGeorge\build-ruqola-Desktop_Qt_5_13_2_MSVC2017_64bit-Debug\src\core\debug -lcorelib
+INCLUDEPATH += $$PWD/../../../corelib \
+                $$PWD/../../../rocketchatrestapi-qt5 \
+                $$PWD/../../../rocketchatrestapi-qt5/channels \
+                $$PWD/../../../rocketchatrestapi-qt5/commands \
+                $$PWD/../../../rocketchatrestapi-qt5/kde
+#\
+#                $$OUT_PWD/../../../../include/rocketchatrestapi-qt5
+LIBS += -L$$OUT_PWD/../../../../lib -lruqolacore
 }
+#error($$LIBS)
 #error($$OUT_PWD/../../../../include/rocketchatrestapi-qt5)
 #$$PWD/../../../core/KDE
 #include($$PWD/../../../rocketchatrestapi-qt5/rocketchatrestapi-qt5.pri)
@@ -29,3 +35,6 @@ SOURCES += \
 #load(qt_build_config)
 #PLUGIN_TYPE=auth
 #load(qt_plugin)
+
+DESTDIR = $$OUT_PWD/../../../../bin/ruqolaplugins/authentication
+#error("$$OUT_PWD/../../../../bin/ruqolaplugins/authentication")

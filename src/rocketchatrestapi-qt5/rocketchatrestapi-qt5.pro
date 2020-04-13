@@ -1,4 +1,8 @@
 TEMPLATE = lib
+TARGET=rocketchatrestapi-qt5
+QT += core network networkauth
+CONFIG += c++11
+
 DEFINES += IS_LIBROCKETCHATRESTAPI_QT5_EXPORT
 #DEFINE += ROCKETCHATQTRESTAPI_LOG=RoketChatQtRestAPI
 include($$PWD/rocketchatrestapi-qt5.pri)
@@ -12,7 +16,7 @@ win32{
 }
 
 
-CMAKE_MODULE_TESTS = '-'
-load(qt_build_config)
-VERSION = 1.0.0
-load(qt_module)
+#CMAKE_MODULE_TESTS = '-'
+#load(qt_build_config)
+#VERSION = 1.0.0
+#load(qt_module)

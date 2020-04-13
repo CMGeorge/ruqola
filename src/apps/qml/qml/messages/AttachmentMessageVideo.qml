@@ -63,7 +63,7 @@ UserMessage {
                 Layout.fillWidth: true
                 QQC2.Label {
                     //TODO remove duplicate code
-                    text: model.modelData.title === "" ? "" :  qsTr("File Uploaded: %1", model.modelData.title)
+                    text: model.modelData.title === "" ? "" :  qsTr("File Uploaded: %1").arg(model.modelData.title)
                     visible: model.modelData.title !== ""
                     wrapMode: QQC2.Label.Wrap
                     anchors.leftMargin: Kirigami.Units.smallSpacing

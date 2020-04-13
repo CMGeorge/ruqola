@@ -21,35 +21,29 @@
 #ifndef PASSWORDPLUGINAUTHENTICATION_H
 #define PASSWORDPLUGINAUTHENTICATION_H
 
-#include "plugins/pluginauthentication.h"
+#include "plugins\pluginauthentication.h"
+#include <QObject>
 
-//#define K_PLUGIN_FACTORY_DECLARATION_WITH_BASEFACTORY_SKEL(name, baseFactory, ...) \
-//    class name : public KPluginFactory \
-//    { \
-//        Q_OBJECT \
-//        Q_INTERFACES(KPluginFactory) \
-//        __VA_ARGS__ \
-//    public: \
-//        explicit name(); \
-//        ~name(); \
-//    };
+#include "KDE/kpluginfactory.h"
 
-//#define K_PLUGIN_FACTORY_DECLARATION_WITH_BASEFACTORY_JSON(name, baseFactory, json) \
-//    K_PLUGIN_FACTORY_DECLARATION_WITH_BASEFACTORY_SKEL(name, baseFactory, Q_PLUGIN_METADATA(IID KPluginFactory_iid FILE json))
+class PasswordPluginAuthentication;
+class PasswordPluginAuthenticationFactory: public KPluginFactory{
+    Q_OBJECT
+    Q_INTERFACES(KPluginFactory)
+    Q_PLUGIN_METADATA(IID "org.qt-project.Qt.QDummyPlugin" FILE "ruqola_passwordauthenticationplugin.json")
+public:
+    explicit PasswordPluginAuthenticationFactory(){
+        registerPlugin<PasswordPluginAuthentication>();
+    }
+    ~PasswordPluginAuthenticationFactory(){}
 
-//#define K_PLUGIN_FACTORY_WITH_BASEFACTORY_JSON(name, baseFactory, jsonFile, pluginRegistrations) \
-//    K_PLUGIN_FACTORY_DECLARATION_WITH_BASEFACTORY_JSON(name, baseFactory, jsonFile) \
-//    K_PLUGIN_FACTORY_DEFINITION_WITH_BASEFACTORY(name, baseFactory, pluginRegistrations)
+};
 
-//#define K_PLUGIN_FACTORY_WITH_JSON(name, jsonFile, pluginRegistrations)  K_PLUGIN_FACTORY_WITH_BASEFACTORY_JSON(name, KPluginFactory, jsonFile, pluginRegistrations)
-
-
-//#define K_PLUGIN_CLASS_WITH_JSON(classname,jsonFile) K_PLUGIN_FACTORY_WITH_JSON(classname ## Factory, jsonFile, registerPlugin<classname >();)
 
 class PasswordPluginAuthentication : public PluginAuthentication
 {
     Q_OBJECT
-//    Q_PLUGIN_METADATA(IID "org.qt-project.Qt.QDummyPlugin" FILE "ruqola_passwordauthenticationplugin.json")
+
 
 public:
     explicit PasswordPluginAuthentication(QObject *parent = nullptr, const QVariantList & = {});
@@ -60,5 +54,7 @@ public:
     QString name() const override;
     QString iconName() const override;
 };
+
+//K_PLUGIN_CLASS_WITH_JSON(PasswordPluginAuthentication,"ruqola_passwordauthenticationplugin.json")
 
 #endif // PASSWORDPLUGINAUTHENTICATION_H

@@ -23,6 +23,7 @@
 #include "passwordauthenticationplugin_debug.h"
 #include "ddpapi/ddpclient.h"
 
+
 PasswordAuthenticationInterface::PasswordAuthenticationInterface(QObject *parent)
     : PluginAuthenticationInterface(parent)
 {

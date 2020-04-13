@@ -22,7 +22,7 @@
 #define PASSWORDAUTHENTICATIONINTERFACE_H
 
 #include "plugins/pluginauthenticationinterface.h"
-
+#include <QObject>
 class PasswordAuthenticationInterface : public PluginAuthenticationInterface
 {
     Q_OBJECT

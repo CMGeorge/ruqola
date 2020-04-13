@@ -35,7 +35,7 @@ UserMessage {
     attachments: Repeater {
         id: attachmentsRepeater
         model: i_attachments
-
+//        property alias audioPlayer: audioPlayer
         MediaPlayer {
             id: audioPlayer
             autoPlay: false
@@ -56,15 +56,16 @@ UserMessage {
                 timeLabel.text = ConvertScript.convertTimeString(audioPlayer.position) + "/" + ConvertScript.convertTimeString(audioPlayer.duration)
             }
             source: rcAccount.attachmentUrl(model.modelData.link)
+
         }
 
 
         ColumnLayout {
             Layout.fillWidth: true
-
+            Component.onCompleted: console.debug("MODEL: ",rcAccount.attachmentUrl(model.modelData.link))
             QQC2.Label {
                 //TODO remove duplicate code
-                text: model.modelData.title === "" ? "" :  qsTr("File Uploaded: %1", model.modelData.title)
+                text: model.modelData.title === "" ? "" :  qsTr("File Uploaded: %1").arg(model.modelData.title)
                 textFormat: Text.PlainText
                 visible: model.modelData.title !== ""
                 wrapMode: QQC2.Label.Wrap
@@ -82,6 +83,7 @@ UserMessage {
                         anchors.fill: parent
                         onClicked: {
                             console.log(RuqolaDebugCategorySingleton.category, "Click on download audio file");
+                            console.debug("attachmentsRepeater? ",attachmentsRepeater.itemAt(1));
                             if (attachmentsRepeater.audioPlayer.source !== "") {
                                 if (attachmentsRepeater.audioPlayer.playbackState === MediaPlayer.PlayingState) {
                                     attachmentsRepeater.audioPlayer.pause()

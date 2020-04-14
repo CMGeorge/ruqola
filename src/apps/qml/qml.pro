@@ -24,4 +24,7 @@ ios{
     Q_ENABLE_BITCODE.name = ENABLE_BITCODE
     Q_ENABLE_BITCODE.value = NO
     QMAKE_MAC_XCODE_SETTINGS += Q_ENABLE_BITCODE
+    LIBS += -L$$OUT_PWD/../../corelib -lruqolacore
+    LIBS += -L$$OUT_PWD/../../plugins/authentication/password/ -lruqola_passwordauthenticationplugin
+
 }

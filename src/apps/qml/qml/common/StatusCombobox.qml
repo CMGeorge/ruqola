@@ -23,7 +23,7 @@ import QtQuick.Window 2.2
 import QtQuick.Layouts 1.12
 import QtQuick.Controls 2.5 as QQC2
 
-import org.kde.kirigami 2.7 as Kirigami
+//import org.kde.kirigami 2.7 as Kirigami
 
 
 QQC2.ComboBox {
@@ -39,9 +39,10 @@ QQC2.ComboBox {
     }
     currentIndex: model.currentStatus
     
-    delegate: Kirigami.BasicListItem {
+    delegate: /*Kirigami.*/
+              QQC2.ItemDelegate {
         property bool current: index === statusCombobox.currentIndex
-        separatorVisible: false
+//        separatorVisible: false
         onCurrentChanged: {
             if (current) {
                 statusCombobox.text = model.statusi18n
@@ -49,15 +50,16 @@ QQC2.ComboBox {
             }
         }
         icon: model.icon
-        label: model.statusi18n
+        text: model.statusi18n
+//        label: model.statusi18n
     }
     //FIXME: QQC2 combobox really, really needs icons support
     contentItem: RowLayout {
-        Kirigami.Icon {
-            Layout.preferredWidth: Kirigami.Units.iconSizes.smallMedium
-            Layout.fillHeight: true
-            source: statusCombobox.icon
-        }
+//        Kirigami.Icon {
+//            Layout.preferredWidth: Kirigami.Units.iconSizes.smallMedium
+//            Layout.fillHeight: true
+//            source: statusCombobox.icon
+//        }
         QQC2.Label {
             text: statusCombobox.text
             verticalAlignment: Text.AlignVCenter

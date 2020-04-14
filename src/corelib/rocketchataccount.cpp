@@ -81,6 +81,10 @@
 #include <QDebug>
 #define USE_REASTAPI_JOB 1
 
+#ifdef QT_STATIC
+#include "../plugins/authentication/password/passwordpluginauthentication.h"
+#endif
+
 RocketChatAccount::RocketChatAccount(const QString &accountFileName, QObject *parent)
     : QObject(parent)
 {
@@ -1367,10 +1371,17 @@ void RocketChatAccount::initializeAuthenticationPlugins()
 {
     //TODO change it when we change server
     //Clean up at the end.
-    const QVector<PluginAuthentication *> lstPlugins = AuthenticationManager::self()->pluginsList();
+    //    const
+    QVector<PluginAuthentication *> lstPlugins =
+        AuthenticationManager::self()->pluginsList();
+
+#ifdef QT_STATIC
+    // try to use static plugin....
+    lstPlugins.append(new PasswordPluginAuthentication());
+#endif
     qCDebug(RUQOLA_LOG) <<" void RocketChatAccount::initializeAuthenticationPlugins()" << lstPlugins.count();
     if (lstPlugins.isEmpty()) {
-        qCWarning(RUQOLA_LOG) <<" No plugins loaded. Please verify your installation.";
+        qCWarning(RUQOLA_LOG) <<" 2No plugins loaded. Please verify your installation.";
     }
     mLstPluginAuthenticationInterface.clear();
 
@@ -2018,6 +2029,7 @@ void RocketChatAccount::initializeAccount()
     }
     //Force set online.
     //TODO don't reset message status !
+//TODO: Georhge fix this
 #if !defined(Q_OS_WINDOWS) && !defined(Q_OS_MAC)
     if (RuqolaGlobalConfig::self()->setOnlineAccounts()) {
         ddp()->setDefaultStatus(User::PresenceStatus::PresenceOnline);

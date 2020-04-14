@@ -75,7 +75,7 @@ void Reaction::setReactionName(const QString &reactionName, EmojiManager *emojiM
             mCacheConvertedReactionName = emojiManager->replaceEmojiIdentifier(mReactionName, true);
             mIsAnimatedImage = emojiManager->isAnimatedImage(mReactionName);
         } else {
-#if !defined(Q_OS_WINDOWS) && !defined(Q_OS_MAC)
+#if !defined(Q_OS_WINDOWS) && !defined(Q_OS_MAC) && !defined(Q_OS_ANDROID)
             const KTextToHTML::Options convertFlags = KTextToHTML::ReplaceSmileys;
             mCacheConvertedReactionName = KTextToHTML::convertToHtml(mReactionName, convertFlags);
 #else

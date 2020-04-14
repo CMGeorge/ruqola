@@ -51,7 +51,7 @@ MessageModel::MessageModel(const QString &roomID, RocketChatAccount *account, Ro
     , mRocketChatAccount(account)
     , mRoom(room)
 {
-#if !defined(Q_OS_WINDOWS) && !defined(Q_OS_MAC)
+#if !defined(Q_OS_WINDOWS) && !defined(Q_OS_MAC)&& !defined(Q_OS_ANDROID)
     mTextConverter = new TextConverter(mRocketChatAccount ? mRocketChatAccount->emojiManager() : nullptr);
 #else
     mTextConverter = nullptr;
@@ -473,7 +473,7 @@ QString MessageModel::convertMessageText(const Message &message, const QString &
         }
         //qDebug() << " autotranslate true && mRoom->autoTranslateLanguage() :" << mRoom->autoTranslateLanguage();
     }
-#if !defined(Q_OS_WINDOWS) && !defined(Q_OS_MAC)
+#if !defined(Q_OS_WINDOWS) && !defined(Q_OS_MAC)&& !defined(Q_OS_ANDROID)
     return mTextConverter->convertMessageText(messageStr, userName, mAllMessages);
 #else
     return ":::::"+messageStr+" -> "+userName;

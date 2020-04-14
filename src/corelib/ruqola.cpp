@@ -67,7 +67,7 @@ AccountManager *Ruqola::accountManager() const
 {
     return mAccountManager;
 }
-#if !defined(Q_OS_WINDOWS) && !defined(Q_OS_MAC)
+#if !defined(Q_OS_WINDOWS) && !defined(Q_OS_MAC)&& !defined(Q_OS_ANDROID)
 
 KAboutData Ruqola::applicationData() const
 {
@@ -82,7 +82,7 @@ RocketChatAccount *Ruqola::rocketChatAccount() const
 
 void Ruqola::sendNotification(const QString &title, const QString &message, const QPixmap &pixmap)
 {
-#if !defined(Q_OS_WINDOWS) && !defined(Q_OS_MAC)
+#if !defined(Q_OS_WINDOWS) && !defined(Q_OS_MAC)&& !defined(Q_OS_ANDROID)
     KNotification::event(KNotification::Notification, title,
                          message.toHtmlEscaped(), pixmap);
 #else

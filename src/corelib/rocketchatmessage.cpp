@@ -463,8 +463,11 @@ RocketChatMessage::RocketChatMessageResult RocketChatMessage::roomFiles(const QS
 RocketChatMessage::RocketChatMessageResult RocketChatMessage::login(const QString &username, const QString &password, const QString &twoFactorAuthenticationCode, quint64 id)
 {
     QJsonObject user;
-    user[QStringLiteral("username")] = username;
-
+    if (username.contains("@")){
+        user[QStringLiteral("email")] = username;
+    }else{
+        user[QStringLiteral("username")] = username;
+    }
     QByteArray passwordAsArray = QCryptographicHash::hash(password.toUtf8(), QCryptographicHash::Sha256);
     const QString hash = QString::fromLatin1(passwordAsArray.toHex());
 
@@ -477,7 +480,11 @@ RocketChatMessage::RocketChatMessageResult RocketChatMessage::login(const QStrin
         // Note: This currently isn't documented. The message structure here follows the iOS client
         // https://github.com/RocketChat/Rocket.Chat.iOS/blob/ba49216daa50097745f15855238ef8f4d6519bcf/Rocket.Chat/Managers/Model/AuthManager/AuthManagerSocket.swift#L152
         QJsonObject loginObject;
-        loginObject[QStringLiteral("user")] = user;
+        if (user.contains("@")){
+            user[QStringLiteral("email")] = username;
+        }else{
+            user[QStringLiteral("user")] = user;
+        }
         loginObject[QStringLiteral("password")] = passwordObject;
         QJsonObject totpObject;
         totpObject[QStringLiteral("code")] = twoFactorAuthenticationCode;
@@ -485,7 +492,11 @@ RocketChatMessage::RocketChatMessageResult RocketChatMessage::login(const QStrin
         params[QStringLiteral("totp")] = totpObject;
     } else {
         params[QStringLiteral("password")] = passwordObject;
-        params[QStringLiteral("user")] = user;
+        if (passwordObject.contains("@")){
+            params[QStringLiteral("email")] = username;
+        }else{
+            params[QStringLiteral("user")] = user;
+        }
     }
     return generateMethod(QStringLiteral("login"), QJsonDocument(params), id);
 }

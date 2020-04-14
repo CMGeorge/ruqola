@@ -14,5 +14,5 @@ SUBDIRS += plugins
 #data \
 #apps.depends = core
 #core.depends = plugins
-plugins.depends = rocketchatrestapi-qt5
+#plugins.depends = rocketchatrestapi-qt5
 #rocketchatrestapi-qt5

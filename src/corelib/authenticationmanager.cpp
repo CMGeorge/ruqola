@@ -79,7 +79,6 @@ bool AuthenticationManager::initializePluginList()
 
 void AuthenticationManager::loadPlugin(AuthenticationManagerInfo *item)
 {
-//#ifndef Q_OS_WINDOWS
     KPluginLoader pluginLoader(item->metaDataFileName);
     if (pluginLoader.factory()) {
         item->plugin = pluginLoader.factory()->create<PluginAuthentication>(this, QVariantList() << item->metaDataFileNameBaseName);
@@ -87,9 +86,6 @@ void AuthenticationManager::loadPlugin(AuthenticationManagerInfo *item)
     } else {
         qCritical() << "Ereror ? " << pluginLoader.errorString();
     }
-//#else
-//    qDebug()<<"==============================IMPLEMENT THIS======================";
-//    #endif
 }
 
 

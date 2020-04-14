@@ -24,7 +24,7 @@ import QtQuick.Controls 2.5 as QQC2
 import QtQuick.Window 2.2
 import QtQuick 2.9
 import Ruqola 1.0
-import org.kde.kirigami 2.8 as Kirigami
+//import org.kde.kirigami 2.8 as Kirigami
 import "common"
 
 QQC2.Dialog {
@@ -53,7 +53,8 @@ QQC2.Dialog {
 
 
     contentItem: ColumnLayout {
-        Kirigami.SearchField {
+//        Kirigami.SearchField
+        QQC2.TextField{
             id: searchField
             placeholderText: qsTr("Search File...")
             Layout.fillWidth: true

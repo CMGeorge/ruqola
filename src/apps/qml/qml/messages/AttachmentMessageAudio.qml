@@ -22,7 +22,7 @@ import QtQuick 2.9
 import QtMultimedia 5.8
 
 import QtQuick.Controls 2.5 as QQC2
-import org.kde.kirigami 2.7 as Kirigami
+//import org.kde.kirigami 2.7 as Kirigami
 import QtQuick.Layouts 1.12
 import Ruqola 1.0
 
@@ -74,9 +74,10 @@ UserMessage {
             }
 
             RowLayout {
-                Kirigami.Icon {
+//                Kirigami.Icon
+                QQC2.ToolButton{
                     id: playerButton
-                    source: "media-playback-start"
+                    icon.source: "media-playback-start"
                     width: height
                     height: Kirigami.Units.iconSizes.huge
                     MouseArea {

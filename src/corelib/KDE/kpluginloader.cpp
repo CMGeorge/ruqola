@@ -238,13 +238,14 @@ void KPluginLoader::forEachPlugin(const QString &directory, std::function<void(c
             dirsToCheck << libDir + QLatin1Char('/') + directory;
         }
     }
-
-    qCDebug(KCOREADDONS_DEBUG) << "Checking for plugins in" << dirsToCheck;
+    qCDebug(KCOREADDONS_DEBUG)
+        << "!Checking for plugins in" << QDir(dirsToCheck.at(0)).entryList();
 
     for (const QString &dir : qAsConst(dirsToCheck)) {
         QDirIterator it(dir, QDir::Files);
         while (it.hasNext()) {
             it.next();
+            qDebug() << "SCAN " << it.fileName();
             if (QLibrary::isLibrary(it.fileName())) {
                 callback(it.fileInfo().absoluteFilePath());
             }
@@ -267,6 +268,9 @@ QVector<KPluginMetaData> KPluginLoader::findPlugins(const QString &directory, st
         }
         ret.append(metadata);
     });
+    //TODO: Load From Static?
+#ifdef QT_STATIC
+#endif
     return ret;
 }
 

@@ -26,7 +26,7 @@ import QtQuick.Controls 2.5 as QQC2
 import QtQuick.Layouts 1.12
 import Ruqola 1.0
 
-import org.kde.kirigami 2.7 as Kirigami
+//import org.kde.kirigami 2.7 as Kirigami
 
 ColumnLayout {
     id: messageLineItem
@@ -103,7 +103,7 @@ ColumnLayout {
             placeholderText: qsTr("Enter message...")
             background: Rectangle {
                 anchors.fill: parent
-                Kirigami.Theme.colorSet: Kirigami.Theme.Window
+//                Kirigami.Theme.colorSet: Kirigami.Theme.Window
                 border.color: parent.activeFocus ? Kirigami.Theme.activeTextColor : Kirigami.Theme.textColor
                 color: Kirigami.Theme.backgroundColor
             }
@@ -182,12 +182,14 @@ ColumnLayout {
                         interactive: true
                         clip: true
                         model: inputTextManager.inputCompleterModel
-                        delegate: Kirigami.BasicListItem {
+                        delegate:
+//                            Kirigami.BasicListItem
+                        QQC2.ItemDelegate{
                             readonly property variant myData: model
 
                             icon: model.iconname
 
-                            label: model.displayname
+                            /*label:*/text:  model.displayname
                             onClicked: {
                                 listView.currentIndex = model.index
                                 textSelected(model.completername)

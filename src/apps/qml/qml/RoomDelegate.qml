@@ -22,13 +22,14 @@
  */
 
 import QtQuick 2.9
-import org.kde.kirigami 2.7 as Kirigami
+//import org.kde.kirigami 2.7 as Kirigami
 
 import QtQuick.Layouts 1.12
 import Ruqola 1.0
 import QtQuick.Controls 2.5 as QQC2
 
-Kirigami.BasicListItem {
+//Kirigami.
+QQC2.CheckDelegate {
     id: root
 
     property int d_unread: 0;
@@ -55,13 +56,14 @@ Kirigami.BasicListItem {
     topPadding: 0
     bottomPadding: 0
     implicitHeight: contentItem.implicitHeight
-    separatorVisible: false
+//    separatorVisible: false
     
     visible: !d_name.empty && d_open
 
-    textColor: ((d_unread > 0) || d_alert) ? Kirigami.Theme.textColor : Kirigami.Theme.disabledTextColor
+//    textColor: ((d_unread > 0) || d_alert) ? Kirigami.Theme.textColor : Kirigami.Theme.disabledTextColor
     font.bold: (d_unread > 0) || d_alert
-    label: d_name
+//    label: d_name
+    text: d_name
     checked: d_selected
     onClicked: {
         root.roomSelected(d_roomID);
@@ -90,11 +92,12 @@ Kirigami.BasicListItem {
             text: generateText()
             Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
         }
-        Kirigami.Icon {
+//        Kirigami.Icon
+        QQC2.TabButton{
             id: hideAction
 
             visible: d_editingMode
-            source: "hide_table_row"
+            icon.source: "hide_table_row"
             height: Kirigami.Units.iconSizes.smallMedium
             width: height
             opacity: d_selected ? 1 : .5
@@ -110,12 +113,13 @@ Kirigami.BasicListItem {
             Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
         }
         
-        Kirigami.Icon {
+//        Kirigami.Icon
+        QQC2.TabButton{
             id: quitAction
 
             //We can leave only channel not private chat
             visible: d_editingMode && (d_type == "c" || d_type == "p")
-            source: "dialog-close"
+            icon.source: "dialog-close"
             height: Kirigami.Units.iconSizes.smallMedium
             width: height
             opacity: d_selected ? 1 : .5

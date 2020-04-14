@@ -238,8 +238,11 @@ void KPluginLoader::forEachPlugin(const QString &directory, std::function<void(c
             dirsToCheck << libDir + QLatin1Char('/') + directory;
         }
     }
+#ifdef Q_OS_ANDROID
+    dirsToCheck << qApp->applicationDirPath();
+#endif
     qCDebug(KCOREADDONS_DEBUG)
-        << "!Checking for plugins in" << QDir(dirsToCheck.at(0)).entryList();
+        << "!Checking for plugins in" << QDir(dirsToCheck.at(1)).entryList();
 
     for (const QString &dir : qAsConst(dirsToCheck)) {
         QDirIterator it(dir, QDir::Files);

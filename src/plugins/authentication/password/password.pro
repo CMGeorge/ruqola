@@ -9,7 +9,7 @@ INCLUDEPATH += $$PWD/../../../corelib \
                 $$PWD/../../../rocketchatrestapi-qt5/channels \
                 $$PWD/../../../rocketchatrestapi-qt5/commands \
                 $$PWD/../../../rocketchatrestapi-qt5/kde
-mac{
+mac|android{
     LIBS+=-L$$OUT_PWD/../../../corelib -lruqolacore
 
 #INCLUDEPATH += $$PWD/../../../corelib \

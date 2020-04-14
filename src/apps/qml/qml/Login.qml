@@ -27,6 +27,8 @@ import QtQuick.Controls 2.5 as QQC2
 //import org.kde.kirigami 2.7 as Kirigami
 import Ruqola 1.0
 
+import QtWebView 1.1
+
 /*Kirigami.*/QQC2.Page {
     id: loginForm
     
@@ -46,6 +48,10 @@ import Ruqola 1.0
     function resetStatus() {
         lastSocketError = ""
     }
+//    WebView{
+//        anchors.fill: parent
+//        url: "https://google.com";
+//    }
 
     Keys.onReturnPressed: accepted()
 

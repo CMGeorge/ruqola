@@ -235,7 +235,7 @@ void DDPClient::setServerUrl(const QString &url)
 
 void DDPClient::initializeWebSocket()
 {
-    mWebSocket->ignoreSslErrors();
+//    mWebSocket->ignoreSslErrors();
     connect(mWebSocket, &AbstractWebSocket::connected, this, &DDPClient::onWSConnected);
     connect(mWebSocket, &AbstractWebSocket::textMessageReceived, this, &DDPClient::onTextMessageReceived);
     connect(mWebSocket, &AbstractWebSocket::disconnected, this, &DDPClient::onWSclosed);

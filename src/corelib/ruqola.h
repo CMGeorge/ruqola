@@ -30,7 +30,7 @@
 #include "ddpapi/ddpclient.h"
 #include "model/roommodel.h"
 #include "model/messagemodel.h"
-
+#include <QSsl>
 #if !defined(Q_OS_ANDROID) && !defined(Q_OS_WINDOWS)
 //#include "notification.h"
 #endif

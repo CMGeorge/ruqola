@@ -1,4 +1,4 @@
-QT += network testlib websockets
+QT += network websockets
 INCLUDEPATH += $$PWD \
                 $$PWD/channels \
                 $$PWD/authentication \

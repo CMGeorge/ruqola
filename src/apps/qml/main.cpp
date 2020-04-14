@@ -35,13 +35,17 @@
 #include <QIcon>
 #include <QDirIterator>
 #include <QQuickWindow>
-
+#include <QSsl>
+#include <QSslSocket>
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
 //#include <KIconTheme>
 #endif
 
 int Q_DECL_EXPORT main(int argc, char *argv[])
 {
+
+    qDebug() << "sslsslssl==="<<QSslSocket::supportsSsl() << QSslSocket::sslLibraryBuildVersionString();
+
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
     QGuiApplication app(argc, argv);

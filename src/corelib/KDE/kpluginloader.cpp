@@ -241,8 +241,7 @@ void KPluginLoader::forEachPlugin(const QString &directory, std::function<void(c
 #ifdef Q_OS_ANDROID
     dirsToCheck << qApp->applicationDirPath();
 #endif
-    qCDebug(KCOREADDONS_DEBUG)
-        << "!Checking for plugins in" << QDir(dirsToCheck.at(1)).entryList();
+    qCDebug(KCOREADDONS_DEBUG) << "!Checking for plugins in" << dirsToCheck;
 
     for (const QString &dir : qAsConst(dirsToCheck)) {
         QDirIterator it(dir, QDir::Files);

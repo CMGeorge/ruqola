@@ -81,9 +81,9 @@
 #include <QDebug>
 #define USE_REASTAPI_JOB 1
 
-#ifdef QT_STATIC
+//#ifdef QT_STATIC
 #include "../plugins/authentication/password/passwordpluginauthentication.h"
-#endif
+//#endif
 
 RocketChatAccount::RocketChatAccount(const QString &accountFileName, QObject *parent)
     : QObject(parent)
@@ -1372,13 +1372,16 @@ void RocketChatAccount::initializeAuthenticationPlugins()
     //TODO change it when we change server
     //Clean up at the end.
     //    const
+    qDebug() << "Inial vertor: "
+             << AuthenticationManager::self()->pluginsList();
+
     QVector<PluginAuthentication *> lstPlugins =
         AuthenticationManager::self()->pluginsList();
 
-#ifdef QT_STATIC
+//#ifdef QT_STATIC
     // try to use static plugin....
     lstPlugins.append(new PasswordPluginAuthentication());
-#endif
+//#endif
     qCDebug(RUQOLA_LOG) <<" void RocketChatAccount::initializeAuthenticationPlugins()" << lstPlugins.count();
     if (lstPlugins.isEmpty()) {
         qCWarning(RUQOLA_LOG) <<" 2No plugins loaded. Please verify your installation.";

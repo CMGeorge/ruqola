@@ -37,6 +37,7 @@
 #include <QQuickWindow>
 #include <QSsl>
 #include <QSslSocket>
+#include "QQmlApplicationEngine"
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
 //#include <KIconTheme>
 #endif
@@ -129,6 +130,22 @@ int Q_DECL_EXPORT main(int argc, char *argv[])
     if (!ruqolaEngine.initialize()) {
         return -1;
     }
+    QQmlApplicationEngine *mEngine = new QQmlApplicationEngine;
 
+    QQmlContext *ctxt = mEngine->rootContext();
+#if !defined(Q_OS_ANDROID) && !defined(Q_OS_IOS) && !defined(Q_OS_WINDOWS) &&  \
+    !defined(Q_OS_MAC)
+    qmlRegisterType<Notification>(URI, 1, 0, "Notification");
+    ctxt->setContextProperty(QStringLiteral("systrayIcon"),
+                             Ruqola::self()->notification());
+#endif
+
+    mEngine->load(QUrl(QStringLiteral("qrc:/Desktop.qml")));
+
+    if (mEngine->rootObjects().isEmpty()) {
+
+        exit(-1);
+    }
+//    return true;
     return app.exec();
 }

@@ -22,7 +22,7 @@ import QtQuick.Layouts 1.12
 import QtQuick.Controls 2.5 as QQC2
 import QtQuick.Window 2.2
 import QtQuick 2.9
-import org.kde.kirigami 2.8 as Kirigami
+//import org.kde.kirigami 2.8 as Kirigami
 QQC2.Dialog {
     id: listMessagesDialogBase
 
@@ -53,9 +53,10 @@ QQC2.Dialog {
     }
 
     contentItem: ColumnLayout {
-        Kirigami.SearchField {
+//        Kirigami.SearchField {
+        QQC2.TextField{
             id: searchField
-            placeholderText: i18n("Search Messages...")
+            placeholderText: qsTr("Search Messages...")
             Layout.fillWidth: true
             onTextChanged: {
                 listMessagesModel.setFilterString(text);
@@ -65,7 +66,7 @@ QQC2.Dialog {
         SearchLabel {
             hasFullList: listMessagesModel.hasFullList
             numberOfElements: listview.count
-            labelText: listview.count === 0 ? i18n("No Messages found") : i18np("%1 Message in room (Total: %2)", "%1 Messages in room (Total: %2)", listview.count, listMessagesModel.total)
+            labelText: listview.count === 0 ? qsTr("No Messages found") : qsTr("%1 Message in room (Total: %2)", "%1 Messages in room (Total: %2)", listview.count, listMessagesModel.total)
             onLoadMoreElements: {
                 listMessagesDialogBase.loadMoreMessage(roomId)
             }

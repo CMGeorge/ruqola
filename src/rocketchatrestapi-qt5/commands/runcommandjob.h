@@ -35,7 +35,7 @@ public:
         QString threadMessageId;
         QString triggerId;
         QString params;
-        Q_REQUIRED_RESULT bool isValid() const;
+        /*Q_REQUIRED_RESULT*/ bool isValid() const;
     };
     explicit RunCommandJob(QObject *parent = nullptr);
     ~RunCommandJob() override;

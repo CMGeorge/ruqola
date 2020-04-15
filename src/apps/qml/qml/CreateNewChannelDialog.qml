@@ -29,7 +29,7 @@ QQC2.Dialog {
 
     signal createNewChannel(string name, bool readOnly, bool privateRoom, string usernames, bool encryptedRoom, string password, bool broadcast)
 
-    title: i18n("Create Channel")
+    title: qsTr("Create Channel")
 
     standardButtons: QQC2.Dialog.Ok | QQC2.Dialog.Cancel
 
@@ -57,17 +57,17 @@ QQC2.Dialog {
     contentItem: GridLayout {
         columns: 2
         QQC2.Label {
-            text: i18n("Name:");
+            text: qsTr("Name:");
         }
         QQC2.TextField {
             id: channelName
             Layout.fillWidth: true
             selectByMouse: true
-            placeholderText: i18n("Channel Name")
+            placeholderText: qsTr("Channel Name")
         }
 
         QQC2.Label {
-            text: i18n("Users:");
+            text: qsTr("Users:");
         }
         //TODO add model for searching users
         QQC2.TextField {
@@ -78,14 +78,14 @@ QQC2.Dialog {
         }
 
         QQC2.Label {
-            text: i18n("Read-Only:");
+            text: qsTr("Read-Only:");
             MouseArea {
                 anchors.fill: parent
                 acceptedButtons: Qt.RightButton | Qt.LeftButton
                 hoverEnabled: true
                 QQC2.ToolTip {
                     id: tooltipReact
-                    text: i18n("Only Authorized people can write.")
+                    text: qsTr("Only Authorized people can write.")
                 }
             }
         }
@@ -94,14 +94,14 @@ QQC2.Dialog {
             checked: false
         }
         QQC2.Label {
-            text: i18n("Broadcast:");
+            text: qsTr("Broadcast:");
         }
         QQC2.Switch {
             id: broadcast
             checked: false
         }
         QQC2.Label {
-            text: i18n("Private:");
+            text: qsTr("Private:");
         }
         QQC2.Switch {
             id: privateRoom
@@ -109,7 +109,7 @@ QQC2.Dialog {
         }
         QQC2.Label {
             id: encryptedLabelRoom
-            text: i18n("Encrypted:");
+            text: qsTr("Encrypted:");
         }
         QQC2.Switch {
             id: encryptedRoom
@@ -117,13 +117,13 @@ QQC2.Dialog {
         }
 
         QQC2.Label {
-            text: i18n("Password:");
+            text: qsTr("Password:");
         }
         PasswordLineEdit {
             id: password
             Layout.fillWidth: true
             selectByMouse: true
-            placeholderText: i18n("Add password")
+            placeholderText:qsTr("Add password")
         }
         Item {
             Layout.fillHeight: true

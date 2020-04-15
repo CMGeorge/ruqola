@@ -25,7 +25,7 @@ import QtQuick.Window 2.2
 import Ruqola 1.0
 
 
-import org.kde.kirigami 2.8 as Kirigami
+//import org.kde.kirigami 2.8 as Kirigami
 
 QQC2.Dialog {
     id: addUserDialog
@@ -37,7 +37,7 @@ QQC2.Dialog {
     property QtObject roomInfo
     property string roomId: ""
 
-    title: i18n("Add Users")
+    title: qsTr("Add Users")
     standardButtons: QQC2.Dialog.Close
 
     width: parent.width * 9 / 10
@@ -56,9 +56,10 @@ QQC2.Dialog {
     }
 
     contentItem: ColumnLayout {
-        Kirigami.SearchField {
+//        Kirigami.SearchField {
+        QQC2.TextField{
             id: username
-            placeholderText: i18n("Search User...")
+            placeholderText: qsTr("Search User...")
             Layout.fillWidth: true
             onTextChanged: {
                 addUserDialog.searchUserName(username.text)
@@ -71,12 +72,15 @@ QQC2.Dialog {
             clip: true
 
             model: completerModel
-            delegate: Kirigami.BasicListItem {
-                reserveSpaceForIcon: false
-                reserveSpaceForLabel: false
+            delegate:
+//                Kirigami.BasicListItem {
+                QQC2.ItemDelegate{
+//                reserveSpaceForIcon: false
+//                reserveSpaceForLabel: false
                 RowLayout {
-                    Kirigami.Icon {
-                        source: "list-add"
+//                    Kirigami.Icon {
+                    QQC2.ToolButton{
+                        icon.source: "list-add"
                         height: Kirigami.Units.iconSizes.medium
                         width: height
                         MouseArea {
@@ -87,8 +91,9 @@ QQC2.Dialog {
                         }
                     }
 
-                    Kirigami.Icon {
-                        source: iconstatus
+//                    Kirigami.Icon {
+                    QQC2.ToolButton{
+                        icon.source: iconstatus
                         height: Kirigami.Units.iconSizes.medium
                         width: height
                     }

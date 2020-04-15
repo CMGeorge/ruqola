@@ -27,7 +27,7 @@ import QtQuick 2.9
 QQC2.Dialog {
     id: archiveRoomDialog
 
-    title: i18n("Archive Room")
+    title: qsTr("Archive Room")
 
     x: parent.width / 2 - width / 2
     y: parent.height / 2 - height / 2
@@ -39,7 +39,7 @@ QQC2.Dialog {
 
     Row {
         QQC2.Label {
-            text: archive ? i18n("Do you want to archive this room?") : i18n("Do you want to unarchive this room?")
+            text: archive ? qsTr("Do you want to archive this room?") : qsTr("Do you want to unarchive this room?")
             font.bold: true
             font.pointSize: 15
         }

@@ -20,10 +20,13 @@
 
 #include "passwordpluginauthentication.h"
 #include "passwordauthenticationinterface.h"
-#include <KPluginFactory>
-#include <KLocalizedString>
+#include "KDE/kpluginfactory.h"
+//#include <kpluginfactory.h>
+//#include <KLocalizedString>
+#pragma message("============================================")
+//K_PLUGIN_CLASS_WITH_JSON(PasswordPluginAuthentication,"ruqola_passwordauthenticationplugin.json")
 
-K_PLUGIN_CLASS_WITH_JSON(PasswordPluginAuthentication, "ruqola_passwordauthenticationplugin.json")
+
 
 PasswordPluginAuthentication::PasswordPluginAuthentication(QObject *parent, const QVariantList &)
     : PluginAuthentication(parent)
@@ -46,7 +49,7 @@ AuthenticationManager::OauthType PasswordPluginAuthentication::type() const
 
 QString PasswordPluginAuthentication::name() const
 {
-    return i18n("Login/Password");
+    return tr("Login/Password");
 }
 
 QString PasswordPluginAuthentication::iconName() const
@@ -55,4 +58,5 @@ QString PasswordPluginAuthentication::iconName() const
     return {};
 }
 
-#include "passwordpluginauthentication.moc"
+
+//#include "passwordpluginauthentication.moc"

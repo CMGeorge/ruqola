@@ -28,7 +28,7 @@ import Ruqola 1.0
 QQC2.Dialog {
     id: deleteMessageDialog
 
-    title: i18n("Delete Message")
+    title: qsTr("Delete Message")
 
     signal deleteMessage(string messageId)
 
@@ -42,7 +42,7 @@ QQC2.Dialog {
 
     Row {
         QQC2.Label {
-            text: i18n("Do you want to delete this message?")
+            text: qsTr("Do you want to delete this message?")
             font.bold: true
             font.pointSize: 15
         }

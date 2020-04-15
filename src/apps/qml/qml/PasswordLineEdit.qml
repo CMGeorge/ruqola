@@ -21,7 +21,7 @@
 
 import QtQuick 2.9
 import QtQuick.Controls 2.5 as QQC2
-import org.kde.kirigami 2.7 as Kirigami
+//import org.kde.kirigami 2.7 as Kirigami
 
 QQC2.TextField {
     id: passwordLineEdit
@@ -30,12 +30,13 @@ QQC2.TextField {
     selectByMouse: true
     echoMode: displayPassword ? TextInput.Normal : TextInput.Password
     inputMethodHints: Qt.ImhHiddenText
-    placeholderText: i18n("Enter Password...")
+    placeholderText: qsTr("Enter Password...")
 
     Accessible.passwordEdit: true
 
-    Kirigami.Icon {
-        source: passwordLineEdit.displayPassword ? "visibility": "hint"
+//    Kirigami.Icon {
+    QQC2.ToolButton{
+        icon.source: passwordLineEdit.displayPassword ? "visibility": "hint"
         anchors.right: parent.right
         anchors.top: parent.top
         height: parent.height

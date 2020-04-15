@@ -23,7 +23,7 @@ import QtQuick.Layouts 1.12
 import QtQuick.Controls 2.5 as QQC2
 import QtQuick.Window 2.2
 import QtMultimedia 5.8
-import org.kde.kirigami 2.7 as Kirigami
+//import org.kde.kirigami 2.7 as Kirigami
 
 QQC2.Dialog {
     id: takeVideoMessageDialog
@@ -50,19 +50,21 @@ QQC2.Dialog {
         videoRecorder.outputLocation: rcAccount.recordingVideoPath
     }
 
-    Kirigami.InlineMessage {
+//    Kirigami.InlineMessage {
+    QQC2.Label{
         visible: isNotCameraAvailable
         anchors.centerIn: parent
         width: 300
         height: 60
-        text: i18n("There is no camera available.")
+        text: qsTr("There is no camera available.")
     }
-    Kirigami.InlineMessage {
+//    Kirigami.InlineMessage {
+    QQC2.Label{
         visible: camera.availability === Camera.Busy
         anchors.centerIn: parent
         width: 300
         height: 60
-        text: i18n("Your camera is busy.\nTry to close other applications using the camera.")
+        text: qsTr("Your camera is busy.\nTry to close other applications using the camera.")
     }
     VideoOutput {
         id: camareLiveOutput
@@ -74,7 +76,7 @@ QQC2.Dialog {
         enabled: !isNotCameraAvailable && (camera.cameraStatus === Camera.ActiveStatus)
     }
     QQC2.Button {
-        text: i18n("Video");
+        text: qsTr("Video");
         visible: !isNotCameraAvailable
         onPressed: {
             if (camera.cameraStatus === camera.StartingStatus)

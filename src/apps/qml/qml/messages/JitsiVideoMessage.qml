@@ -24,7 +24,7 @@ import QtQuick 2.9
 
 import QtQuick.Controls 2.5 as QQC2
 
-import org.kde.kirigami 2.7 as Kirigami
+//import org.kde.kirigami 2.7 as Kirigami
 import QtQuick.Layouts 1.12
 
 import "../js/message.js" as MessageScript;
@@ -86,7 +86,7 @@ MessageBase {
 
                     width: Math.min(implicitWidth, parent.width - Kirigami.Units.largeSpacing)
 
-                    text: i18n("Click To Join to Video")
+                    text: qsTr("Click To Join to Video")
 
                     wrapMode: QQC2.Label.Wrap
 

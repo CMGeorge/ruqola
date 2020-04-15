@@ -22,7 +22,7 @@
 #include "rocketchatqtrestapi_debug.h"
 #include "restapimethod.h"
 
-#include <KLocalizedString>
+//#include <KLocalizedString>
 
 #include <QJsonDocument>
 #include <QUrlQuery>
@@ -109,5 +109,5 @@ void GetChannelRolesJob::slotGetChannelRolesFinished()
 
 QString RocketChatRestApi::GetChannelRolesJob::jobName() const
 {
-    return i18n("Extract Roles");
+    return tr("Extract Roles");
 }

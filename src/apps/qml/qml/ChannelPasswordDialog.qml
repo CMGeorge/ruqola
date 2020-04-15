@@ -27,7 +27,7 @@ import QtQuick.Window 2.2
 QQC2.Dialog {
     id: channelPasswordDialog
 
-    title: i18n("Channel Password")
+    title: qsTr("Channel Password")
 
     standardButtons: QQC2.Dialog.Ok | QQC2.Dialog.Cancel
 
@@ -49,11 +49,11 @@ QQC2.Dialog {
 
     ColumnLayout {
         QQC2.Label {
-            text: roomId === "" ? "" : i18n("Channel \'%1\' needs a password", roomId);
+            text: roomId === "" ? "" : qsTr("Channel \'%1\' needs a password", roomId);
         }
 
         QQC2.Label {
-            text: i18n("Password:");
+            text: qsTr("Password:");
         }
         PasswordLineEdit {
             id: passwordField

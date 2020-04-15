@@ -20,7 +20,7 @@
 
 import QtQuick 2.9
 
-import org.kde.kirigami 2.7 as Kirigami
+//import org.kde.kirigami 2.7 as Kirigami
 import QtQuick.Controls 2.5 as QQC2
 import QtQuick.Layouts 1.12
 
@@ -43,21 +43,21 @@ QQC2.Menu {
 
     function updateIgnoreMenuItemText()
     {
-        return userIsIgnored ? i18n("Unignore") : i18n("Ignore")
+        return userIsIgnored ? qsTr("Unignore") : qsTr("Ignore")
     }
     function updateOwnerMenuItemText()
     {
-        return hasOwnerRole ? i18n("Remove as Owner") : i18n("Add as Owner")
+        return hasOwnerRole ? qsTr("Remove as Owner") : qsTr("Add as Owner")
     }
 
     function updateLeaderMenuItemText()
     {
-        return hasLeaderRole ? i18n("Remove as Leader") : i18n("Add as Leader")
+        return hasLeaderRole ? qsTr("Remove as Leader") : qsTr("Add as Leader")
     }
 
     function updateModeratorMenuItemText()
     {
-        return hasModeratorRole ? i18n("Remove as Moderator") : i18n("Add as Moderator")
+        return hasModeratorRole ? qsTr("Remove as Moderator") : qsTr("Add as Moderator")
     }
 
 
@@ -65,7 +65,7 @@ QQC2.Menu {
         id: conversationItem
         visible: userId !== appid.rocketChatAccount.userID &&  !isAdirectChannel
         contentItem: QQC2.Label {
-            text: i18n("Conversation")
+            text: qsTr("Conversation")
             textFormat: Text.PlainText
         }
         onTriggered: {
@@ -116,7 +116,7 @@ QQC2.Menu {
         id: kickItem
         visible: can_manage_users && !isAdirectChannel
         contentItem: QQC2.Label {
-            text: i18n("Remove from Room")
+            text: qsTr("Remove from Room")
             textFormat: Text.PlainText
         }
         onTriggered: {

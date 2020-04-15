@@ -27,7 +27,7 @@ import QtQuick.Window 2.2
 QQC2.Dialog {
     id: customUserStatusDialog
 
-    title: i18n("Custom User Status")
+    title: qsTr("Custom User Status")
 
     standardButtons: QQC2.Dialog.Ok | QQC2.Dialog.Cancel
 
@@ -41,7 +41,7 @@ QQC2.Dialog {
     property string statusMessageStr
     ColumnLayout {
         QQC2.Label {
-            text: i18n("Status Text:");
+            text: qsTr("Status Text:");
         }
         QQC2.TextField {
             id: statusMessage

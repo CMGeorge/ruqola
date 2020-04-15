@@ -22,13 +22,13 @@ import QtQuick.Layouts 1.12
 import QtQuick.Controls 2.5 as QQC2
 import QtQuick.Window 2.2
 import QtQuick 2.9
-import org.kde.kirigami 2.7 as Kirigami
+//import org.kde.kirigami 2.7 as Kirigami
 import QtQuick.Dialogs 1.2
 
 QQC2.Dialog {
     id: uploadFileDialog
 
-    title: i18n("Upload File")
+    title: qsTr("Upload File")
 
     property string rId: ""
 
@@ -58,14 +58,14 @@ QQC2.Dialog {
             id: description
             Layout.fillWidth: true
             selectByMouse: true
-            placeholderText: i18n("Description")
+            placeholderText: qsTr("Description")
         }
 
         QQC2.TextField {
             id: message
             Layout.fillWidth: true
             selectByMouse: true
-            placeholderText: i18n("Message")
+            placeholderText: qsTr("Message")
         }
 
         RowLayout {
@@ -73,13 +73,14 @@ QQC2.Dialog {
                 id: selectedFileNameField
                 Layout.fillWidth: true
                 selectByMouse: true
-                placeholderText: i18n("Select File...")
+                placeholderText: qsTr("Select File...")
             }
 
-            Kirigami.Icon {
-                source: "folder"
+//            Kirigami.Icon
+           QQC2.ToolButton{
+                icon.source: "folder"
                 width: height
-                height: Kirigami.Units.iconSizes.medium
+                height: 32//Kirigami.Units.iconSizes.medium
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
@@ -93,7 +94,7 @@ QQC2.Dialog {
         }
         FileDialog {
             id: selectFileDialog
-            title: i18n("Please choose a file")
+            title: qsTr("Please choose a file")
             folder: shortcuts.documents
             selectFolder: false
             selectMultiple: false

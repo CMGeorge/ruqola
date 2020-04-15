@@ -21,11 +21,30 @@
 #ifndef PASSWORDPLUGINAUTHENTICATION_H
 #define PASSWORDPLUGINAUTHENTICATION_H
 
-#include <plugins/pluginauthentication.h>
+#include "plugins/pluginauthentication.h"
+#include <QObject>
+
+#include "KDE/kpluginfactory.h"
+
+class PasswordPluginAuthentication;
+class PasswordPluginAuthenticationFactory: public KPluginFactory{
+    Q_OBJECT
+    Q_INTERFACES(KPluginFactory)
+    Q_PLUGIN_METADATA(IID "org.qt-project.Qt.QDummyPlugin" FILE "ruqola_passwordauthenticationplugin.json")
+public:
+    explicit PasswordPluginAuthenticationFactory(){
+        registerPlugin<PasswordPluginAuthentication>();
+    }
+    ~PasswordPluginAuthenticationFactory(){}
+
+};
+
 
 class PasswordPluginAuthentication : public PluginAuthentication
 {
     Q_OBJECT
+
+
 public:
     explicit PasswordPluginAuthentication(QObject *parent = nullptr, const QVariantList & = {});
     ~PasswordPluginAuthentication() override;
@@ -35,5 +54,7 @@ public:
     QString name() const override;
     QString iconName() const override;
 };
+
+//K_PLUGIN_CLASS_WITH_JSON(PasswordPluginAuthentication,"ruqola_passwordauthenticationplugin.json")
 
 #endif // PASSWORDPLUGINAUTHENTICATION_H

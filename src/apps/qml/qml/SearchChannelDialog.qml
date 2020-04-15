@@ -25,7 +25,7 @@ import QtQuick.Window 2.2
 import Ruqola 1.0
 
 
-import org.kde.kirigami 2.8 as Kirigami
+//import org.kde.kirigami 2.8 as Kirigami
 
 QQC2.Dialog {
     id: searchChannelDialog
@@ -34,7 +34,7 @@ QQC2.Dialog {
     signal searchChannel(string pattern)
     signal openChannel(string channelname, string channelid, var channeltype)
 
-    title: i18n("Search Channel")
+    title: qsTr("Search Channel")
     standardButtons: QQC2.Dialog.Close
 
     width: parent.width * 9 / 10
@@ -51,16 +51,17 @@ QQC2.Dialog {
     }
 
     contentItem: ColumnLayout {
-        Kirigami.SearchField {
+//        Kirigami.SearchField {
+        QQC2.TextField{
             id: channelnametext
-            placeholderText: i18n("Search Channel...")
+            placeholderText: qsTr("Search Channel...")
             Layout.fillWidth: true
             onAccepted: {
                 searchChannelDialog.searchChannel(channelnametext.text)
             }
         }
         QQC2.Label {
-            text: listview.count === 0 ? i18n("No Channel found") : ""
+            text: listview.count === 0 ? qsTr("No Channel found") : ""
             textFormat: Text.PlainText
             font.italic: true
             font.bold: true
@@ -72,12 +73,15 @@ QQC2.Dialog {
             clip: true
 
             model: searchChannelModel
-            delegate: Kirigami.BasicListItem {
-                reserveSpaceForIcon: false
+            delegate:
+//                Kirigami.BasicListItem {
+                QQC2.ItemDelegate{
+//                reserveSpaceForIcon: false
                 RowLayout {
                     Layout.fillHeight: true
-                    Kirigami.Icon {
-                        source: "list-add"
+//                    Kirigami.Icon {
+                    QQC2.ToolButton{
+                        icon.source: "list-add"
                         //FIXME
                         height: Kirigami.Units.iconSizes.medium
                         width: height
@@ -88,8 +92,9 @@ QQC2.Dialog {
                             }
                         }
                     }
-                    Kirigami.Icon {
-                        source: iconname
+//                    Kirigami.Icon {
+                    QQC2.ToolButton{
+                        icon.source: iconname
                         height: Kirigami.Units.iconSizes.medium
                         width: height
                     }

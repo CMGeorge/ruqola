@@ -21,10 +21,10 @@
 pragma Singleton
 
 import QtQuick 2.9
-import org.kde.kirigami 2.7 as Kirigami
+//import org.kde.kirigami 2.7 as Kirigami
 
 QtObject {
-    readonly property string backgroundColor: Kirigami.Theme.backgroundColor
-    readonly property string alternateBackgroundColor: Kirigami.Theme.alternateBackgroundColor
+    readonly property string backgroundColor: "yellow" //Kirigami.Theme.backgroundColor
+    readonly property string alternateBackgroundColor: "blue"// Kirigami.Theme.alternateBackgroundColor
 }
 

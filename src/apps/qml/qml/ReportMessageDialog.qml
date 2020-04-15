@@ -47,13 +47,13 @@ QQC2.Dialog {
     GridLayout {
         columns: 2
         QQC2.Label {
-            text: i18n("Message:");
+            text: qsTr("Message:");
             textFormat: Text.PlainText
         }
         QQC2.TextField {
             id: messageInfo
             selectByMouse: true
-            placeholderText: i18n("Why you signal this message?")
+            placeholderText: qsTr("Why you signal this message?")
         }
     }
 

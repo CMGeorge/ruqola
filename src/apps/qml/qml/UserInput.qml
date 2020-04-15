@@ -25,7 +25,7 @@ import QtQuick 2.9
 import QtQuick.Layouts 1.12
 import QtQuick.Controls 2.5 as QQC2
 
-import org.kde.kirigami 2.7 as Kirigami
+//import org.kde.kirigami 2.7 as Kirigami
 import "common"
 RowLayout {
     id: footerItem
@@ -48,18 +48,19 @@ RowLayout {
         messageLine.setOriginalMessage(messageStr)
     }
 
-    Kirigami.Icon {
+//    Kirigami.Icon {
+        QQC2.ToolButton{
         id: attachment
         MouseArea {
             hoverEnabled: true
             anchors.fill: parent
             QQC2.ToolTip {
-                text: i18n("Attach Files")
+                text: qsTr("Attach Files")
             }
         }
 
         enabled: selectedRoomId !== ""
-        source: "document-send-symbolic"
+        icon.source: "document-send-symbolic"
         width: height
         height: messageLine.height
         MouseArea {
@@ -96,16 +97,17 @@ RowLayout {
             }
         }
     }
-    Kirigami.Icon {
+//    Kirigami.Icon {
+    QQC2.ToolButton{
         id: emojiIcon
-        source: "face-smile"
+        icon.source: "face-smile"
         width: height
         height: Kirigami.Units.gridUnit*2
         MouseArea {
             hoverEnabled: true
             anchors.fill: parent
             QQC2.ToolTip {
-                text: i18n("Insert Emoji")
+                text: qsTr("Insert Emoji")
             }
         }
 
@@ -120,14 +122,15 @@ RowLayout {
         }
     }
 
-    Kirigami.Icon {
-        source: messageLine.savePreviousMessage == "" ?  "mail-sent" : "edit-symbolic"
+//    Kirigami.Icon {
+    QQC2.TabButton{
+        icon.source: messageLine.savePreviousMessage == "" ?  "mail-sent" : "edit-symbolic"
         width: height
         height: Kirigami.Units.gridUnit*2
         MouseArea {
             hoverEnabled: true
             QQC2.ToolTip {
-                text: i18n("Send Message")
+                text: qsTr("Send Message")
             }
             anchors.fill: parent
             onClicked: {

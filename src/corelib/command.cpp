@@ -1,0 +1,189 @@
+/*
+   Copyright (c) 2020 Laurent Montel <montel@kde.org>
+
+   This library is free software; you can redistribute it and/or modify
+   it under the terms of the GNU Library General Public License as published
+   by the Free Software Foundation; either version 2 of the License or
+   ( at your option ) version 3 or, at the discretion of KDE e.V.
+   ( which shall act as a proxy as in section 14 of the GPLv3 ), any later version.
+
+   This library is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   Library General Public License for more details.
+
+   You should have received a copy of the GNU Library General Public License
+   along with this library; see the file COPYING.LIB.  If not, write to
+   the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+   Boston, MA 02110-1301, USA.
+*/
+
+#include "command.h"
+#include "ruqola_debug.h"
+#include <QJsonArray>
+//#include <KLocalizedString>
+
+Command::Command()
+{
+}
+
+QString Command::params() const
+{
+    return mParams;
+}
+
+void Command::setParams(const QString &params)
+{
+    mParams = params;
+}
+
+QString Command::commandName() const
+{
+    return mCommandName;
+}
+
+void Command::setCommandName(const QString &commandName)
+{
+    mCommandName = commandName;
+}
+
+QString Command::description() const
+{
+    return mDescription;
+}
+
+void Command::setDescription(const QString &description)
+{
+    mDescription = description;
+    convertDescriptionI18n();
+}
+
+void Command::convertDescriptionI18n()
+{
+    if (mDescription.isEmpty()) {
+        return;
+    } else if (mDescription == QLatin1String("Archive")) {
+        mTranslatedDescription = QObject::QObject::tr("Archive");
+    } else if (mDescription == QLatin1String("Slash_Gimme_Description")) {
+        mTranslatedDescription = QObject::tr("Displays ༼ つ ◕_◕ ༽つ before your message");
+    } else if (mDescription == QLatin1String("Slash_LennyFace_Description")) {
+        mTranslatedDescription = QObject::tr("Displays ( ͡° ͜ʖ ͡°) after your message");
+    } else if (mDescription == QLatin1String("Slash_Shrug_Description")) {
+        mTranslatedDescription = QObject::tr("Displays ¯\\_(ツ)_/¯ after your message");
+    } else if (mDescription == QLatin1String("Slash_Tableflip_Description")) {
+        mTranslatedDescription = QObject::tr("Displays (╯°□°）╯︵ ┻━┻");
+    } else if (mDescription == QLatin1String("Slash_TableUnflip_Description")) {
+        mTranslatedDescription = QObject::tr("Displays ┬─┬<feff> ノ( ゜-゜ノ)");
+    } else if (mDescription == QLatin1String("Create_A_New_Channel")) {
+        mTranslatedDescription = QObject::tr("Create a New Channel");
+    } else if (mDescription == QLatin1String("Show_the_keyboard_shortcut_list")) {
+        mTranslatedDescription = QObject::tr("Show the keyboard shortcut list");
+    } else if (mDescription == QLatin1String("Hide_room")) {
+        mTranslatedDescription = QObject::tr("Hide Room");
+    } else if (mDescription == QLatin1String("Invite_user_to_join_channel")) {
+        mTranslatedDescription = QObject::tr("Invite one user to join this channel");
+    } else if (mDescription == QLatin1String("Invite_user_to_join_channel_all_to")) {
+        mTranslatedDescription = QObject::tr("Invite all users from this channel to join [#channel]");
+    } else if (mDescription == QLatin1String("Invite_user_to_join_channel_all_from")) {
+        mTranslatedDescription = QObject::tr("Invite all users from [#channel] to join this channel");
+    } else if (mDescription == QLatin1String("Join_the_given_channel")) {
+        mTranslatedDescription = QObject::tr("Join the given channel");
+    } else if (mDescription == QLatin1String("Remove_someone_from_room")) {
+        mTranslatedDescription = QObject::tr("Remove someone from the room");
+    } else if (mDescription == QLatin1String("Leave_the_current_channel")) {
+        mTranslatedDescription = QObject::tr("Leave the current channel");
+    } else if (mDescription == QLatin1String("Displays_action_text")) {
+        mTranslatedDescription = QObject::tr("Displays action text");
+    } else if (mDescription == QLatin1String("Direct_message_someone")) {
+        mTranslatedDescription = QObject::tr("Direct message someone");
+    } else if (mDescription == QLatin1String("Mute_someone_in_room")) {
+        mTranslatedDescription = QObject::tr("Mute someone in the room");
+    } else if (mDescription == QLatin1String("Unmute_someone_in_room")) {
+        mTranslatedDescription = QObject::tr("Unmute someone in the room");
+    } else if (mDescription == QLatin1String("Slash_Status_Description")) {
+        mTranslatedDescription = QObject::tr("Set your status message");
+    } else if (mDescription == QLatin1String("Slash_Topic_Description")) {
+        mTranslatedDescription = QObject::tr("Set topic");
+    } else if (mDescription == QLatin1String("Unarchive")) {
+        mTranslatedDescription = QObject::tr("Unarchive");
+    } else {
+        qCDebug(RUQOLA_LOG) << "Unknown description" << mDescription;
+    }
+}
+
+bool Command::clientOnly() const
+{
+    return mClientOnly;
+}
+
+void Command::setClientOnly(bool clientOnly)
+{
+    mClientOnly = clientOnly;
+}
+
+void Command::parseCommand(const QJsonObject &obj)
+{
+    mProvidesPreview = obj.value(QStringLiteral("providesPreview")).toBool();
+    mClientOnly = obj.value(QStringLiteral("clientOnly")).toBool();
+    //Add "/" for completion.
+    mCommandName = QLatin1Char('/') + obj.value(QStringLiteral("command")).toString();
+    setDescription(obj.value(QStringLiteral("description")).toString());
+    mParams = obj.value(QStringLiteral("params")).toString();
+
+    const QJsonArray permissionArray = obj.value(QStringLiteral("permission")).toArray();
+    for (int i = 0, total = permissionArray.size(); i < total; ++i) {
+        mPermissions.append(permissionArray.at(i).toString());
+    }
+    //qDebug() << " *thios " << *this;
+}
+
+bool Command::operator ==(const Command &other) const
+{
+    return mParams == other.params()
+           && mCommandName == other.commandName()
+           && mDescription == other.description()
+           && mClientOnly == other.clientOnly()
+           && mProvidesPreview == other.providesPreview()
+           && mPermissions == other.permissions();
+}
+
+bool Command::isValid() const
+{
+    return !mCommandName.isEmpty();
+}
+
+bool Command::providesPreview() const
+{
+    return mProvidesPreview;
+}
+
+void Command::setProvidesPreview(bool providesPreview)
+{
+    mProvidesPreview = providesPreview;
+}
+
+QStringList Command::permissions() const
+{
+    return mPermissions;
+}
+
+void Command::setPermissions(const QStringList &permissions)
+{
+    mPermissions = permissions;
+}
+
+QString Command::translatedDescription() const
+{
+    return mTranslatedDescription;
+}
+
+QDebug operator <<(QDebug d, const Command &t)
+{
+    d << " mParams : " << t.params();
+    d << " mCommandName : " << t.commandName();
+    d << " mDescription : " << t.description();
+    d << " mClientOnly : " << t.clientOnly();
+    d << " mProvidesPreview : " << t.providesPreview();
+    d << " mPermissions : " << t.permissions();
+    return d;
+}

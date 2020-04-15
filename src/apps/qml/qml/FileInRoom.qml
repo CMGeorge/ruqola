@@ -19,16 +19,17 @@
  *
  */
 import QtQuick 2.9
-import org.kde.kirigami 2.7 as Kirigami
+//import org.kde.kirigami 2.7 as Kirigami
 import QtQuick.Controls 2.5 as QQC2
 import QtQuick.Layouts 1.12
 
 
 import "common"
 
-Kirigami.BasicListItem {
-    reserveSpaceForIcon: false
-    reserveSpaceForLabel: false
+//Kirigami.BasicListItem {
+QQC2.ItemDelegate{
+//    reserveSpaceForIcon: false
+//    reserveSpaceForLabel: false
     property string i_filename
     property string i_description
     property string i_username
@@ -80,7 +81,8 @@ Kirigami.BasicListItem {
                 showFilesInRoomDialog.downloadFile(i_url)
             }
         }
-        DeleteButton {
+//        DeleteButton {
+        QQC2.ToolButton{
             visible: canbedeleted
             onClicked: {
                 deleteFileAttachmentDialog.fileId = fileid;

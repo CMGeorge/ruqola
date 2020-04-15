@@ -23,6 +23,7 @@
 #include "passwordauthenticationplugin_debug.h"
 #include "ddpapi/ddpclient.h"
 
+
 PasswordAuthenticationInterface::PasswordAuthenticationInterface(QObject *parent)
     : PluginAuthenticationInterface(parent)
 {
@@ -38,3 +39,4 @@ void PasswordAuthenticationInterface::login()
     mAccount->ddp()->setLoginJobId(loginJob);
     qCDebug(RUQOLA_PASSWORDAUTHENTICATION_PLUGIN_LOG) << "Password job id : " << loginJob;
 }
+

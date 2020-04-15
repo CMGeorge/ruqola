@@ -31,7 +31,7 @@ QQC2.Dialog {
 
     signal blockUser(string rid, bool block)
 
-    title: i18n("Info About this user")
+    title: qsTr("Info About this user")
     standardButtons: QQC2.Dialog.Close
 
     modal: true
@@ -56,7 +56,7 @@ QQC2.Dialog {
         QQC2.Button {
             id: blockUnblockUser
             Layout.fillWidth: true
-            text: roomInfo === null ? "" : (roomInfo.blocker ? i18n("Unblock user") : i18n("Block user"))
+            text: roomInfo === null ? "" : (roomInfo.blocker ? qsTr("Unblock user") : qsTr("Block user"))
             onClicked: {
                 privateChannelInfoDialog.blockUser(roomInfo.roomId, !roomInfo.blocker)
             }

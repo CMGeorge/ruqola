@@ -23,7 +23,7 @@ import QtQuick.Layouts 1.12
 import QtQuick.Controls 2.5 as QQC2
 import QtQuick.Window 2.2
 
-import org.kde.kirigami 2.5 as Kirigami
+//import org.kde.kirigami 2.5 as Kirigami
 
 import Ruqola 1.0
 
@@ -31,7 +31,7 @@ import "common"
 QQC2.Dialog {
     id: channelInfoDialog
 
-    title: i18n("Info about this channel")
+    title: qsTr("Info about this channel")
     standardButtons: QQC2.Dialog.Close
 
     modal: true
@@ -47,13 +47,14 @@ QQC2.Dialog {
     signal modifyChannelSetting(string roomId, int type, var newVal, string channelType)
     signal deleteRoom(string roomId)
 
-    contentItem: Kirigami.FormLayout {
-
+    contentItem: /*Kirigami.FormLayout*/
+        ColumnLayout{
         QQC2.TextField {
             id: channelNameEdit
             visible: roomInfo.canBeModify
             text: roomInfo.name
-            Kirigami.FormData.label: i18n("Name:")
+//            Kirigami.FormData.label: qsTr("Name:")
+
             onTextChanged: newText => {
                 if (newText != "") {
                     if (roomInfo.name !== newText) {
@@ -69,14 +70,14 @@ QQC2.Dialog {
         QQC2.Label {
             visible: !channelNameEdit.visible
             text: roomInfo.name
-            Kirigami.FormData.label: i18n("Name:")
+//            Kirigami.FormData.label: qsTr("Name:")
         }
 
         QQC2.TextField {
             id: channelCommentEdit
             visible: roomInfo.canBeModify
             text: roomInfo.topic
-            Kirigami.FormData.label: i18n("Comment:")
+//            Kirigami.FormData.label: qsTr("Comment:")
             onTextChanged: newText => {
                 if (newText === roomInfo.topic)
                     return
@@ -87,14 +88,14 @@ QQC2.Dialog {
         QQC2.Label {
             visible: !channelCommentEdit.visible
             text: roomInfo.topic
-            Kirigami.FormData.label: i18n("Comment:")
+//            Kirigami.FormData.label: qsTr("Comment:")
         }
 
         QQC2.TextField {
             id: channelAnnouncementEdit
             visible: roomInfo.canBeModify
             text: roomInfo.announcement
-            Kirigami.FormData.label: i18n("Announcement:")
+//            Kirigami.FormData.label: qsTr("Announcement:")
             onTextChanged: newText => {
                 if (newText === roomInfo.announcement)
                     return
@@ -105,14 +106,14 @@ QQC2.Dialog {
         QQC2.Label {
             visible: !channelAnnouncementEdit.visible
             text: roomInfo.announcement
-            Kirigami.FormData.label: i18n("Announcement:")
+//            Kirigami.FormData.label: qsTr("Announcement:")
         }
 
         QQC2.TextField {
             id: channelDescriptionEdit
             visible: roomInfo.canBeModify
             text: roomInfo.description
-            Kirigami.FormData.label: i18n("Description:")
+//            Kirigami.FormData.label: qsTr("Description:")
             onTextChanged: newText => {
                 if (newText === roomInfo.description)
                     return
@@ -123,15 +124,15 @@ QQC2.Dialog {
         QQC2.Label {
             visible: !channelDescriptionEdit.visible
             text: roomInfo.description
-            Kirigami.FormData.label: i18n("Description:")
+//            Kirigami.FormData.label: qsTr("Description:")
         }
 
         PasswordLineEdit {
             id: password
             visible: roomInfo.canBeModify
             //Add i18n context ?
-            placeholderText: roomInfo === null ? i18n("Add password") : (roomInfo.joinCodeRequired ? i18n("This Room has a password") : i18n("Add password"))
-            Kirigami.FormData.label: i18n("Password:")
+            placeholderText: roomInfo === null ? qsTr("Add password") : (roomInfo.joinCodeRequired ? qsTr("This Room has a password") : qsTr("Add password"))
+//            Kirigami.FormData.label: qsTr("Password:")
         }
 
         QQC2.Switch {
@@ -141,7 +142,7 @@ QQC2.Dialog {
             onClicked: {
                 channelInfoDialog.modifyChannelSetting(channelName, RocketChatAccount.ReadOnly, checked, roomInfo.channelType)
             }
-            Kirigami.FormData.label: i18n("Read-Only:")
+//            Kirigami.FormData.label: qsTr("Read-Only:")
         }
 
         QQC2.Switch {
@@ -152,7 +153,7 @@ QQC2.Dialog {
                 console.log(RuqolaDebugCategorySingleton.category, "Broadcast not implemented yet")
                 //TODO
             }
-            Kirigami.FormData.label: i18n("Broadcast:")
+//            Kirigami.FormData.label: qsTr("Broadcast:")
         }
 
         QQC2.Switch {
@@ -163,7 +164,7 @@ QQC2.Dialog {
                 archiveRoomDialog.archive = checked
                 archiveRoomDialog.open()
             }
-            Kirigami.FormData.label: i18n("Archive:")
+//            Kirigami.FormData.label: qsTr("Archive:")
         }
 
         QQC2.Switch {
@@ -173,7 +174,7 @@ QQC2.Dialog {
             onClicked: {
                 channelInfoDialog.modifyChannelSetting(channelName, RocketChatAccount.RoomType, checked, roomInfo.channelType)
             }
-            Kirigami.FormData.label: i18n("Private:")
+//            Kirigami.FormData.label: qsTr("Private:")
         }
 
         QQC2.Switch {
@@ -183,17 +184,18 @@ QQC2.Dialog {
             onClicked: {
                 channelInfoDialog.modifyChannelSetting(channelName, RocketChatAccount.Encrypted, checked, roomInfo.channelType)
             }
-            Kirigami.FormData.label: i18n("Encrypted:")
+//            Kirigami.FormData.label: qsTr("Encrypted:")
         }
 
-        DeleteButton {
+//        DeleteButton
+        QQC2.ToolButton{
             id: deleteButton
             visible: roomInfo.canBeModify
             onClicked: {
                 deleteRoomDialog.rId = roomInfo.roomId
                 deleteRoomDialog.open();
             }
-            Kirigami.FormData.label: i18n("Delete Room:")
+//            Kirigami.FormData.label: qsTr("Delete Room:")
         }
     }
 

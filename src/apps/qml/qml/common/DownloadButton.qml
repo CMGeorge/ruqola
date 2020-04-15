@@ -21,10 +21,15 @@
 
 import QtQuick 2.9
 import QtQuick.Layouts 1.12
-import org.kde.kirigami 2.7 as Kirigami
+import QtQuick.Controls 2.12
+//import org.kde.kirigami 2.7 as Kirigami
 
 Button {
     id: download
-    toolTipText: i18n("Download")
-    source: "cloud-download"
+//    toolTipText: qsTr("Download")
+    ToolTip{
+        text: qsTr("Download")
+    }
+
+    icon.source: "cloud-download"
 }

@@ -27,7 +27,7 @@ import Ruqola 1.0
 QQC2.Dialog {
     id: notificationOptionsDialog
 
-    title: i18n("Notifications")
+    title: qsTr("Notifications")
     standardButtons: QQC2.Dialog.Close
 
     property QtObject roomInfo
@@ -58,7 +58,7 @@ QQC2.Dialog {
         GridLayout {
             columns: 2
             QQC2.Label {
-                text: i18n("Disable Notifications:");
+                text: qsTr("Disable Notifications:");
             }
 
             QQC2.Switch {
@@ -71,7 +71,7 @@ QQC2.Dialog {
             }
 
             QQC2.Label {
-                text: i18n("Hide Unread Room Status:");
+                text: qsTr("Hide Unread Room Status:");
             }
 
             QQC2.Switch {
@@ -83,7 +83,7 @@ QQC2.Dialog {
             }
 
             QQC2.Label {
-                text: i18n("Mute Groups Mention:");
+                text: qsTr("Mute Groups Mention:");
             }
 
             QQC2.Switch {
@@ -97,12 +97,12 @@ QQC2.Dialog {
 
         QQC2.GroupBox {
             id: desktopNotificationGroupBox
-            title: i18n("Desktop")
+            title: qsTr("Desktop")
             GridLayout {
                 columns: 2
                 anchors.fill: parent
                 QQC2.Label {
-                    text: i18n("Alert:");
+                    text: qsTr("Alert:");
                 }
                 NotificationAlertCombobox {
                     id: desktopAlertCombobox
@@ -113,7 +113,7 @@ QQC2.Dialog {
                     }
                 }
                 QQC2.Label {
-                    text: i18n("Audio:");
+                    text: qsTr("Audio:");
                 }
                 NotificationAlertCombobox {
                     id: desktopAudioCombobox
@@ -124,7 +124,7 @@ QQC2.Dialog {
                     }
                 }
                 QQC2.Label {
-                    text: i18n("Sound:");
+                    text: qsTr("Sound:");
                 }
                 NotificationAlertCombobox {
                     id: desktopSoundCombobox
@@ -135,7 +135,7 @@ QQC2.Dialog {
                     }
                 }
                 QQC2.Label {
-                    text: i18n("Duration:");
+                    text: qsTr("Duration:");
                 }
                 NotificationAlertCombobox {
                     id: desktopDurationCombobox
@@ -150,13 +150,13 @@ QQC2.Dialog {
 
         QQC2.GroupBox {
             id: mobileNotificationGroupBox
-            title: i18n("Mobile")
+            title: qsTr("Mobile")
             GridLayout {
                 columns: 2
                 anchors.fill: parent
 
                 QQC2.Label {
-                    text: i18n("Alert:");
+                    text: qsTr("Alert:");
                 }
                 NotificationAlertCombobox {
                     id: mobileAlertCombobox
@@ -171,12 +171,12 @@ QQC2.Dialog {
 
         QQC2.GroupBox {
             id: emailNotificationGroupBox
-            title: i18n("Email")
+            title: qsTr("Email")
             GridLayout {
                 anchors.fill: parent
                 columns: 2
                 QQC2.Label {
-                    text: i18n("Alert:");
+                    text: qsTr("Alert:");
                 }
                 NotificationAlertCombobox {
                     id: emailAlertCombobox

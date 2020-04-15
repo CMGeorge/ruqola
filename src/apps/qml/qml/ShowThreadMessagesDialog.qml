@@ -22,7 +22,7 @@ import QtQuick.Layouts 1.12
 import QtQuick.Controls 2.5 as QQC2
 import QtQuick.Window 2.2
 import QtQuick 2.9
-import org.kde.kirigami 2.7 as Kirigami
+//import org.kde.kirigami 2.7 as Kirigami
 import Ruqola 1.0
 
 QQC2.Dialog {
@@ -34,7 +34,7 @@ QQC2.Dialog {
     property string threadMessageId
     property string threadPreviewText
 
-    title: threadPreviewText === "" ? "" : i18n("Thread Messages: %1", threadPreviewText)
+    title: threadPreviewText === "" ? "" : qsTr("Thread Messages: %1", threadPreviewText)
     width: parent.width * 9 / 10
     height: parent.height * 9 / 10
     anchors.centerIn: parent

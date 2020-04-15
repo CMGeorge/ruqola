@@ -24,10 +24,12 @@
 
 import QtQuick 2.9
 import QtQuick.Controls 2.5 as QQC2
-import org.kde.kirigami 2.7 as Kirigami
+//import org.kde.kirigami 2.7 as Kirigami
 import Ruqola 1.0
 
-Kirigami.Page {
+import QtWebView 1.1
+
+/*Kirigami.*/QQC2.Page {
     id: loginForm
     
     property QtObject rcAccount
@@ -46,6 +48,10 @@ Kirigami.Page {
     function resetStatus() {
         lastSocketError = ""
     }
+//    WebView{
+//        anchors.fill: parent
+//        url: "https://google.com";
+//    }
 
     Keys.onReturnPressed: accepted()
 
@@ -61,7 +67,7 @@ Kirigami.Page {
         QQC2.Label {
             id: loginLabel
 
-            text: i18n("Rocket.Chat Login")
+            text: qsTr("Rocket.Chat Login")
             textFormat: Text.PlainText
             color: "#555"
             font.pointSize: 40
@@ -79,7 +85,7 @@ Kirigami.Page {
 
         QQC2.Label {
             width: parent.width
-            text: i18n("Account Name")
+            text: qsTr("Account Name")
             textFormat: Text.PlainText
         }
 
@@ -89,13 +95,13 @@ Kirigami.Page {
             text: originalAccountName
             readOnly: originalAccountName !== ""
             width: parent.width
-            placeholderText: i18n("Enter account name")
+            placeholderText: qsTr("Enter account name")
             onTextEdited: resetStatus()
         }
 
         QQC2.Label {
             width: parent.width
-            text: i18n("Rocket.Chat Server")
+            text: qsTr("Rocket.Chat Server")
             textFormat: Text.PlainText
         }
 
@@ -103,7 +109,7 @@ Kirigami.Page {
             id: urlField
             selectByMouse: true
             width: parent.width
-            placeholderText: i18n("Enter address of the server")
+            placeholderText: qsTr("Enter address of the server")
             onTextEdited: resetStatus()
         }
         
@@ -111,7 +117,7 @@ Kirigami.Page {
 
         QQC2.Label {
             width: parent.width
-            text: i18n("Authentication Method")
+            text: qsTr("Authentication Method")
             visible: loginMethodCombobox.visible
             textFormat: Text.PlainText
         }
@@ -148,14 +154,14 @@ Kirigami.Page {
             id:username
 
             width: parent.width
-            text: i18n("Username")
+            text: qsTr("Username")
         }
 
         QQC2.TextField {
             selectByMouse: true
             width: parent.width
             id: usernameField
-            placeholderText: i18n("Enter username")
+            placeholderText: qsTr("Enter username")
             onTextEdited: resetStatus()
         }
         
@@ -163,7 +169,7 @@ Kirigami.Page {
             id: passLabel
 
             width: parent.width
-            text: i18n("Password")
+            text: qsTr("Password")
         }
         
         PasswordLineEdit {
@@ -182,8 +188,8 @@ Kirigami.Page {
 
             width: parent.width
             wrapMode: Text.Wrap
-            text: i18n("You have enabled second factor authentication. Please enter the generated code or a backup code.")
-            color: Kirigami.Theme.negativeTextColor
+            text: qsTr("You have enabled second factor authentication. Please enter the generated code or a backup code.")
+//            color: Kirigami.Theme.negativeTextColor
             font.bold: true
             visible: rcAccount.loginStatus === DDPClient.LoginCodeRequired
         }
@@ -191,7 +197,7 @@ Kirigami.Page {
         PasswordLineEdit {
             id: twoFactorAuthenticationCodeField
             width: parent.width
-            placeholderText: i18n("Two-factor authentication code or backup code")
+            placeholderText: qsTr("Two-factor authentication code or backup code")
             visible: rcAccount.loginStatus === DDPClient.LoginCodeRequired
             onAccepted: {
                 if (acceptingButton.enabled) {
@@ -211,7 +217,7 @@ Kirigami.Page {
             id: acceptingButton
 
             width: parent.width
-            text: i18n("Log in")
+            text: qsTr("Log in")
             enabled: (passField.text && urlField.text && usernameField.text && nameField.text)
             onClicked: loginForm.accepted()
         }        
@@ -227,26 +233,26 @@ Kirigami.Page {
             id: statusLabel
             text: {
                 if (rcAccount.loginStatus === DDPClient.LoginFailed)
-                    return i18n("Login Failed");
+                    return qsTr("Login Failed");
                 else if (rcAccount.loginStatus === DDPClient.LoggingIn)
-                    return i18n("Logging In...")
+                    return qsTr("Logging In...")
                 else if (lastSocketError != "")
-                    return i18n("Socket error: %1", lastSocketError)
+                    return qsTr("Socket error: %1").arg(lastSocketError)
                 return ""
             }
             horizontalAlignment: Text.AlignHCenter
             width: parent.width
-            color: rcAccount.loginStatus === DDPClient.LoggingIn ? Kirigami.Theme.textColor : Kirigami.Theme.negativeTextColor
+//            color: rcAccount.loginStatus === DDPClient.LoggingIn ? Kirigami.Theme.textColor : Kirigami.Theme.negativeTextColor
             font.bold: true
             visible: rcAccount.loginStatus === DDPClient.LoginFailed ||
                      rcAccount.loginStatus === DDPClient.LoggingIn ||
                      (rcAccount.loginStatus === DDPClient.NotConnected && lastSocketError != "")
         }
         QQC2.Label {
-            text: i18n("Installation Problem found. No plugins found here.");
+            text: qsTr("Installation Problem found. No plugins found here.");
             horizontalAlignment: Text.AlignHCenter
             width: parent.width
-            color: Kirigami.Theme.negativeTextColor
+//            color: Kirigami.Theme.negativeTextColor
             font.bold: true
             visible: rcAccount.loginStatus === DDPClient.FailedToLoginPluginProblem
         }

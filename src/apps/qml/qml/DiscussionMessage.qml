@@ -19,7 +19,7 @@
  *
  */
 import QtQuick 2.9
-import org.kde.kirigami 2.7 as Kirigami
+//import org.kde.kirigami 2.7 as Kirigami
 import QtQuick.Controls 2.5 as QQC2
 import QtQuick.Layouts 1.12
 import Ruqola 1.0
@@ -67,7 +67,7 @@ Kirigami.BasicListItem {
             }
         }
         QQC2.Label {
-            text: i18n("Open Discussion")
+            text: qsTr("Open Discussion")
             elide: Text.ElideRight
             wrapMode: QQC2.Label.Wrap
             textFormat: Text.PlainText

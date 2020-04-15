@@ -21,7 +21,7 @@
 import QtQuick 2.9
 
 import QtQuick.Controls 2.5 as QQC2
-import org.kde.kirigami 2.7 as Kirigami
+//import org.kde.kirigami 2.7 as Kirigami
 import QtMultimedia 5.8
 import QtQuick.Layouts 1.12
 import Ruqola 1.0
@@ -63,7 +63,7 @@ UserMessage {
                 Layout.fillWidth: true
                 QQC2.Label {
                     //TODO remove duplicate code
-                    text: model.modelData.title === "" ? "" :  i18n("File Uploaded: %1", model.modelData.title)
+                    text: model.modelData.title === "" ? "" :  qsTr("File Uploaded: %1").arg(model.modelData.title)
                     visible: model.modelData.title !== ""
                     wrapMode: QQC2.Label.Wrap
                     anchors.leftMargin: Kirigami.Units.smallSpacing
@@ -80,10 +80,11 @@ UserMessage {
                 }
                 RowLayout {
                     //Add video media
-                    Kirigami.Icon {
+//                    Kirigami.Icon
+                    QQC2.ToolButton{
                         id: playerButton
 
-                        source: "media-playback-start"
+                        icon.source: "media-playback-start"
                         width: height
                         height: Kirigami.Units.iconSizes.medium
                         MouseArea {

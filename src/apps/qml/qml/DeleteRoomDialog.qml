@@ -27,7 +27,7 @@ import QtQuick 2.9
 QQC2.Dialog {
     id: deleteRoomDialog
 
-    title: i18n("Delete Room")
+    title: qsTr("Delete Room")
 
     signal deleteRoom(string roomId)
 
@@ -41,7 +41,7 @@ QQC2.Dialog {
 
     Row {
         QQC2.Label {
-            text: i18n("Do you want to delete this room?")
+            text: qsTr("Do you want to delete this room?")
             font.bold: true
             font.pointSize: 15
         }

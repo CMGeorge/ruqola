@@ -21,25 +21,25 @@
 import QtQuick 2.9
 import QtQuick.Layouts 1.12
 import QtQuick.Controls 2.5 as QQC2
-import org.kde.kirigami 2.7 as Kirigami
+//import org.kde.kirigami 2.7 as Kirigami
 
 
 Kirigami.Page {
     id: configureServer
 
-    title: i18n("Configure Accounts")
+    title: qsTr("Configure Accounts")
 
     property alias accountModel : listview.model
 
     actions.main: Kirigami.Action {
         icon.name: "list-add"
-        text: i18n("Add Account")
+        text: qsTr("Add Account")
         onTriggered: createNewAccountDialog.initializeAndOpen()
     }
 
     actions.right: Kirigami.Action {
         icon.name: "window-close-symbolic"
-        text: i18n("Close")
+        text: qsTr("Close")
         onTriggered: pageStack.pop()
     }
 
@@ -52,7 +52,7 @@ Kirigami.Page {
             actions: [
                 Kirigami.Action {
                     icon.name: "list-remove"
-                    text: i18n("Remove")
+                    text: qsTr("Remove")
                     onTriggered: {
                         deleteAccountDialog.accountName = name
                         deleteAccountDialog.open()
@@ -60,7 +60,7 @@ Kirigami.Page {
                 },
                 Kirigami.Action {
                     icon.name: "document-edit"
-                    text: i18n("Edit")
+                    text: qsTr("Edit")
                     onTriggered: {
                         // TODO
                     }

@@ -22,12 +22,12 @@ import QtQuick.Layouts 1.12
 import QtQuick.Controls 2.5 as QQC2
 import QtQuick.Window 2.2
 
-import org.kde.kirigami 2.7 as Kirigami
+//import org.kde.kirigami 2.7 as Kirigami
 QQC2.Dialog {
     id: autoTranslateConfigDialog
     property QtObject roomInfo
 
-    title: i18n("Auto-Translate")
+    title: qsTr("Auto-Translate")
 
     standardButtons: QQC2.Dialog.Close
 
@@ -43,7 +43,7 @@ QQC2.Dialog {
         columns: 2
         QQC2.Label {
             id: labelAutoTranslate
-            text: i18n("Automatic Translation:");
+            text:qsTr("Automatic Translation:");
         }
         QQC2.Switch {
             id: autoTranslate
@@ -54,7 +54,7 @@ QQC2.Dialog {
         }
         QQC2.Label {
             id: labelLAnguage
-            text: i18n("Language:");
+            text: qsTr("Language:");
         }
         AutoTranslateLanguageCombobox {
             model: appid.autotranslateLanguagesModel

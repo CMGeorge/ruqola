@@ -48,7 +48,6 @@ Q_SIGNALS:
 private:
     Q_DISABLE_COPY(SetJoinCodeChannelJob)
     void slotSetJoinCodeFinished();
-    QString mJoinCode;
-};
+    QString mJoinCode; };
 }
 #endif // SETJOINCODECHANNELJOB_H

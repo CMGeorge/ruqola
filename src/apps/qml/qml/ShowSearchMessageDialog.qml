@@ -24,13 +24,13 @@ import QtQuick.Controls 2.5 as QQC2
 import QtQuick.Window 2.2
 import QtQuick 2.9
 
-import org.kde.kirigami 2.9 as Kirigami
+//import org.kde.kirigami 2.9 as Kirigami
 import "common"
 import "messages"
 QQC2.Dialog {
     id: showSearchMessageDialog
 
-    title: i18n("Search Message")
+    title: qsTr("Search Message")
 
     signal searchMessage(string pattern, string rid)
 
@@ -55,9 +55,10 @@ QQC2.Dialog {
 
     contentItem: ColumnLayout {
 
-        Kirigami.SearchField {
+//        Kirigami.SearchField {
+       QQC2.TextField{
             id: searchField
-            placeholderText: i18n("Search Word... (You can use regular expression as /^text$/i)")
+            placeholderText: qsTr("Search Word... (You can use regular expression as /^text$/i)")
             Layout.fillWidth: true
             Layout.alignment: Qt.AlignTop
             onAccepted: {
@@ -67,7 +68,7 @@ QQC2.Dialog {
 
         QQC2.Label {
             visible: searchMessageModel.stringNotFound
-            text: i18n("Any string found")
+            text: qsTr("Any string found")
             textFormat: Text.PlainText
             Layout.alignment: Qt.AlignTop
             font.italic: true

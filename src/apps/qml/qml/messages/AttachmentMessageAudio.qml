@@ -22,7 +22,7 @@ import QtQuick 2.9
 import QtMultimedia 5.8
 
 import QtQuick.Controls 2.5 as QQC2
-import org.kde.kirigami 2.7 as Kirigami
+//import org.kde.kirigami 2.7 as Kirigami
 import QtQuick.Layouts 1.12
 import Ruqola 1.0
 
@@ -35,7 +35,7 @@ UserMessage {
     attachments: Repeater {
         id: attachmentsRepeater
         model: i_attachments
-
+//        property alias audioPlayer: audioPlayer
         MediaPlayer {
             id: audioPlayer
             autoPlay: false
@@ -56,15 +56,16 @@ UserMessage {
                 timeLabel.text = ConvertScript.convertTimeString(audioPlayer.position) + "/" + ConvertScript.convertTimeString(audioPlayer.duration)
             }
             source: rcAccount.attachmentUrl(model.modelData.link)
+
         }
 
 
         ColumnLayout {
             Layout.fillWidth: true
-
+            Component.onCompleted: console.debug("MODEL: ",rcAccount.attachmentUrl(model.modelData.link))
             QQC2.Label {
                 //TODO remove duplicate code
-                text: model.modelData.title === "" ? "" :  i18n("File Uploaded: %1", model.modelData.title)
+                text: model.modelData.title === "" ? "" :  qsTr("File Uploaded: %1").arg(model.modelData.title)
                 textFormat: Text.PlainText
                 visible: model.modelData.title !== ""
                 wrapMode: QQC2.Label.Wrap
@@ -73,15 +74,17 @@ UserMessage {
             }
 
             RowLayout {
-                Kirigami.Icon {
+//                Kirigami.Icon
+                QQC2.ToolButton{
                     id: playerButton
-                    source: "media-playback-start"
+                    icon.source: "media-playback-start"
                     width: height
                     height: Kirigami.Units.iconSizes.huge
                     MouseArea {
                         anchors.fill: parent
                         onClicked: {
                             console.log(RuqolaDebugCategorySingleton.category, "Click on download audio file");
+                            console.debug("attachmentsRepeater? ",attachmentsRepeater.itemAt(1));
                             if (attachmentsRepeater.audioPlayer.source !== "") {
                                 if (attachmentsRepeater.audioPlayer.playbackState === MediaPlayer.PlayingState) {
                                     attachmentsRepeater.audioPlayer.pause()

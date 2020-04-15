@@ -40,7 +40,7 @@ include($$PWD/../rocketchatrestapi-qt5/rocketchatrestapi-qt5.pri)
 #INCLUDEPATH += $$PWD/KDE/
 
 
-include(corelib.pri)
+include(core.pri)
 
 CMAKE_MODULE_TESTS = '-'
 #load(qt_build_config)

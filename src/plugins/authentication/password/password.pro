@@ -4,7 +4,7 @@ CONFIG += plugin
 QT+=network websockets quick quickcontrols2
 #SOURCES += $$files($$PWD)
 #INCLUDEPATH += $$OUT_PWD/../../../../include/rocketchatrestapi-qt5
-INCLUDEPATH += $$PWD/../../../corelib \
+INCLUDEPATH += $$PWD/../../../core \
                 $$PWD/../../../rocketchatrestapi-qt5 \
                 $$PWD/../../../rocketchatrestapi-qt5/channels \
                 $$PWD/../../../rocketchatrestapi-qt5/commands \
@@ -27,6 +27,7 @@ windows{
 #\
 #                $$OUT_PWD/../../../../include/rocketchatrestapi-qt5
 LIBS += -L$$OUT_PWD/../../../../lib -lruqolacore
+#error($$OUT_PWD/../../../lib)
 }
 #error($$LIBS)
 #error($$OUT_PWD/../../../../include/rocketchatrestapi-qt5)

@@ -1,7 +1,7 @@
 TEMPLATE = subdirs
 
 SUBDIRS  = rocketchatrestapi-qt5
-SUBDIRS += corelib
+SUBDIRS += core
 SUBDIRS += apps
 SUBDIRS += plugins
 #rocketchatrestapi-qt5 \

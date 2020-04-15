@@ -47,5 +47,5 @@ SOURCES += \
 #PLUGIN_TYPE=auth
 #load(qt_plugin)
 
-!ios:DESTDIR = $$OUT_PWD/../../../../bin/ruqolaplugins/authentication
+!ios:DESTDIR = $$OUT_PWD/../../../../bin/rocketlugins/authentication
 #error("$$OUT_PWD/../../../../bin/ruqolaplugins/authentication")

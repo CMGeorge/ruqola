@@ -1,7 +1,10 @@
 TEMPLATE = lib
 TARGET=rocketchatrestapi-qt5
 QT += core network networkauth
+TARGET = $$qt5LibraryTarget($$TARGET$$QT_LIBINFIX)
 CONFIG += c++11
+    CONFIG += skip_target_version_ext
+
 DEFINES += IS_LIBROCKETCHATRESTAPI_QT5_EXPORT
 #DEFINE += ROCKETCHATQTRESTAPI_LOG=RoketChatQtRestAPI
 include($$PWD/rocketchatrestapi-qt5.pri)
@@ -13,7 +16,7 @@ win32{
     CONFIG += skip_target_version_ext
     DESTDIR = $$OUT_PWD/../../lib/
 }
-
+DESTDIR = $$OUT_PWD/../../lib/
 
 #CMAKE_MODULE_TESTS = '-'
 #load(qt_build_config)

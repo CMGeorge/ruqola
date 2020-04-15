@@ -1,8 +1,13 @@
 TEMPLATE = lib
 TARGET = ruqolacore
+TARGET = $$qt5LibraryTarget($$TARGET$$QT_LIBINFIX)  # Do this towards the end
 CONFIG += c++11
-QT+= network websockets quick network
+CONFIG += build_all
+    CONFIG += skip_target_version_ext
 
+CONFIG += relative_qt_rpath
+QT+= network websockets quick network
+load(qt_targets)
 #CONFIG += plugin
 DEFINES += IS_LIBRUQOLACORE_EXPORT
 #also methids from restapi should be set as dllexport
@@ -16,7 +21,7 @@ win32{
     CONFIG += skip_target_version_ext
     DESTDIR = $$OUT_PWD/../../lib/
 }
-
+DESTDIR = $$OUT_PWD/../../lib/
 DISTFILES += \
     corelib.pri \
     emoticons/emoji.json \
@@ -37,7 +42,7 @@ include($$PWD/../rocketchatrestapi-qt5/rocketchatrestapi-qt5.pri)
 
 include(corelib.pri)
 
-#CMAKE_MODULE_TESTS = '-'
+CMAKE_MODULE_TESTS = '-'
 #load(qt_build_config)
 #VERSION = 1.0.0
 #load(qt_module)

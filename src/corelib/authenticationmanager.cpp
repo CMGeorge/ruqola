@@ -46,7 +46,7 @@ AuthenticationManager *AuthenticationManager::self()
 
 bool AuthenticationManager::initializePluginList()
 {
-    const QVector<KPluginMetaData> plugins = KPluginLoader::findPlugins(QStringLiteral("ruqolaplugins/authentication"));
+    const QVector<KPluginMetaData> plugins = KPluginLoader::findPlugins(QStringLiteral("rocketlugins/authentication"));
 
     QVectorIterator<KPluginMetaData> i(plugins);
 

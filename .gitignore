@@ -25,3 +25,4 @@ CMakeLists.txt.user*
 src/kdelibs/
 kcoreaddons/
 kdelibs/
+android_libs

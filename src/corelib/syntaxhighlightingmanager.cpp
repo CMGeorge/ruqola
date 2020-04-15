@@ -28,7 +28,7 @@ SyntaxHighlightingManager::SyntaxHighlightingManager(QObject *parent)
 
 void SyntaxHighlightingManager::initialize()
 {
-#if !defined(Q_OS_WINDOWS) && !defined(Q_OS_MAC)
+#if !defined(Q_OS_WINDOWS) && !defined(Q_OS_MAC)&& !defined(Q_OS_ANDROID)
     mDef = mRepo.definitionForName(QStringLiteral("C++"));
     if (mDef.isValid()) {
         mSyntaxHighlightingInitialized = true;
@@ -39,7 +39,7 @@ void SyntaxHighlightingManager::initialize()
     qDebug()<<"=========================Implement this================";
 #endif
 }
-#if !defined(Q_OS_WINDOWS) && !defined(Q_OS_MAC)
+#if !defined(Q_OS_WINDOWS) && !defined(Q_OS_MAC)&& !defined(Q_OS_ANDROID)
 KSyntaxHighlighting::Repository &SyntaxHighlightingManager::repo() const
 {
     return mRepo;

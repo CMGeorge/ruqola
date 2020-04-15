@@ -30,12 +30,12 @@
 #include "ddpapi/ddpclient.h"
 #include "model/roommodel.h"
 #include "model/messagemodel.h"
-
+#include <QSsl>
 #if !defined(Q_OS_ANDROID) && !defined(Q_OS_WINDOWS)
 //#include "notification.h"
 #endif
 
-#if !defined(Q_OS_WINDOWS) && !defined(Q_OS_MAC)
+#if !defined(Q_OS_WINDOWS) && !defined(Q_OS_MAC) && !defined(Q_OS_ANDROID)
 #include "KAboutData.h"
 #endif
 class RocketChatAccount;
@@ -59,7 +59,7 @@ public:
 #endif
 
     Q_INVOKABLE RocketChatAccount *rocketChatAccount() const;
-#if !defined(Q_OS_WINDOWS) && !defined(Q_OS_MAC)
+#if !defined(Q_OS_WINDOWS) && !defined(Q_OS_MAC) && !defined(Q_OS_ANDROID)
     Q_INVOKABLE KAboutData applicationData() const;
 #endif
     Q_INVOKABLE AccountManager *accountManager() const;

@@ -4,21 +4,26 @@ CONFIG += plugin
 QT+=network websockets quick quickcontrols2
 #SOURCES += $$files($$PWD)
 #INCLUDEPATH += $$OUT_PWD/../../../../include/rocketchatrestapi-qt5
-mac{
+INCLUDEPATH += $$PWD/../../../corelib \
+                $$PWD/../../../rocketchatrestapi-qt5 \
+                $$PWD/../../../rocketchatrestapi-qt5/channels \
+                $$PWD/../../../rocketchatrestapi-qt5/commands \
+                $$PWD/../../../rocketchatrestapi-qt5/kde
+mac|android{
     LIBS+=-L$$OUT_PWD/../../../corelib -lruqolacore
 
-INCLUDEPATH += $$PWD/../../../corelib \
-                $$PWD/../../../rocketchatrestapi-qt5 \
-                $$PWD/../../../rocketchatrestapi-qt5/channels \
-                $$PWD/../../../rocketchatrestapi-qt5/commands \
-                $$PWD/../../../rocketchatrestapi-qt5/kde
+#INCLUDEPATH += $$PWD/../../../corelib \
+#                $$PWD/../../../rocketchatrestapi-qt5 \
+#                $$PWD/../../../rocketchatrestapi-qt5/channels \
+#                $$PWD/../../../rocketchatrestapi-qt5/commands \
+#                $$PWD/../../../rocketchatrestapi-qt5/kde
 }
 windows{
-INCLUDEPATH += $$PWD/../../../corelib \
-                $$PWD/../../../rocketchatrestapi-qt5 \
-                $$PWD/../../../rocketchatrestapi-qt5/channels \
-                $$PWD/../../../rocketchatrestapi-qt5/commands \
-                $$PWD/../../../rocketchatrestapi-qt5/kde
+#INCLUDEPATH += $$PWD/../../../corelib \
+#                $$PWD/../../../rocketchatrestapi-qt5 \
+#                $$PWD/../../../rocketchatrestapi-qt5/channels \
+#                $$PWD/../../../rocketchatrestapi-qt5/commands \
+#                $$PWD/../../../rocketchatrestapi-qt5/kde
 #\
 #                $$OUT_PWD/../../../../include/rocketchatrestapi-qt5
 LIBS += -L$$OUT_PWD/../../../../lib -lruqolacore
@@ -42,5 +47,5 @@ SOURCES += \
 #PLUGIN_TYPE=auth
 #load(qt_plugin)
 
-!ios:DESTDIR = $$OUT_PWD/../../../../bin/ruqolaplugins/authentication
+!ios:DESTDIR = $$OUT_PWD/../../../../bin/rocketlugins/authentication
 #error("$$OUT_PWD/../../../../bin/ruqolaplugins/authentication")

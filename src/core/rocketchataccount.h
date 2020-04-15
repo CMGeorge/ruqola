@@ -194,6 +194,7 @@ public:
     Q_INVOKABLE void setDefaultStatus(User::PresenceStatus status, const QString &messageStatus); //Move to private no ?
     Q_INVOKABLE void changeDefaultStatus(int index, const QString &messageStatus);
     Q_INVOKABLE void createJitsiConfCall(const QString &roomId);
+    Q_INVOKABLE QString getJitsiConfCallUrl(const QString &roomId);
     Q_INVOKABLE void deleteMessage(const QString &messageId, const QString &roomId);
     Q_INVOKABLE void userAutocomplete(const QString &searchText, const QString &exception);
     Q_INVOKABLE void eraseRoom(const QString &roomId, const QString &channelType);

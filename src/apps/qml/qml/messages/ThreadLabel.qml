@@ -30,7 +30,8 @@ QQC2.Label {
     textFormat: Text.RichText
 
     color: "red" //Convert to kirigami color
-    text: qsTr("1 reply").arg(i_tcount)
+    text: qsTr("%1 reply(s)").arg(i_tcount)
+
     wrapMode: QQC2.Label.Wrap
     visible: i_tcount > 0
     MouseArea {

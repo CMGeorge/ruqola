@@ -31,7 +31,7 @@ QQC2.Label {
 
     textFormat: Text.RichText
     color: "red" //Convert to kirigami color
-    text: i_dcount > 0 ? qsTr("1 message", "%1 messages",i_dcount) : qsTr("Any message yet")
+    text: i_dcount > 0 ? qsTr("1 message").arg(i_dcount) : qsTr("Any message yet")
     wrapMode: QQC2.Label.NoWrap
     visible: i_drid != ""
     MouseArea {

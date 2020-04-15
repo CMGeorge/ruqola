@@ -462,6 +462,7 @@ Component {
                 openDirectChannelDialog.open()
             }
             onJitsiCallConfActivated: {
+                console.debug("Login here: ",rocketChatAccount.getJitsiConfCallUrl(roomId))
                 appid.rocketChatAccount.joinJitsiConfCall(roomId)
             }
             onReportMessage: {

@@ -93,6 +93,7 @@ MessageBase {
                     MouseArea {
                         anchors.fill: parent
                         onClicked: {
+
                             messageMain.jitsiCallConfActivated()
                         }
                     }

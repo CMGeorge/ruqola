@@ -88,7 +88,7 @@ Kirigami.ApplicationWindow {
         
         topContent: [
             QQC2.Label {
-                text: rocketChatAccount.userName === "" ? "" : qsTr("Hello, %1", rocketChatAccount.userName)
+                text: rocketChatAccount.userName === "" ? "" : qsTr("Hello, %1").arg( rocketChatAccount.userName)
                 textFormat: Text.PlainText
             }
         ]

@@ -607,16 +607,8 @@ void RocketChatAccount::openArchivedRoom(const RocketChatRestApi::ChannelBaseJob
 
 void RocketChatAccount::joinJitsiConfCall(const QString &roomId)
 {
-    qCDebug(RUQOLA_LOG) << " void RocketChatAccount::joinJitsiConfCall(const QString &roomId)"<<roomId;
-    const QString hash = QString::fromLatin1(QCryptographicHash::hash((mRuqolaServerConfig->uniqueId() + roomId).toUtf8(), QCryptographicHash::Md5).toHex());
-#if defined(Q_OS_IOS) || defined(Q_OS_ANDROID)
-    const QString scheme = QStringLiteral("org.jitsi.meet://");
-#else
-    const QString scheme = QStringLiteral("https://");
-#endif
-    const QString url = scheme + mRuqolaServerConfig->jitsiMeetUrl() + QLatin1Char('/') + mRuqolaServerConfig->jitsiMeetPrefix() + hash;
-    const QUrl clickedUrl = QUrl::fromUserInput(url);
-    QDesktopServices::openUrl(clickedUrl);
+
+    QDesktopServices::openUrl(QUrl(getJitsiConfCallUrl(roomId)));
 }
 
 void RocketChatAccount::eraseRoom(const QString &roomId, const QString &channelType)
@@ -1147,6 +1139,20 @@ void RocketChatAccount::createJitsiConfCall(const QString &roomId)
     //TODO use restapi
     ddp()->createJitsiConfCall(roomId);
     joinJitsiConfCall(roomId);
+}
+
+QString RocketChatAccount::getJitsiConfCallUrl(const QString &roomId)
+{
+    qCDebug(RUQOLA_LOG) << " void RocketChatAccount::joinJitsiConfCall(const QString &roomId)"<<roomId;
+    const QString hash = QString::fromLatin1(QCryptographicHash::hash((mRuqolaServerConfig->uniqueId() + roomId).toUtf8(), QCryptographicHash::Md5).toHex());
+#if defined(Q_OS_IOS) || defined(Q_OS_ANDROID)
+    const QString scheme = QStringLiteral("org.jitsi.meet://");
+#else
+    const QString scheme = QStringLiteral("https://");
+#endif
+    const QString url = scheme + mRuqolaServerConfig->jitsiMeetUrl() + QLatin1Char('/') + mRuqolaServerConfig->jitsiMeetPrefix() + hash;
+    return url;
+//    const QUrl clickedUrl = QUrl::fromUserInput(url);
 }
 
 void RocketChatAccount::addUserToRoom(const QString &userId, const QString &roomId, const QString &channelType)

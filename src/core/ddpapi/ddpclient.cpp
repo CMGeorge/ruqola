@@ -811,7 +811,11 @@ void DDPClient::onTextMessageReceived(const QString &message)
                     const QString token = root.value(QLatin1String("result")).toObject().value(QLatin1String("token")).toString();
                     mRocketChatAccount->settings()->setAuthToken(token);
                     mRocketChatAccount->restApi()->setAuthToken(token);
+//                    if (root.value("result").toObject().value("id").toString("")!=""){//Eu am pus de test
+//                        mRocketChatAccount->restApi()->setUserId(root.value("result").toObject().value("id").toString(""));
+//                    }else{
                     mRocketChatAccount->restApi()->setUserId(root.value(QLatin1String("id")).toString());
+//                    }
                     setLoginStatus(DDPClient::LoggedIn);
                 }
             }

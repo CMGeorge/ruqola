@@ -159,7 +159,7 @@ RestApiRequest::RestApiRequest(QObject *parent)
     mRestApiMethod = new RestApiMethod;
     mCookieJar = new QNetworkCookieJar(this);
     mNetworkAccessManager = new QNetworkAccessManager(this);
-    mNetworkAccessManager->setRedirectPolicy(QNetworkRequest::NoLessSafeRedirectPolicy);
+//    mNetworkAccessManager->setRedirectPolicy(QNetworkRequest::NoLessSafeRedirectPolicy);
     mNetworkAccessManager->setCookieJar(mCookieJar);
     connect(mNetworkAccessManager, &QNetworkAccessManager::finished, this, &RestApiRequest::slotResult);
     connect(mNetworkAccessManager, &QNetworkAccessManager::sslErrors, this, &RestApiRequest::slotSslErrors);

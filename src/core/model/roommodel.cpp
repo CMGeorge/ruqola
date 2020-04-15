@@ -158,6 +158,8 @@ QHash<int, QByteArray> RoomModel::roleNames() const
     roles[RoomUserMentions] = QByteArrayLiteral("userMentions");
     roles[RoomAutotranslateLanguage] = QByteArrayLiteral("autotranslateLanguage");
     roles[RoomAutotranslate] = QByteArrayLiteral("autotranslate");
+    roles[RoomUpdateAt] = QByteArrayLiteral("updateAt");
+
     return roles;
 }
 
@@ -228,6 +230,9 @@ QVariant RoomModel::data(const QModelIndex &index, int role) const
         return r->ignoredUsers();
     case RoomModel::RoomAutotranslateLanguage:
         return r->autoTranslateLanguage();
+    case RoomModel::RoomUpdateAt: {
+        return r->updatedAt();
+    }
     }
     return {};
 }

@@ -249,7 +249,10 @@ void KPluginLoader::forEachPlugin(const QString &directory, std::function<void(c
             it.next();
             qDebug() << "SCAN " << it.fileName();
             if (QLibrary::isLibrary(it.fileName())) {
+                qDebug() << "File is a library";
                 callback(it.fileInfo().absoluteFilePath());
+            } else {
+                qDebug() << "File is not a library";
             }
         }
     }
@@ -260,14 +263,16 @@ QVector<KPluginMetaData> KPluginLoader::findPlugins(const QString &directory, st
     qDebug() << "???????Foreach " << directory;
     QVector<KPluginMetaData> ret;
     forEachPlugin(directory, [&](const QString &pluginPath) {
-        qDebug() << "!!!!!!!!! " << pluginPath;
         KPluginMetaData metadata(pluginPath);
+        qDebug() << "!!!!!!!!! " << pluginPath<<" = "<<metadata.name();
         if (!metadata.isValid()) {
             return;
         }
+        qDebug() << "Meta is ok ";
         if (filter && !filter(metadata)) {
             return;
         }
+        qDebug() << "Filter  is ok ";
         ret.append(metadata);
     });
     //TODO: Load From Static?

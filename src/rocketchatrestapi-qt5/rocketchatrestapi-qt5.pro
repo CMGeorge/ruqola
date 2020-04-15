@@ -16,7 +16,7 @@ win32{
     CONFIG += skip_target_version_ext
     DESTDIR = $$OUT_PWD/../../lib/
 }
-DESTDIR = $$OUT_PWD/../../lib/
+osx: DESTDIR = $$OUT_PWD/../../../lib/osx
 
 #CMAKE_MODULE_TESTS = '-'
 #load(qt_build_config)

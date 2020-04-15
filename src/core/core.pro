@@ -21,7 +21,9 @@ win32{
     CONFIG += skip_target_version_ext
     DESTDIR = $$OUT_PWD/../../lib/
 }
-DESTDIR = $$OUT_PWD/../../lib/
+osx:DESTDIR = $$OUT_PWD/../../../lib/osx
+
+LIBS += -L$$OUT_PWD/../../../plugins/osx/authentication/ -lruqola_passwordauthenticationplugin
 DISTFILES += \
     corelib.pri \
     emoticons/emoji.json \
@@ -46,3 +48,10 @@ CMAKE_MODULE_TESTS = '-'
 #load(qt_build_config)
 #VERSION = 1.0.0
 #load(qt_module)
+
+header_files.files = $$HEADERS
+header_files.path = $$OUT_PWD/../../../include/ruqola
+INSTALLS += header_files
+
+#find . -name "*.bak" -type f -delete # - clean CPP
+#error($$header_files.files)

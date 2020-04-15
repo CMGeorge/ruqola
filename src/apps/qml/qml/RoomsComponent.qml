@@ -25,183 +25,181 @@ import QtQuick.Window 2.2
 import QtQuick.Dialogs 1.2
 import QtQuick.Layouts 1.12
 import QtQuick.Controls 2.5 as QQC2
-//import org.kde.kirigami 2.8 as Kirigami
+import org.kde.kirigami 2.8 as Kirigami
 
 import Ruqola 1.0
 import "common"
-//Component {
-//    id: roomsComponent
-//    Kirigami.ScrollablePage {
-QQC2.Page{
-    id: roomsPage
-    title: qsTr("Rooms")
+Component {
+    id: roomsComponent
+    Kirigami.ScrollablePage {
+        id: roomsPage
+        title: qsTr("Rooms")
 
-//    actions {
-//        contextualActions: [
-//            Kirigami.Action {
-//                id: editAction
-//                iconName: "list-add"
-//                text: qsTr("Open Room");
-//                onTriggered: {
-//                    searchChannelDialog.initializeAndOpen();
-//                }
-//            },
-//            Kirigami.Action {
-//                iconName: "edit-symbolic"
-//                text: qsTr("Unread on Top");
-//                checkable: true
-//                checked: appid.rocketChatAccount.sortUnreadOnTop;
-//                onToggled: {
-//                    appid.rocketChatAccount.setSortUnreadOnTop(checked);
-//                }
-//            },
-//            Kirigami.Action {
-//                iconName: "edit-symbolic"
-//                text: qsTr("Show Close Icons");
-//                checkable: true
-//                onToggled: {
-//                    appid.rocketChatAccount.switchEditingMode(checked);
-//                }
-//            },
-//            Kirigami.Action {
-//                text: qsTr("Create New Channel")
-//                onTriggered: {
-//                    createNewChannelDialogLoader.active = true;
-//                }
-//            },
-//            Kirigami.Action {
-//                function mod(n, m) {
-//                    // see: https://stackoverflow.com/questions/4467539/javascript-modulo-gives-a-negative-result-for-negative-numbers
-//                    return ((n % m) + m) % m;
-//                }
+        actions {
+            contextualActions: [
+                Kirigami.Action {
+                    id: editAction
+                    iconName: "list-add"
+                    text: qsTr("Open Room");
+                    onTriggered: {
+                        searchChannelDialog.initializeAndOpen();
+                    }
+                },
+                Kirigami.Action {
+                    iconName: "edit-symbolic"
+                    text: qsTr("Unread on Top");
+                    checkable: true
+                    checked: appid.rocketChatAccount.sortUnreadOnTop;
+                    onToggled: {
+                        appid.rocketChatAccount.setSortUnreadOnTop(checked);
+                    }
+                },
+                Kirigami.Action {
+                    iconName: "edit-symbolic"
+                    text: qsTr("Show Close Icons");
+                    checkable: true
+                    onToggled: {
+                        appid.rocketChatAccount.switchEditingMode(checked);
+                    }
+                },
+                Kirigami.Action {
+                    text: qsTr("Create New Channel")
+                    onTriggered: {
+                        createNewChannelDialogLoader.active = true;
+                    }
+                },
+                Kirigami.Action {
+                    function mod(n, m) {
+                        // see: https://stackoverflow.com/questions/4467539/javascript-modulo-gives-a-negative-result-for-negative-numbers
+                        return ((n % m) + m) % m;
+                    }
 
-//                text: qsTr("Previous Channel");
-//                shortcut: "Alt+Up"
-//                visible: false // no need to display it in right-click menu
-//                onTriggered: {
-//                    roomsList.currentIndex = mod(roomsList.currentIndex - 1, roomsList.count);
-//                    roomsList.currentItem.selectRoom();
-//                }
-//            },
-//            Kirigami.Action {
-//                text: qsTr("Next Channel");
-//                shortcut: "Alt+Down"
-//                visible: false // no need to display it in right-click menu
-//                onTriggered: {
-//                    roomsList.currentIndex = (roomsList.currentIndex + 1) % roomsList.count;
-//                    roomsList.currentItem.selectRoom();
-//                }
-//            },
-//            Kirigami.Action {
-//                separator: true
-//            },
-//            Kirigami.Action {
-//                text: qsTr("Server Info")
-//                onTriggered: {
-//                    serverinfodialogLoader.active = true;
-//                }
-//            }
+                    text: qsTr("Previous Channel");
+                    shortcut: "Alt+Up"
+                    visible: false // no need to display it in right-click menu
+                    onTriggered: {
+                        roomsList.currentIndex = mod(roomsList.currentIndex - 1, roomsList.count);
+                        roomsList.currentItem.selectRoom();
+                    }
+                },
+                Kirigami.Action {
+                    text: qsTr("Next Channel");
+                    shortcut: "Alt+Down"
+                    visible: false // no need to display it in right-click menu
+                    onTriggered: {
+                        roomsList.currentIndex = (roomsList.currentIndex + 1) % roomsList.count;
+                        roomsList.currentItem.selectRoom();
+                    }
+                },
+                Kirigami.Action {
+                   separator: true
+                },
+                Kirigami.Action {
+                    text: qsTr("Server Info")
+                    onTriggered: {
+                        serverinfodialogLoader.active = true;
+                    }
+                }
 
-//        ]
-//    }
+            ]
+        }
 
-    // Since we can't have actions at the bottom on mobile, force always toolbar mode
-//    globalToolBarStyle: Kirigami.ApplicationHeaderStyle.ToolBar
-//    titleDelegate: Kirigami.SearchField {
-//        id: searchField
-//        placeholderText: qsTr("Search Room... (%1)", focusSequence)
-//        Layout.fillWidth: true
-//        onTextChanged: {
-//            appid.rocketChatAccount.roomFilterProxyModel.setFilterString(text);
-//        }
-//        onAccepted: {
-//            var roomID = roomsList.currentItem.d_roomID;
-//            appid.switchToRoom(roomID);
-//            searchField.text = "";
-//        }
-//        focusSequence: "Ctrl+K"
-//    }
-    background: Rectangle {
-//        color: Kirigami.Theme.backgroundColor
-    }
-    footer: QQC2.ToolBar {
-//        Kirigami.Theme.inherit: false
-//        Kirigami.Theme.colorSet: Kirigami.Theme.Window
-        position: QQC2.ToolBar.Footer
-        RowLayout {
-            anchors {
-                verticalCenter: parent.verticalCenter
-                left: parent.left
-//                margins: Kirigami.Units.smallSpacing
+        // Since we can't have actions at the bottom on mobile, force always toolbar mode
+        globalToolBarStyle: Kirigami.ApplicationHeaderStyle.ToolBar
+        titleDelegate: Kirigami.SearchField {
+            id: searchField
+            placeholderText: qsTr("Search Room... (%1)", focusSequence)
+            Layout.fillWidth: true
+            onTextChanged: {
+                appid.rocketChatAccount.roomFilterProxyModel.setFilterString(text);
             }
+            onAccepted: {
+                var roomID = roomsList.currentItem.d_roomID;
+                appid.switchToRoom(roomID);
+                searchField.text = "";
+            }
+            focusSequence: "Ctrl+K"
+        }
+        background: Rectangle {
+            color: Kirigami.Theme.backgroundColor
+        }
+        footer: QQC2.ToolBar {
+            Kirigami.Theme.inherit: false
+            Kirigami.Theme.colorSet: Kirigami.Theme.Window
+            position: QQC2.ToolBar.Footer
+            RowLayout {
+                anchors {
+                    verticalCenter: parent.verticalCenter
+                    left: parent.left
+                    margins: Kirigami.Units.smallSpacing
+                }
 
-            QQC2.ToolButton {
-                id: accountButton
-                icon.name: "network-workgroup"
-                onClicked: accountMenu.open()
-                visible: accountMenuInstantiator.model.accountNumber > 1
-                QQC2.Menu {
-                    id: accountMenu
-                    QtQml.Instantiator {
-                        id: accountMenuInstantiator
-                        model: appid.accountManagerModel
+                QQC2.ToolButton {
+                    id: accountButton
+                    icon.name: "network-workgroup"
+                    onClicked: accountMenu.open()
+                    visible: accountMenuInstantiator.model.accountNumber > 1
+                    QQC2.Menu {
+                        id: accountMenu
+                        QtQml.Instantiator {
+                            id: accountMenuInstantiator
+                            model: appid.accountManagerModel
 
-                        delegate: QQC2.MenuItem {
-                            text: name
-                            checkable: true
-                            autoExclusive: true
-                            checked: appid.accountManager.currentAccount === name
+                            delegate: QQC2.MenuItem {
+                                text: name
+                                checkable: true
+                                autoExclusive: true
+                                checked: appid.accountManager.currentAccount === name
 
-                            onTriggered: {
-                                appid.accountManager.currentAccount = name;
+                                onTriggered: {
+                                    appid.accountManager.currentAccount = name;
+                                }
                             }
-                        }
 
-                        onObjectAdded: {
-                            accountMenu.insertItem(index, object)
-                        }
-                        onObjectRemoved: {
-                            accountMenu.removeItem(object)
+                            onObjectAdded: {
+                                accountMenu.insertItem(index, object)
+                            }
+                            onObjectRemoved: {
+                                accountMenu.removeItem(object)
+                            }
                         }
                     }
                 }
-            }
 
 
-            QQC2.Label {
-                id: comboboxLabel
-                textFormat: Text.PlainText
-                text: qsTr("Status:")
-            }
+                QQC2.Label {
+                    id: comboboxLabel
+                    textFormat: Text.PlainText
+                    text: qsTr("Status:")
+                }
 
-            StatusCombobox {
-                id: statusCombobox
-                model: appid.rocketChatAccount.statusModel
+                StatusCombobox {
+                    id: statusCombobox
+                    model: appid.rocketChatAccount.statusModel
+                }
             }
         }
+
+        mainItem: RoomsView {
+            id: roomsList
+            editingMode: appid.rocketChatAccount.editingMode
+            implicitWidth: Kirigami.Units.gridUnit * 10
+            anchors.fill: parent
+            model: appid.rocketChatAccount.roomFilterProxyModel
+            selectedRoomID: appid.selectedRoomID;
+            onHideRoom: {
+                rocketChatAccount.hideRoom(roomID, roomType)
+            }
+            onLeaveRoom: {
+                //TODO move to desktop.qml
+                leaveChannelDialogLoader.rid = roomID
+                leaveChannelDialogLoader.roomType = roomType
+                leaveChannelDialogLoader.active = true
+            }
+
+            onRoomSelected: {
+                appid.switchToRoom(roomID)
+            }
+        } //RoomsView
     }
-
-//    mainItem:
-        contentItem:RoomsView {
-        id: roomsList
-        editingMode: appid.rocketChatAccount.editingMode
-//        implicitWidth: Kirigami.Units.gridUnit * 10
-        anchors.fill: parent
-        model: appid.rocketChatAccount.roomFilterProxyModel
-        selectedRoomID: appid.selectedRoomID;
-        onHideRoom: {
-            rocketChatAccount.hideRoom(roomID, roomType)
-        }
-        onLeaveRoom: {
-            //TODO move to desktop.qml
-            leaveChannelDialogLoader.rid = roomID
-            leaveChannelDialogLoader.roomType = roomType
-            leaveChannelDialogLoader.active = true
-        }
-
-        onRoomSelected: {
-            appid.switchToRoom(roomID)
-        }
-    } //RoomsView
 }
-//}

@@ -25,7 +25,7 @@ import QtQuick 2.9
 import QtQuick.Layouts 1.12
 import QtQuick.Controls 2.5 as QQC2
 
-//import org.kde.kirigami 2.7 as Kirigami
+import org.kde.kirigami 2.7 as Kirigami
 import "common"
 RowLayout {
     id: footerItem
@@ -48,8 +48,7 @@ RowLayout {
         messageLine.setOriginalMessage(messageStr)
     }
 
-//    Kirigami.Icon {
-        QQC2.ToolButton{
+    Kirigami.Icon {
         id: attachment
         MouseArea {
             hoverEnabled: true
@@ -60,7 +59,7 @@ RowLayout {
         }
 
         enabled: selectedRoomId !== ""
-        icon.source: "document-send-symbolic"
+        source: "document-send-symbolic"
         width: height
         height: messageLine.height
         MouseArea {
@@ -97,10 +96,9 @@ RowLayout {
             }
         }
     }
-//    Kirigami.Icon {
-    QQC2.ToolButton{
+    Kirigami.Icon {
         id: emojiIcon
-        icon.source: "face-smile"
+        source: "face-smile"
         width: height
         height: Kirigami.Units.gridUnit*2
         MouseArea {
@@ -122,9 +120,8 @@ RowLayout {
         }
     }
 
-//    Kirigami.Icon {
-    QQC2.TabButton{
-        icon.source: messageLine.savePreviousMessage == "" ?  "mail-sent" : "edit-symbolic"
+    Kirigami.Icon {
+        source: messageLine.savePreviousMessage == "" ?  "mail-sent" : "edit-symbolic"
         width: height
         height: Kirigami.Units.gridUnit*2
         MouseArea {

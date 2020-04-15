@@ -25,7 +25,7 @@ import QtQuick.Window 2.2
 import Ruqola 1.0
 
 
-//import org.kde.kirigami 2.8 as Kirigami
+import org.kde.kirigami 2.8 as Kirigami
 
 QQC2.Dialog {
     id: searchChannelDialog
@@ -51,8 +51,7 @@ QQC2.Dialog {
     }
 
     contentItem: ColumnLayout {
-//        Kirigami.SearchField {
-        QQC2.TextField{
+        Kirigami.SearchField {
             id: channelnametext
             placeholderText: qsTr("Search Channel...")
             Layout.fillWidth: true
@@ -73,15 +72,12 @@ QQC2.Dialog {
             clip: true
 
             model: searchChannelModel
-            delegate:
-//                Kirigami.BasicListItem {
-                QQC2.ItemDelegate{
-//                reserveSpaceForIcon: false
+            delegate: Kirigami.BasicListItem {
+                reserveSpaceForIcon: false
                 RowLayout {
                     Layout.fillHeight: true
-//                    Kirigami.Icon {
-                    QQC2.ToolButton{
-                        icon.source: "list-add"
+                    Kirigami.Icon {
+                        source: "list-add"
                         //FIXME
                         height: Kirigami.Units.iconSizes.medium
                         width: height
@@ -92,9 +88,8 @@ QQC2.Dialog {
                             }
                         }
                     }
-//                    Kirigami.Icon {
-                    QQC2.ToolButton{
-                        icon.source: iconname
+                    Kirigami.Icon {
+                        source: iconname
                         height: Kirigami.Units.iconSizes.medium
                         width: height
                     }

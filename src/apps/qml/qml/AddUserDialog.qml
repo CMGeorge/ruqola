@@ -25,7 +25,7 @@ import QtQuick.Window 2.2
 import Ruqola 1.0
 
 
-//import org.kde.kirigami 2.8 as Kirigami
+import org.kde.kirigami 2.8 as Kirigami
 
 QQC2.Dialog {
     id: addUserDialog
@@ -56,8 +56,7 @@ QQC2.Dialog {
     }
 
     contentItem: ColumnLayout {
-//        Kirigami.SearchField {
-        QQC2.TextField{
+        Kirigami.SearchField {
             id: username
             placeholderText: qsTr("Search User...")
             Layout.fillWidth: true
@@ -72,15 +71,12 @@ QQC2.Dialog {
             clip: true
 
             model: completerModel
-            delegate:
-//                Kirigami.BasicListItem {
-                QQC2.ItemDelegate{
-//                reserveSpaceForIcon: false
-//                reserveSpaceForLabel: false
+            delegate: Kirigami.BasicListItem {
+                reserveSpaceForIcon: false
+                reserveSpaceForLabel: false
                 RowLayout {
-//                    Kirigami.Icon {
-                    QQC2.ToolButton{
-                        icon.source: "list-add"
+                    Kirigami.Icon {
+                        source: "list-add"
                         height: Kirigami.Units.iconSizes.medium
                         width: height
                         MouseArea {
@@ -91,9 +87,8 @@ QQC2.Dialog {
                         }
                     }
 
-//                    Kirigami.Icon {
-                    QQC2.ToolButton{
-                        icon.source: iconstatus
+                    Kirigami.Icon {
+                        source: iconstatus
                         height: Kirigami.Units.iconSizes.medium
                         width: height
                     }

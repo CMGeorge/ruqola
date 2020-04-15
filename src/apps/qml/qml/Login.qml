@@ -24,12 +24,12 @@
 
 import QtQuick 2.9
 import QtQuick.Controls 2.5 as QQC2
-//import org.kde.kirigami 2.7 as Kirigami
+import org.kde.kirigami 2.7 as Kirigami
 import Ruqola 1.0
 
 import QtWebView 1.1
 
-/*Kirigami.*/QQC2.Page {
+QQC2.Page {
     id: loginForm
     
     property QtObject rcAccount
@@ -189,7 +189,7 @@ import QtWebView 1.1
             width: parent.width
             wrapMode: Text.Wrap
             text: qsTr("You have enabled second factor authentication. Please enter the generated code or a backup code.")
-//            color: Kirigami.Theme.negativeTextColor
+            color: Kirigami.Theme.negativeTextColor
             font.bold: true
             visible: rcAccount.loginStatus === DDPClient.LoginCodeRequired
         }
@@ -242,7 +242,7 @@ import QtWebView 1.1
             }
             horizontalAlignment: Text.AlignHCenter
             width: parent.width
-//            color: rcAccount.loginStatus === DDPClient.LoggingIn ? Kirigami.Theme.textColor : Kirigami.Theme.negativeTextColor
+            color: rcAccount.loginStatus === DDPClient.LoggingIn ? Kirigami.Theme.textColor : Kirigami.Theme.negativeTextColor
             font.bold: true
             visible: rcAccount.loginStatus === DDPClient.LoginFailed ||
                      rcAccount.loginStatus === DDPClient.LoggingIn ||
@@ -252,7 +252,7 @@ import QtWebView 1.1
             text: qsTr("Installation Problem found. No plugins found here.");
             horizontalAlignment: Text.AlignHCenter
             width: parent.width
-//            color: Kirigami.Theme.negativeTextColor
+            color: Kirigami.Theme.negativeTextColor
             font.bold: true
             visible: rcAccount.loginStatus === DDPClient.FailedToLoginPluginProblem
         }

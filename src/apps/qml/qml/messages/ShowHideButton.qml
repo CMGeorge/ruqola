@@ -22,13 +22,13 @@
 import QtQuick 2.9
 
 import QtQuick.Controls 2.5 as QQC2
-//import org.kde.kirigami 2.7 as Kirigami
+import org.kde.kirigami 2.7 as Kirigami
 
 import QtQuick.Layouts 1.12
 
 import "../common"
 
-QQC2.Button {
+Button {
     id: showHideButtonId
     property QtObject targetAnimation
     property int defaultHeight: 200
@@ -36,8 +36,8 @@ QQC2.Button {
 
     signal hiddenChanged(bool state);
 
-    icon.source: isHidden ? "hint" : "visibility"
-//    toolTipText: isHidden ? qsTr("Show") : qsTr("Hide")
+    source: isHidden ? "hint" : "visibility"
+    toolTipText: isHidden ? qsTr("Show") : qsTr("Hide")
 
     onClicked: {
         if (isHidden) {

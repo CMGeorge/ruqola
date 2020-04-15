@@ -22,7 +22,7 @@
  */
 
 import QtQuick 2.9
-//import org.kde.kirigami 2.10 as Kirigami
+import org.kde.kirigami 2.10 as Kirigami
 import QtQuick.Layouts 1.12
 import QtQuick.Controls 2.5 as QQC2
 import Ruqola 1.0
@@ -53,8 +53,7 @@ ListView {
 
     section {
         property: "sectionname"
-        delegate: /*Kirigami.ListSectionHeader*/
-        QQC2.ItemDelegate{
+        delegate: Kirigami.ListSectionHeader {
             text: section
         }
     }

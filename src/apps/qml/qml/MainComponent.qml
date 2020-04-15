@@ -26,17 +26,16 @@ import QtQuick.Window 2.2
 import QtQuick.Dialogs 1.2
 import QtQuick.Layouts 1.12
 import QtQuick.Controls 2.5 as QQC2
-//import org.kde.kirigami 2.7 as Kirigami
+import org.kde.kirigami 2.7 as Kirigami
 import Ruqola 1.0
 
 import "common"
 
-//Component {
-//    id: mainComponent
+Component {
+    id: mainComponent
 
 
-    /*Kirigami.*/
-    QQC2.Page {
+    Kirigami.Page {
         id: mainWidget
 
         title: appid.selectedRoom ? appid.selectedRoom.displayRoomName : ""
@@ -44,6 +43,7 @@ import "common"
         rightPadding: 0
         topPadding: 0
         bottomPadding: 0
+                            //                                    } else {
 //TODO: Check and implement
 //        actions {
 //            left: Kirigami.Action {
@@ -191,71 +191,71 @@ import "common"
 //            ]
 //        }
         
-//        onContextualActionsAboutToShow: {
-//            menuVideoChatAction.shouldBeVisible = appid.rocketChatAccount.jitsiEnabled
-//        }
+        onContextualActionsAboutToShow: {
+            menuVideoChatAction.shouldBeVisible = appid.rocketChatAccount.jitsiEnabled
+        }
 
-//        globalToolBarStyle: Kirigami.ApplicationHeaderStyle.ToolBar
-//        titleDelegate: RowLayout {
-//            QQC2.ToolButton {
-//                icon.name: "favorite"
-//                checkable: true
-//                visible: appid.selectedRoom && !appid.selectedRoom.isDiscussionRoom
-//                Accessible.onPressAction: onClicked
-//                Binding on checked {
-//                    value: appid.selectedRoom && appid.selectedRoom.favorite
-//                }
-//                onToggled: {
-//                    appid.rocketChatAccount.changeFavorite(appid.selectedRoomID, checked)
-//                }
-//            }
-//            QQC2.ToolButton {
-//                icon.name: "draw-arrow-back"
-//                Accessible.onPressAction: onClicked
-//                visible: appid.selectedRoom && appid.selectedRoom.isDiscussionRoom
-//                onClicked: {
-//                    appid.switchToRoom(appid.selectedRoom.parentRid)
-//                }
-//            }
-//            Kirigami.Icon {
-//                source: "encrypted"
-//                //FIXME
-//                height: Kirigami.Units.iconSizes.medium
-//                width: height
-//                visible: appid.selectedRoom && appid.selectedRoom.encrypted
-//            }
-//            Kirigami.Icon {
-//                source: "preferences-desktop-locale"
-//                height: Kirigami.Units.iconSizes.medium
-//                width: height
-//                visible: appid.selectedRoom && appid.selectedRoom.autoTranslate
-//                MouseArea {
-//                    hoverEnabled: true
-//                    anchors.fill: parent
-//                    QQC2.ToolTip {
-//                        text: qsTr("Auto-Translate Activated")
-//                    }
-//                }
-//            }
-//            Kirigami.Heading {
-//                text: appid.selectedRoom ? appid.selectedRoom.displayRoomName : ""
-//                level: 3
-//                font.bold: true
-//            }
-//            Item {
-//                Layout.fillWidth: true
-//            }
-//        }
+        globalToolBarStyle: Kirigami.ApplicationHeaderStyle.ToolBar
+        titleDelegate: RowLayout {
+            QQC2.ToolButton {
+                icon.name: "favorite"
+                checkable: true
+                visible: appid.selectedRoom && !appid.selectedRoom.isDiscussionRoom
+                Accessible.onPressAction: onClicked
+                Binding on checked {
+                    value: appid.selectedRoom && appid.selectedRoom.favorite
+                }
+                onToggled: {
+                    appid.rocketChatAccount.changeFavorite(appid.selectedRoomID, checked)
+                }
+            }
+            QQC2.ToolButton {
+                icon.name: "draw-arrow-back"
+                Accessible.onPressAction: onClicked
+                visible: appid.selectedRoom && appid.selectedRoom.isDiscussionRoom
+                onClicked: {
+                    appid.switchToRoom(appid.selectedRoom.parentRid)
+                }
+            }
+            Kirigami.Icon {
+                source: "encrypted"
+                //FIXME
+                height: Kirigami.Units.iconSizes.medium
+                width: height
+                visible: appid.selectedRoom && appid.selectedRoom.encrypted
+            }
+            Kirigami.Icon {
+                source: "preferences-desktop-locale"
+                height: Kirigami.Units.iconSizes.medium
+                width: height
+                visible: appid.selectedRoom && appid.selectedRoom.autoTranslate
+                MouseArea {
+                    hoverEnabled: true
+                    anchors.fill: parent
+                    QQC2.ToolTip {
+                        text: qsTr("Auto-Translate Activated")
+                    }
+                }
+            }
+            Kirigami.Heading {
+                text: appid.selectedRoom ? appid.selectedRoom.displayRoomName : ""
+                level: 3
+                font.bold: true
+            }
+            Item {
+                Layout.fillWidth: true
+            }
+        }
 
         header: Column {
-//            spacing: Kirigami.Units.smallSpacing
+            spacing: Kirigami.Units.smallSpacing
             ClickableLabel {
                 visible: appid.selectedRoom && (appid.selectedRoom.topic !== "")
                 text: appid.selectedRoom ? appid.selectedRoom.topic : ""
                 font.italic: true
                 anchors.right: parent.right
                 anchors.left: parent.left
-//                anchors.margins: 2*Kirigami.Units.smallSpacing
+                anchors.margins: 2*Kirigami.Units.smallSpacing
                 wrapMode: QQC2.Label.Wrap
                 onLinkActivated: {
                     RuqolaUtils.openUrl(link);
@@ -267,7 +267,7 @@ import "common"
                 text: appid.selectedRoom ? appid.selectedRoom.announcement : ""
                 anchors.right: parent.right
                 anchors.left: parent.left
-//                anchors.margins: 2*Kirigami.Units.smallSpacing
+                anchors.margins: 2*Kirigami.Units.smallSpacing
                 wrapMode: QQC2.Label.Wrap
                 onLinkActivated: {
                     RuqolaUtils.openUrl(link);
@@ -279,25 +279,25 @@ import "common"
                 font.italic: true
                 anchors.right: parent.right
                 anchors.left: parent.left
-//                anchors.margins: 2*Kirigami.Units.smallSpacing
+                anchors.margins: 2*Kirigami.Units.smallSpacing
                 wrapMode: QQC2.Label.Wrap
                 onLinkActivated: {
                     RuqolaUtils.openUrl(link);
                 }
             }
-//TODO: Implment Separator...
-//            Kirigami.Separator {
-//                anchors.right: parent.right
-//                anchors.left: parent.left
-//                visible: appid.selectedRoom
-//            }
+
+            Kirigami.Separator {
+                anchors.right: parent.right
+                anchors.left: parent.left
+                visible: appid.selectedRoom
+            }
             Flow {
                 id: topBarUserList
                 readonly property bool isActive: showUsersAction.checked
                 anchors {
                     left: parent.left
                     right: parent.right
-//                    margins: Kirigami.Units.smallSpacing
+                    margins: Kirigami.Units.smallSpacing
                 }
                 opacity: topBarUserList.isActive ? 1 : 0
                 Behavior on opacity { NumberAnimation { duration: 650; easing.type: Easing.InOutQuad } }
@@ -306,7 +306,7 @@ import "common"
                     id: repeaterUser
                     model: parent.opacity > 0.5 ? appid.userModel : 0
                     RowLayout {
-                        /*Kirigami.Icon*/ Image{
+                        Kirigami.Icon {
                             source: model.iconstatus
                             //FIXME
                             height: Kirigami.Units.iconSizes.small
@@ -389,13 +389,12 @@ import "common"
                 Item {
                     width: parent.width
                     height: topBarUserList.isActive ? 1 : 0
-                    //TODO: Implement
-//                    Kirigami.Separator {
-//                        height: parent.height
-//                        width: height > 0 ? parent.width : 0
-//                        anchors.centerIn: parent
-//                        Behavior on width { NumberAnimation { duration: 650; easing.type: Easing.InOutQuad } }
-//                    }
+                    Kirigami.Separator {
+                        height: parent.height
+                        width: height > 0 ? parent.width : 0
+                        anchors.centerIn: parent
+                        Behavior on width { NumberAnimation { duration: 650; easing.type: Easing.InOutQuad } }
+                    }
                 }
             }
         }
@@ -410,7 +409,7 @@ import "common"
             rcAccount: appid.rocketChatAccount
             roomId: appid.selectedRoomID
             anchors.fill: parent
-//            anchors.bottomMargin: Kirigami.Units.largeSpacing
+            anchors.bottomMargin: Kirigami.Units.largeSpacing
             clip: true
             useMenuMessage: true
 
@@ -836,7 +835,7 @@ import "common"
 
                 QQC2.Label {
                     id: typingInfo
-//                    Layout.leftMargin: Kirigami.Units.smallSpacing
+                    Layout.leftMargin: Kirigami.Units.smallSpacing
                     visible: text.length > 0
                 }
 
@@ -878,4 +877,4 @@ import "common"
             }
         }
     }// mainWidget Item
-//}
+}

@@ -21,19 +21,18 @@
 
 import QtQuick 2.9
 import QtQuick.Layouts 1.12
-import QtQuick.Controls 2.12
 
-//import org.kde.kirigami 2.7 as Kirigami
+
+import org.kde.kirigami 2.7 as Kirigami
 import "../common"
 
-//Kirigami.Icon
-ToolButton{
+Kirigami.Icon {
     id: reactIcon
 
     property bool showIcon: true
 
     signal insertReaction(string emoji)
-    icon.source: "face-smile"
+    source: "face-smile"
     width: height
     height: 18
     opacity: {

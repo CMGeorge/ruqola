@@ -24,7 +24,7 @@
 
 import QtQuick 2.9
 
-//import org.kde.kirigami 2.7 as Kirigami
+import org.kde.kirigami 2.7 as Kirigami
 import QtQuick.Controls 2.5 as QQC2
 import QtQuick.Layouts 1.12
 import Ruqola 1.0
@@ -136,14 +136,13 @@ MessageBase {
                             color: Kirigami.Theme.disabledTextColor
                         }
 
-//                        Kirigami.Icon {
-                        QQC2.ToolButton{
+                        Kirigami.Icon {
                             id: rolesInfo
-                            icon.source: "documentinfo"
+                            source: "documentinfo"
                             width: height
                             height: 18
                             visible: i_roles.length > 0
-                            icon.color: rolesInfoMA.containsMouse ? Kirigami.Theme.textColor : Kirigami.Theme.disabledTextColor
+                            color: rolesInfoMA.containsMouse ? Kirigami.Theme.textColor : Kirigami.Theme.disabledTextColor
                             MouseArea {
                                 id: rolesInfoMA
                                 hoverEnabled: true
@@ -153,14 +152,13 @@ MessageBase {
                             QQC2.ToolTip.text: i_roles
                         }
 
-//                        Kirigami.Icon {
-                        QQC2.ToolButton{
+                        Kirigami.Icon {
                             id: editedInfo
-                            icon.source: "document-edit"
+                            source: "document-edit"
                             width: height
                             height: 18
                             visible: i_editedByUserName !== ""
-                            icon.color: editedInfoMA.containsMouse ? "blue":"red"//Kirigami.Theme.textColor : Kirigami.Theme.disabledTextColor
+                            color: editedInfoMA.containsMouse ? Kirigami.Theme.textColor : Kirigami.Theme.disabledTextColor
                             MouseArea {
                                 id: editedInfoMA
                                 hoverEnabled: true

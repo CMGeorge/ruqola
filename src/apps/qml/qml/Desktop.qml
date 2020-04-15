@@ -25,13 +25,12 @@ import QtQuick 2.9
 import QtQuick.Window 2.2
 import QtQuick.Dialogs 1.2
 import QtQuick.Layouts 1.12
-import QtQuick.Controls 2.13 as QQC2
+import QtQuick.Controls 2.5 as QQC2
 
 import Ruqola 1.0
 
-//import org.kde.kirigami 2.7 as Kirigami
-/*Kirigami.*/
-QQC2.ApplicationWindow {
+import org.kde.kirigami 2.7 as Kirigami
+Kirigami.ApplicationWindow {
     id: appid
     readonly property int margin: 11
 
@@ -53,11 +52,11 @@ QQC2.ApplicationWindow {
     property QtObject autotranslateLanguagesModel: rocketChatAccount.autoTranslateLanguagesModel
     property string userInputMessageText: "";
 
-    width: 800//Kirigami.Units.gridUnit * 55
-    height: 600//Kirigami.Units.gridUnit * 40
+    width: Kirigami.Units.gridUnit * 55
+    height: Kirigami.Units.gridUnit * 40
 
     title: qsTr("Ruqola")
-    visible: true
+
 
     function switchToRoom(roomID)
     {
@@ -76,111 +75,100 @@ QQC2.ApplicationWindow {
         appid.selectedRoom = appid.rocketChatAccount.roomWrapper(roomID)
         appid.userModel = appid.rocketChatAccount.usersForRoomFilterProxyModel(roomID)
     }
-    QQC2.SplitView{
-        id: pageStack
-        anchors.fill: parent
-        RoomsComponent {
-            id: roomsComponent
-        }
 
-        MainComponent {
-//            anchors.fill: parent
-            id: mainComponent
-        }
+    pageStack.defaultColumnWidth: Kirigami.Units.gridUnit * 15
+    pageStack.initialPage: [roomsComponent, mainComponent]
+    pageStack.visible: rocketChatAccount.loginStatus === DDPClient.LoggedIn
+
+    globalDrawer: Kirigami.GlobalDrawer {
+        drawerOpen: false
+        handleVisible: true
+        resetMenuOnTriggered: true
+        isMenu: true
+        
+        topContent: [
+            QQC2.Label {
+                text: rocketChatAccount.userName === "" ? "" : qsTr("Hello, %1", rocketChatAccount.userName)
+                textFormat: Text.PlainText
+            }
+        ]
+        
+        actions: [
+            Kirigami.Action {
+                text: qsTr("About")
+                iconName: "ruqola"
+                onTriggered: {
+                    pageStack.push(aboutPage)
+                }
+            },
+            Kirigami.Action {
+                text: qsTr("Report a Bug")
+                iconName: "tools-report-bug"
+                onTriggered: {
+                    Qt.openUrlExternally("https://bugs.kde.org/report.cgi");
+                }
+            },
+            Kirigami.Action {
+                text: qsTr("Configure Account")
+                iconName: "settings-configure"
+                onTriggered: pageStack.push(Qt.resolvedUrl("ConfigureServerList.qml"), {accountModel: accountManagerModel})
+            },
+            Kirigami.Action {
+                text: qsTr("Handbook")
+                iconName: "system-help"
+                onTriggered: {
+                    rocketChatAccount.openDocumentation();
+                }
+            },
+            Kirigami.Action {
+                separator: true
+            },
+            Kirigami.Action {
+                text: qsTr("Log out")
+                iconName: "system-log-out"
+                onTriggered: {
+                    rocketChatAccount.logOut();
+                    appid.globalDrawer.drawerOpen = false;
+                }
+            },
+//            Kirigami.Action {
+//                text: QObject::tr("autotranslate")
+//                onTriggered: {
+//                    rocketChatAccount.getSupportedLanguages();
+//                }
+//            },
+            Kirigami.Action {
+                separator: true
+            },
+            Kirigami.Action {
+                shortcut: StandardKey.Quit
+                text: qsTr("Quit")
+                iconName: "application-exit"
+                onTriggered: {
+                    Qt.quit();
+                }
+            }
+        ]
     }
-//    pageStack.defaultColumnWidth: Kirigami.Units.gridUnit * 15
-//    pageStack.initialPage: [roomsComponent, mainComponent]
-//    pageStack.visible: rocketChatAccount.loginStatus === DDPClient.LoggedIn
-
-//    globalDrawer: Kirigami.GlobalDrawer {
-//        drawerOpen: false
-//        handleVisible: true
-//        resetMenuOnTriggered: true
-//        isMenu: true
-        
-//        topContent: [
-//            QQC2.Label {
-//                text: rocketChatAccount.userName === "" ? "" : qsTr("Hello, %1", rocketChatAccount.userName)
-//                textFormat: Text.PlainText
-//            }
-//        ]
-        
-//        actions: [
-//            Kirigami.Action {
-//                text: qsTr("About")
-//                iconName: "ruqola"
-//                onTriggered: {
-//                    pageStack.push(aboutPage)
-//                }
-//            },
-//            Kirigami.Action {
-//                text: qsTr("Report a Bug")
-//                iconName: "tools-report-bug"
-//                onTriggered: {
-//                    Qt.openUrlExternally("https://bugs.kde.org/report.cgi");
-//                }
-//            },
-//            Kirigami.Action {
-//                text: qsTr("Configure Account")
-//                iconName: "settings-configure"
-//                onTriggered: pageStack.push(Qt.resolvedUrl("ConfigureServerList.qml"), {accountModel: accountManagerModel})
-//            },
-//            Kirigami.Action {
-//                text: qsTr("Handbook")
-//                iconName: "system-help"
-//                onTriggered: {
-//                    rocketChatAccount.openDocumentation();
-//                }
-//            },
-//            Kirigami.Action {
-//                separator: true
-//            },
-//            Kirigami.Action {
-//                text: qsTr("Log out")
-//                iconName: "system-log-out"
-//                onTriggered: {
-//                    rocketChatAccount.logOut();
-//                    appid.globalDrawer.drawerOpen = false;
-//                }
-//            },
-////            Kirigami.Action {
-////                text: QObject::tr("autotranslate")
-////                onTriggered: {
-////                    rocketChatAccount.getSupportedLanguages();
-////                }
-////            },
-//            Kirigami.Action {
-//                separator: true
-//            },
-//            Kirigami.Action {
-//                shortcut: StandardKey.Quit
-//                text: qsTr("Quit")
-//                iconName: "application-exit"
-//                onTriggered: {
-//                    Qt.quit();
-//                }
-//            }
-//        ]
-//    }
 
     LoginPage {
         id: loginTab
         rcAccount: rocketChatAccount
     }
 
-//    Component {
-//        id: aboutPage
+    Component {
+        id: aboutPage
 
-//        Kirigami.AboutPage {
-//            aboutData: Ruqola.applicationData()
+        Kirigami.AboutPage {
+            aboutData: Ruqola.applicationData()
 
-//            actions.main: Kirigami.Action {
-//                text: qsTr("Close")
-//                icon.name: "window-close-symbolic"
-//                onTriggered: pageStack.pop()
-//            }
-//        }
-//    }
+            actions.main: Kirigami.Action {
+                text: qsTr("Close")
+                icon.name: "window-close-symbolic"
+                onTriggered: pageStack.pop()
+            }
+        }
+    }
 
     Loader {
         id: customUserStatusDialogLoader
@@ -454,7 +442,13 @@ QQC2.ApplicationWindow {
         visible: rocketChatAccount.loginStatus === DDPClient.LoggingIn
     }
 
+    RoomsComponent {
+        id: roomsComponent
+    }
 
+    MainComponent {
+        id: mainComponent
+    }
 
     Loader {
         id: channelPasswordDialogLoader
@@ -512,7 +506,7 @@ QQC2.ApplicationWindow {
         if (Qt.platform.os == "android") {
             return;
         }
-//TODO Implement Systray
-//        systrayIcon.activateRequested.connect(toggleShow);
+
+        systrayIcon.activateRequested.connect(toggleShow);
     }
 }

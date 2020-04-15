@@ -1,6 +1,6 @@
 TEMPLATE = lib
 TARGET = ruqolacore
-TARGET = $$qt5LibraryTarget($$TARGET$$QT_LIBINFIX)  # Do this towards the end
+TARGET = $$qt5LibraryTarget($$TARGET$$QT_LIBINFIX)d  # Do this towards the end
 CONFIG += c++11
 CONFIG += build_all
     CONFIG += skip_target_version_ext
@@ -16,14 +16,17 @@ DEFINES += IS_LIBROCKETCHATRESTAPI_QT5_EXPORT
 #        LIBS+=-L$$PWD/../../android_libs/arm/ -lcrypto
 #        LIBS+=-L$$PWD/../../android_libs/arm/ -lssl
 #}
-win32{
+windows{
     CONFIG -= debug_and_release debug_and_release_target
     CONFIG += skip_target_version_ext
     DESTDIR = $$OUT_PWD/../../lib/
+#    LIBS += -L$$OUT_PWD/../../../plugins/msvc64/authentication/ -lruqola_passwordauthenticationplugin
+#error($$OUT_PWD/../../../plugins/msvc64/authentication)
 }
-osx:DESTDIR = $$OUT_PWD/../../../lib/osx
-
-LIBS += -L$$OUT_PWD/../../../plugins/osx/authentication/ -lruqola_passwordauthenticationplugin
+osx:{
+DESTDIR = $$OUT_PWD/../../../lib/osx
+#LIBS += -L$$OUT_PWD/../../../plugins/osx/authentication/ -lruqola_passwordauthenticationplugin
+}
 DISTFILES += \
     corelib.pri \
     emoticons/emoji.json \
@@ -43,6 +46,7 @@ include($$PWD/../rocketchatrestapi-qt5/rocketchatrestapi-qt5.pri)
 
 
 include(core.pri)
+include($$PWD/../plugins/authentication/password/password.pri)
 
 CMAKE_MODULE_TESTS = '-'
 #load(qt_build_config)

@@ -74,9 +74,8 @@ RuqolaRegisterEngine::~RuqolaRegisterEngine()
     delete mEngine;
 }
 
-bool RuqolaRegisterEngine::initialize()
+bool RuqolaRegisterEngine::initialize(const QString &launchQml)
 {
-    qDebug() << "bool RuqolaRegisterEngine::initialize()";
     //Singleton
     qmlRegisterSingletonType(QUrl(QStringLiteral("qrc:/ExtraColors.qml")), URI, 1, 0, "RuqolaSingleton");
     qmlRegisterSingletonType(QUrl(QStringLiteral("qrc:/DebugCategory.qml")), URI, 1, 0, "RuqolaDebugCategorySingleton");
@@ -128,8 +127,21 @@ bool RuqolaRegisterEngine::initialize()
     qRegisterMetaType<User::PresenceStatus>();
     qRegisterMetaType<AuthenticationManager::OauthType>();
     qRegisterMetaType<KAboutData>();
+    QQmlApplicationEngine *mEngine = new QQmlApplicationEngine;
 
+    QQmlContext *ctxt = mEngine->rootContext();
+#if !defined(Q_OS_ANDROID) && !defined(Q_OS_IOS) && !defined(Q_OS_WINDOWS) && !defined(Q_OS_MAC)
+    qmlRegisterType<Notification>(URI, 1, 0, "Notification");
+    ctxt->setContextProperty(QStringLiteral("systrayIcon"), Ruqola::self()->notification());
+#endif
 //    ctxt->setContextObject(new KLocalizedContext(mEngine));
+
+    mEngine->load(QUrl(launchQml));
+
+    if (mEngine->rootObjects().isEmpty()) {
+        qCWarning(RUQOLA_LOG) << "Impossible to load object from Desktop.qml";
+        return false;
+    }
     return true;
 
 }

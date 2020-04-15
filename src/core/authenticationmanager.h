@@ -32,7 +32,7 @@
 #include<QCoreApplication>
 #include <QDirIterator>
 
-#ifdef Q_OS_WINDOWS
+//#ifdef Q_OS_WINDOWS
 //#include "authentication/password/passwordpluginauthentication.h"
 
 #include <QFileInfo>
@@ -80,7 +80,7 @@
 
 
 
-#endif
+//#endif
 class PluginAuthentication;
 
 class PluginUtilData

@@ -28,22 +28,15 @@ windows{
 #                $$PWD/../../../rocketchatrestapi-qt5/kde
 #\
 #                $$OUT_PWD/../../../../include/rocketchatrestapi-qt5
-LIBS += -L$$OUT_PWD/../../../../lib/osx -lruqolacore
-#error($$OUT_PWD/../../../lib)
+LIBS += -L$$OUT_PWD/../../../../lib -lruqolacore
+#error(2 $$OUT_PWD/../../../../lib)
 }
 #error($$LIBS)
 #error($$OUT_PWD/../../../../include/rocketchatrestapi-qt5)
 #$$PWD/../../../core/KDE
 #include($$PWD/../../../rocketchatrestapi-qt5/rocketchatrestapi-qt5.pri)
 
-HEADERS += \
-    passwordauthenticationinterface.h \
-    passwordauthenticationplugin_debug.h \
-    passwordpluginauthentication.h
-
-SOURCES += \
-    passwordauthenticationinterface.cpp \
-    passwordpluginauthentication.cpp
+include(password.pri)
 
 #CMAKE_MODULE_TESTS = '-'
 #load(qt_build_config)
@@ -53,6 +46,8 @@ SOURCES += \
 !ios:DESTDIR = $$OUT_PWD/../../../../bin/rocketlugins/authentication
 
 mac:DESTDIR = $$OUT_PWD/../../../../../plugins/osx/authentication
-#error("$$OUT_PWD/../../../../bin/ruqolaplugins/authentication")
+windows:DESTDIR = $$OUT_PWD/../../../../plugins/msvc64/authentication
+
+#error("$$OUT_PWD/../../../../plugins/msvc64/authentication")
 
 

@@ -105,11 +105,7 @@ QVector<PluginAuthentication *> AuthenticationManager::pluginsList() const
 PluginUtilData AuthenticationManager::createPluginMetaData(const KPluginMetaData &metaData)
 {
     PluginUtilData pluginData;
-#ifndef Q_OS_WINDOWS
     pluginData.mName = metaData.name();
     pluginData.mIdentifier = metaData.pluginId();
-#else
-//    qDebug()<<"=================================IMPLEMENT THIS ====== ";
-#endif
     return pluginData;
 }

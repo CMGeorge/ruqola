@@ -1,9 +1,9 @@
 TEMPLATE = subdirs
 
-SUBDIRS  = rocketchatrestapi-qt5
+#SUBDIRS  = rocketchatrestapi-qt5
 SUBDIRS += core
 SUBDIRS += apps
-SUBDIRS += plugins
+#SUBDIRS += plugins
 #rocketchatrestapi-qt5 \
 #widgets \
 #plugins \

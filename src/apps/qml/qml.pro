@@ -7,14 +7,14 @@ SOURCES += \
 RESOURCES += \
     qml/qml.qrc
 
-INCLUDEPATH += $$PWD/../../corelib
+INCLUDEPATH += $$PWD/../../core
 INCLUDEPATH += $$PWD/../../../
 #error($$INCLUDEPATH)
-LIBS += -L$$OUT_PWD/../../../lib -lruqolacore
+#LIBS += -L$$OUT_PWD/../../../lib -lruqolacore
 
 #error($$OUT_PWD/../../lib)
 windows{
-LIBS += -L$$OUT_PWD/../../lib -lruqolacore
+LIBS += -L$$OUT_PWD/../../../lib -lruqolacored
 #LIBS+= -L$$OUT_PWD/../../../lib/ -lrocketchatrestapi-qt5
 #error($$OUT_PWD/../../)
 }

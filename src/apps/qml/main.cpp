@@ -22,6 +22,7 @@
  */
 
 #include <QGuiApplication>
+#include <QtWidgets/QApplication>
 #include <QCommandLineParser>
 //#include <KLocalizedString>
 //#include <KCrash>
@@ -36,8 +37,6 @@
 #include <QDirIterator>
 #include <QQuickWindow>
 #include <QSsl>
-#include <QSslSocket>
-#include "QQmlApplicationEngine"
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
 //#include <KIconTheme>
 #endif
@@ -45,7 +44,6 @@
 int Q_DECL_EXPORT main(int argc, char *argv[])
 {
 
-    qDebug() << "sslsslssl==="<<QSslSocket::supportsSsl() << QSslSocket::sslLibraryBuildVersionString();
 
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
@@ -127,25 +125,9 @@ int Q_DECL_EXPORT main(int argc, char *argv[])
 
     RuqolaRegisterEngine ruqolaEngine;
 
-    if (!ruqolaEngine.initialize()) {
+    if (!ruqolaEngine.initialize("qrc:/Desktop.qml")) {
         return -1;
     }
-    QQmlApplicationEngine *mEngine = new QQmlApplicationEngine;
 
-    QQmlContext *ctxt = mEngine->rootContext();
-#if !defined(Q_OS_ANDROID) && !defined(Q_OS_IOS) && !defined(Q_OS_WINDOWS) &&  \
-    !defined(Q_OS_MAC)
-    qmlRegisterType<Notification>(URI, 1, 0, "Notification");
-    ctxt->setContextProperty(QStringLiteral("systrayIcon"),
-                             Ruqola::self()->notification());
-#endif
-
-    mEngine->load(QUrl(QStringLiteral("qrc:/Desktop.qml")));
-
-    if (mEngine->rootObjects().isEmpty()) {
-
-        exit(-1);
-    }
-//    return true;
     return app.exec();
 }

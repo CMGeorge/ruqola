@@ -28,7 +28,7 @@ class LIBRUQOLACORE_EXPORT RuqolaRegisterEngine
 public:
     RuqolaRegisterEngine();
     ~RuqolaRegisterEngine();
-    Q_REQUIRED_RESULT bool initialize();
+    Q_REQUIRED_RESULT bool initialize(const QString &launchQml);
 private:
     QQmlApplicationEngine *mEngine = nullptr;
 };
